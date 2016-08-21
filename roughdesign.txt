@@ -1,0 +1,53 @@
+//Naming conventions not followed. rough design
+
+interface storable
+void store() //to handle storing the data
+void update(field, newdata) //updation of data
+
+class email() //just incase verification is added later;
+string email;
+constructor
+
+abstract class user implement storable
+string username; only getter
+both getter and setter for the below
+email primarymail;
+email secondarymail;
+string password;
+string firstname;
+string lastname;
+string postaladdress;
+string aboutme;
+URL profilepic[3];
+methods to handle the below variable
+boolean has_quit;
+mostly private variables
+constructor
+
+class enduser extends user
+int karma;
+string usertype;
+constructor //calls super.constructor and its selfcode
+
+class moderator extends user
+static final string usertype;
+string emergencycontact;
+arraylist<string> qualifications;
+constructor //calls super.constructor and its selfcode 
+
+class admin extends user
+static final string usertype;
+string emergencycontact;
+constructor //calls super.constructor and its selfcode
+
+class global //contains useful global variables
+Static final string usertypes[] = {new, old, mod . .. ..etc}
+static final string acceptedqualifications[] = {etc etc} //if possible use treeset
+private constructor
+
+//need improvements maybe, confusing
+//currently designed for database and not file
+class login
+bool validate(email id, string password) //uses the below helper functions
+private bool checkid()
+private void retreivepassword() 
