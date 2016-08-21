@@ -51,3 +51,8 @@ class login
 bool validate(email id, string password) //uses the below helper functions
 private bool checkid()
 private void retreivepassword() 
+
+interface state
+state handle() //does the necessory work and returns the state to transition to
+
+subclasses of state class
