@@ -1,6 +1,8 @@
 package smart;
 
-public class user {
+import java.util.*;
+
+public abstract class user {
 
 	private String UserName;
 	private String PrimaryEmail;
@@ -13,6 +15,9 @@ public class user {
 	private String AboutMe;
 	private String picurl[] = new String[3];
 	private boolean has_quit;  //needed to be handled somehow 
+	ArrayList<user> userlist; //update method will handle it
+	
+	Scanner in = new Scanner(System.in);
 	
 	user(String FirstName, String LastName,String PrimaryEmail,
 			String SecondaryEmail, String Password, String UserId,
@@ -80,4 +85,70 @@ public class user {
 	{
 		return this.picurl;
 	}
+	
+	
+	
+	
+	public void setusername()
+	{
+		System.out.println("Enter Username:");
+		this.UserName = this.in.nextLine();
+		
+	}
+	
+	public void setprimaryemail()
+	{
+		System.out.println("Enter Primary Email:");
+		this.PrimaryEmail = this.in.nextLine();
+		
+	}
+	
+	public void setsecondaryemail()
+	{
+		System.out.println("Enter Secondary Email:");
+		this.SecondaryEmail = this.in.nextLine();
+	}
+
+	protected void setpassword()
+	{
+		System.out.println("Enter New Password:");
+		this.Password = this.in.nextLine();
+	}
+	
+	public void setuserid()
+	{
+		System.out.println("Enter UserID:");
+		this.UserId = this.in.nextLine();
+	}
+	
+	public void setfirstname()
+	{
+		System.out.println("Enter First Name:");
+		this.FirstName = this.in.nextLine();
+	}
+	
+	public void setlastname()
+	{
+		System.out.println("Enter Last Name:");
+		this.LastName = this.in.nextLine();
+		
+	}
+	
+	public void setpostaladdress()
+	{
+		System.out.println("Enter Postal Address:");
+	this.PostalAddress = this.in.nextLine();	
+	}
+	
+	public void setaboutme()
+	{
+		System.out.println("Enter About you:");
+		this.AboutMe = this.in.nextLine();
+	}
+	
+	
+	
+	
+	
+	
 }
