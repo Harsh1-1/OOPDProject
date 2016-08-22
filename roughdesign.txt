@@ -1,11 +1,11 @@
 //Naming conventions not followed. rough design
 
-interface storable
+interface storable                            //this interface not needed for now, will use when db required
 void store() //to handle storing the data
 void update(field, newdata) //updation of data
 
 class email() //just incase verification is added later;
-string email;
+string email;                             // will use update email method till now
 constructor
 
 abstract class user implement storable
