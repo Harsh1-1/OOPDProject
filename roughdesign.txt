@@ -1,3 +1,31 @@
+
+Skip to content
+This repository
+
+    Pull requests
+    Issues
+    Gist
+
+    @Abhiprayah
+
+0
+0
+
+    0
+
+Harsh1-1/OOPDProject
+Code
+Issues 0
+Pull requests 0
+Wiki
+Pulse
+Graphs
+OOPDProject/roughdesign.txt
+949605a an hour from now
+@Harsh1-1 Harsh1-1 rough design updated a lil bit
+@Abhiprayah
+@Harsh1-1
+58 lines (48 sloc) 1.75 KB
 //Naming conventions not followed. rough design
 
 interface storable                            //this interface not needed for now, will use when db required
@@ -9,6 +37,8 @@ string email;                             // will use update email method till n
 constructor
 
 abstract class user implement storable
+constructor user(First Name,Last Name, Primary E-mail ID, Secondary E-mail ID, Password, UserID,
+			Postal Address, About Me, profile picture links[]);
 string username; only getter
 both getter and setter for the below
 email primarymail;
@@ -22,7 +52,6 @@ URL profilepic[3];
 methods to handle the below variable
 boolean has_quit;
 mostly private variables
-constructor
 
 class enduser extends user
 int karma;
@@ -56,3 +85,8 @@ interface state
 state handle() //does the necessory work and returns the state to transition to
 
 subclasses of state class
+
+    Contact GitHub API Training Shop Blog About 
+
+    © 2016 GitHub, Inc. Terms Privacy Security Status Help 
+
