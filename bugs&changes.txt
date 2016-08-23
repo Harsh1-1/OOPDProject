@@ -1,0 +1,2 @@
+implement getUserType() method; should be abstract(or implemented) in abstract User class
+if time permits change naming convention of methods from getemail to getEmail(Standard java naming convention)
