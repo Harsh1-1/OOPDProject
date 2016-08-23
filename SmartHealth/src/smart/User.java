@@ -16,7 +16,7 @@ public abstract class User {
 	private String AboutMe;
 	private String picurl[] = new String[3];
 	private String UserType;
-	private boolean has_quit;  //needed to be handled somehow 
+	public boolean has_quit=false;  //needed to be handled somehow 
 	
 	Scanner in = new Scanner(System.in);
 	
@@ -37,123 +37,136 @@ public abstract class User {
 		this.picurl[2] = picurl2;
 		this.picurl[3] = picurl3;
 	}
-	public String getusertype()
+	public String getUserType()
 	{
 		return this.UserType;
 	}
 	
-	public String getusername()
+	public String getUserName()
 	{
 		return this.UserName;
 	}
 	
-	public String getprimaryemail()
+	public String getPrimaryEmail()
 	{
 		return this.PrimaryEmail;
 	}
 	
-	public String getsecondaryemail()
+	public String getSecondaryEmail()
 	{
 		return this.SecondaryEmail;
 	}
 
-	protected String getpassword()
+	protected String getPassword()
 	{
 		return this.Password;
 	}
 	
-	public String getuserid()
+	public String getUserId()
 	{
 		return this.UserId;
 	}
 	
-	public String getfirstname()
+	public String getFirstName()
 	{
 		return this.FirstName;
 	}
 	
-	public String getlastname()
+	public String getLastName()
 	{
 		return this.LastName;
 	}
 	
-	public String getpostaladdress()
+	public String getPostalAddress()
 	{
 		return this.PostalAddress;
 	}
 	
-	public String getaboutme()
+	public String getAboutMe()
 	{
 		return this.AboutMe;
 	}
 	
-	public String[] getpicurl()
+	public String[] getPicURL()
 	{
 		return this.picurl;
 	}
 	
 	
 	
-	public void setusertype(String UserType)
+	public void setUserType(String UserType)
 	{
 		this.UserType = UserType;
 	}
 	
-	public void setusername(String UserName)
+	public void setUserName(String UserName)
 	{
 	
 		this.UserName = UserName;
 		
 	}
 	
-	public void setprimaryemail(String PrimaryEmail)
+	public void setPrimaryEmail(String PrimaryEmail)
 	{
 		
 		this.PrimaryEmail = PrimaryEmail;
 		
 	}
 	
-	public void setsecondaryemail(String SecondaryEmail)
+	public void setSecondaryEmail(String SecondaryEmail)
 	{
 		
 		this.SecondaryEmail = SecondaryEmail;
 	}
 
-	protected void setpassword(String Password)
+	protected void setPassword(String Password)
 	{
 		
 		this.Password = Password;
 	}
 	
-	public void setuserid(String UserId)
+	public void setUserId(String UserId)
 	{
 		
 		this.UserId = UserId;
 	}
 	
-	public void setfirstname(String FirstName)
+	public void setFirstName(String FirstName)
 	{
 		
 		this.FirstName = FirstName;
 	}
 	
-	public void setlastname(String LastName)
+	public void setLastName(String LastName)
 	{
 		
 		this.LastName = LastName;
 		
 	}
 	
-	public void setpostaladdress(String PostalAddress)
+	public void setPostalAddress(String PostalAddress)
 	{
 		
 	this.PostalAddress = PostalAddress;	
 	}
 	
-	public void setaboutme(String AboutMe)
+	public void setAboutMe(String AboutMe)
 	{
 		
 		this.AboutMe = AboutMe;
+	}
+	
+	public void setPicURL(String picurl[])
+	{
+		this.picurl[1] = picurl[1];
+		this.picurl[2] = picurl[2];
+		this.picurl[3] = picurl[3];
+	}
+	
+	public void quit()
+	{
+		if(this.has_quit == false)
+			this.has_quit=true;
 	}
 	
 	
