@@ -6,7 +6,7 @@ class SignUp extends State{
 	private static final String options[] = {"First Name", "Last Name", 
 			"Primary E-mail ID",
 			"Secondary E-mail ID", "Password", "UserID",
-			"Postal Address", "About Me", "3 Profile picture links"};
+			"Postal Address", "About Me", "3 Profile picture links"};; 
 	private String commonDetails[];
 	
 	State handle(){
@@ -84,11 +84,11 @@ class SignUp extends State{
 		System.out.println("Enter links of 3 Profile pics ");
 		for(int i=0;i<3;i++)
 		{
-			commonDetails[options.length + i] = sc.next();
+			commonDetails[options.length + i - 1] = sc.next();
 		}
 	}
 	SignUp(Scanner sc){
 		super(sc);
-		commonDetails = new String[options.length + 2];
+		commonDetails = new String[options.length + 3];
 	}
 }
