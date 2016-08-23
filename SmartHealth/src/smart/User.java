@@ -1,7 +1,5 @@
 package smart;
 
-import java.util.*;
-
 public abstract class User {
 
 	private String UserName;

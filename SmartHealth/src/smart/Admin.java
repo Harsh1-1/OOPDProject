@@ -1,7 +1,6 @@
 package smart;
-import java.util.*;
-public class Admin extends User{
-	
+
+public class Admin extends User{	
 	
 	String EmergencyContact;
 	
