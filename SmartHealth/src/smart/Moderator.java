@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Moderator extends User{
 	
-	String EmergencyContact;
-	ArrayList<String> Qualifications; //needed to be handled
+	private String EmergencyContact;
+	private ArrayList<String> Qualifications; //needed to be handled
 	public	Moderator(String FirstName, String LastName,String PrimaryEmail,
 			String SecondaryEmail, String Password, String UserId,
 			String PostalAddress, String AboutMe, String picurl1,
