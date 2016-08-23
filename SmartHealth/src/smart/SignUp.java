@@ -25,33 +25,40 @@ class SignUp extends State{
 		
 		System.out.println("Please enter the following details ");
 		getCommonDetails();
-		
+		User user = null;
 		switch(choice){
 		case 1 :
-			EndUser user = new EndUser(details[0],details[1],details[2],details[3],
+			user = new EndUser(details[0],details[1],details[2],details[3],
 					details[4],details[5],details[6],details[7],
 					details[8],details[9], details[10]); 
-			return new Login(sc);
 		case 2 :
 			System.out.println("Emergency Contact number");
 			String emergencyContact = sc.next();
 			System.out.println("Enter all the applicable Qualifications separated by spaces ");
-			Admin admin = new Admin(details[0],details[1],details[2],details[3],
+			user = new Admin(details[0],details[1],details[2],details[3],
 					details[4],details[5],details[6],details[7],
 					details[8],details[9], details[10], emergencyContact);
-			return new Login(sc);
 		case 3 :
 			System.out.println("Emergency Contact number");
 			emergencyContact = sc.next();
-			Moderator moderator = new Moderator(details[0],details[1],details[2],details[3],
+			user = new Moderator(details[0],details[1],details[2],details[3],
 					details[4],details[5],details[6],details[7],
 					details[8],details[9], details[10], emergencyContact);
-			return new Login(sc);
 		default : System.out.println("Invalid Choice. Please Enter a valid Choice");
+		}
+		if(user != null){
+			if(store(user)){
+				return new Login(sc);
+			}
 		}
 		return this;
 	}
 
+	private boolean store(User user){
+		
+		return true;
+	}
+	
 	private void getCommonDetails(){
 		for(int i=0; i < options.length - 1; i++){
 			System.out.println(options[i]);
