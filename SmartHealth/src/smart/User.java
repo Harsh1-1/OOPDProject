@@ -1,8 +1,9 @@
 package smart;
 
+
 import java.util.*;
 
-public abstract class user {
+public abstract class User {
 
 	private String UserName;
 	private String PrimaryEmail;
@@ -15,11 +16,11 @@ public abstract class user {
 	private String AboutMe;
 	private String picurl[] = new String[3];
 	private boolean has_quit;  //needed to be handled somehow 
-	ArrayList<user> userlist; //update method will handle it
+	ArrayList<User> userlist; //update method will handle it
 	
 	Scanner in = new Scanner(System.in);
 	
-	user(String FirstName, String LastName,String PrimaryEmail,
+	User(String FirstName, String LastName,String PrimaryEmail,
 			String SecondaryEmail, String Password, String UserId,
 			String PostalAddress, String AboutMe, String picurl1,
 			String picurl2, String picurl3)

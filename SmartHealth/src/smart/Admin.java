@@ -1,6 +1,6 @@
 package smart;
 import java.util.*;
-public class Admin extends user{
+public class Admin extends User{
 	
 	static final String UserType="Admin";
 	String EmergencyContact;
@@ -13,7 +13,6 @@ public class Admin extends user{
 	{
 		super(FirstName, LastName, PrimaryEmail, SecondaryEmail, Password, UserId, PostalAddress, AboutMe, picurl1, picurl2, picurl3);
 		this.EmergencyContact = EmergencyContact;
-
-}
+	}
 	
 }

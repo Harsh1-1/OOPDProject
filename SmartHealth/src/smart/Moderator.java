@@ -1,8 +1,9 @@
 package smart;
 
+
 import java.util.*;
 
-public class Moderator extends user{
+public class Moderator extends User{
 	static final String UserType="Moderator";
 	String EmergencyContact;
 	ArrayList<String> Qualifications; //needed to be handled
