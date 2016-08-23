@@ -1,14 +1,6 @@
 package smart;
 import java.util.Scanner;
 
-/**
- * 
- */
-
-/**
- * @author Abhi
- *
- */
 class SignUp extends State{
 	private static final String options[] = {"First Name", "Last Name", 
 			"Primary E-mail ID",

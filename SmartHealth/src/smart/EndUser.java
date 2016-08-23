@@ -1,6 +1,5 @@
 package smart;
 
-
 import java.util.Scanner;
 
 public class EndUser extends User{
