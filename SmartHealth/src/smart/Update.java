@@ -34,10 +34,11 @@ class Update extends State{
 	boolean update(int l){
 		System.out.println("Enter the detail to update");
 		for(int i=0;i<l;i++){
-			System.out.println("1. " + options[i]);
+			System.out.println((i + 1) + ". " + options[i]);
 		}
 		int choice = sc.nextInt();
-		if(choice > l){
+		if(choice > l || choice < 1){
+			System.out.println("Invalid choice. Please enter a Valid choice.");
 			return false;
 		}
 		String s;
@@ -92,9 +93,9 @@ class Update extends State{
 		}
 		return true;
 	}
+	
 	Update(Scanner sc){
 		super(sc);
 	}
 
-	
 }
