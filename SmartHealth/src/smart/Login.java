@@ -36,7 +36,20 @@ class Login extends State{
 	}
 	
 	private User validUser(String id, String password){
-		
+		for(int i=0;i<Global.users.size();i++){
+			if(Global.users.get(i).getPrimaryEmail().equals(id)){
+				if(Global.users.get(i).getPassword().equals(password)){
+					SmartHealth.curPos = i;
+					return Global.users.get(i);
+				}
+				else{
+					System.out.println("Incorrect Password");
+					break;
+				}
+			}
+		}
+		System.out.println("Primary email Id not registered");
+		return null;
 	}
 	
 	Login(Scanner sc){

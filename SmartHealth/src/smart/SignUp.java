@@ -55,8 +55,18 @@ class SignUp extends State{
 	}
 
 	private boolean store(User user){
-		
-		//return true;
+		for(User u : Global.users){
+			if(u.getUserId().equals(user.getUserId())){
+				System.out.println("User Id already taken");
+				return false;
+			}
+			else if(u.getPrimaryEmail().equals(user.getPrimaryEmail())){
+				System.out.println("Primary EmailID already used");
+				return false;
+			}
+		}
+		Global.users.add(user);
+		return true;
 	}
 	
 	private void getCommonDetails(){
