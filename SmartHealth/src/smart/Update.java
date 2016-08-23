@@ -2,9 +2,9 @@ package smart;
 import java.util.Scanner;
 
 class Update extends State{
-	private static final String options[] = {"First Name", "Last Name", 
+	private static final String options[] = {"", "First Name", "Last Name", 
 			"Secondary E-mail ID", "Password", "Postal Address", 
-			"About Me", "3 Profile picture links", "Emergency Contact"};
+			"About Me", "Profile Picture Links", "Emergency Contact"};
 	
 	State handle(){
 		int temp;
@@ -25,8 +25,8 @@ class Update extends State{
 	
 	boolean update(int l){
 		System.out.println("Enter the detail to update");
-		for(int i=0;i<l;i++){
-			System.out.println((i + 1) + ". " + options[i]);
+		for(int i=1;i<l;i++){
+			System.out.println(i + ". " + options[i]);
 		}
 		int choice = sc.nextInt();
 		if(choice > l || choice < 1){
@@ -34,8 +34,10 @@ class Update extends State{
 			return false;
 		}
 		String s="";
-		if(choice != 7) System.out.println("Enter new " + options[choice] + " : ");
-		if(choice != 6 && choice != 7) s = sc.next();
+		if(!options[choice].equals("Profile Picture Links")) 
+			System.out.println("Enter new " + options[choice] + " : ");
+		if(!options[choice].equals("About Me") && !options[choice].equals("Profile Picture Links")) 
+			s = sc.next();
 		switch(choice){
 		case 1 : 
 			SmartHealth.curUser.setFirstName(s);
@@ -67,7 +69,7 @@ class Update extends State{
 			}
 			System.out.println("Enter new URL ");
 			String modurl = sc.next();
-			urls[ch] = modurl;
+			urls[ch - 1] = modurl;
 			SmartHealth.curUser.setPicURL(urls);
 			break;
 		case 8 : 
