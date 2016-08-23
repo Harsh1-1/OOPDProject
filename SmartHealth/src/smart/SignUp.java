@@ -14,7 +14,7 @@ class SignUp extends State{
 			"Primary E-mail ID",
 			"Secondary E-mail ID", "Password", "UserID",
 			"Postal Address", "About Me", "3 Profile picture links"};
-	private String details[];
+	private String commonDetails[];
 	
 	State handle(){
 		System.out.println("Select user type ");
@@ -28,22 +28,22 @@ class SignUp extends State{
 		User user = null;
 		switch(choice){
 		case 1 :
-			user = new EndUser(details[0],details[1],details[2],details[3],
-					details[4],details[5],details[6],details[7],
-					details[8],details[9], details[10]); 
+			user = new EndUser(commonDetails[0],commonDetails[1],commonDetails[2],commonDetails[3],
+					commonDetails[4],commonDetails[5],commonDetails[6],commonDetails[7],
+					commonDetails[8],commonDetails[9], commonDetails[10]); 
 		case 2 :
 			System.out.println("Emergency Contact number");
 			String emergencyContact = sc.next();
 			System.out.println("Enter all the applicable Qualifications separated by spaces ");
-			user = new Admin(details[0],details[1],details[2],details[3],
-					details[4],details[5],details[6],details[7],
-					details[8],details[9], details[10], emergencyContact);
+			user = new Admin(commonDetails[0],commonDetails[1],commonDetails[2],commonDetails[3],
+					commonDetails[4],commonDetails[5],commonDetails[6],commonDetails[7],
+					commonDetails[8],commonDetails[9], commonDetails[10], emergencyContact);
 		case 3 :
 			System.out.println("Emergency Contact number");
 			emergencyContact = sc.next();
-			user = new Moderator(details[0],details[1],details[2],details[3],
-					details[4],details[5],details[6],details[7],
-					details[8],details[9], details[10], emergencyContact);
+			user = new Moderator(commonDetails[0],commonDetails[1],commonDetails[2],commonDetails[3],
+					commonDetails[4],commonDetails[5],commonDetails[6],commonDetails[7],
+					commonDetails[8],commonDetails[9], commonDetails[10], emergencyContact);
 		default : System.out.println("Invalid Choice. Please Enter a valid Choice");
 		}
 		if(user != null){
@@ -56,26 +56,26 @@ class SignUp extends State{
 
 	private boolean store(User user){
 		
-		return true;
+		//return true;
 	}
 	
 	private void getCommonDetails(){
 		for(int i=0; i < options.length - 1; i++){
-			System.out.println(options[i]);
-			if(!options[i].equals("About me")) details[i] = sc.next();
+			System.out.println(options[i] + ": ");
+			if(!options[i].equals("About me")) commonDetails[i] = sc.next();
 			else{
-				details[i] = sc.nextLine();
+				commonDetails[i] = sc.nextLine();
 				//sc.next();
 			}
 		}
 		System.out.println("Enter links of 3 Profile pics ");
 		for(int i=0;i<3;i++)
 		{
-			details[options.length + i] = sc.next();
+			commonDetails[options.length + i] = sc.next();
 		}
 	}
 	SignUp(Scanner sc){
 		super(sc);
-		details = new String[options.length + 2];
+		commonDetails = new String[options.length + 2];
 	}
 }
