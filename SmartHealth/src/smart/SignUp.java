@@ -24,7 +24,8 @@ class SignUp extends State{
 			user = new EndUser(commonDetails[0],commonDetails[1],commonDetails[2],
 					commonDetails[3],commonDetails[4],commonDetails[5],
 					commonDetails[6],commonDetails[7],commonDetails[8],
-					commonDetails[9], commonDetails[10]); 
+					commonDetails[9], commonDetails[10]);
+			break;
 		case 2 :
 			System.out.println("Emergency Contact number");
 			String emergencyContact = sc.next();
@@ -40,6 +41,7 @@ class SignUp extends State{
 					commonDetails[6],commonDetails[7], commonDetails[8],
 					commonDetails[9], commonDetails[10], 
 					emergencyContact, qualifications);
+			break;
 		case 3 :
 			System.out.println("Emergency Contact number");
 			emergencyContact = sc.next();
@@ -47,6 +49,7 @@ class SignUp extends State{
 					commonDetails[3],commonDetails[4],commonDetails[5],
 					commonDetails[6],commonDetails[7],commonDetails[8],
 					commonDetails[9], commonDetails[10], emergencyContact);
+			break;
 		default : System.out.println("Invalid Choice. Please Enter a valid Choice");
 		}
 		if(user != null){
@@ -73,7 +76,7 @@ class SignUp extends State{
 	}
 	
 	private void getCommonDetails(){
-		for(int i=0; i < options.length; i++){
+		for(int i=0; i < options.length - 1; i++){
 			System.out.println(options[i] + ": ");
 			if(!options[i].equals("About me")) commonDetails[i] = sc.next();
 			else{
@@ -82,8 +85,7 @@ class SignUp extends State{
 			}
 		}
 		System.out.println("Enter links of 3 Profile pics ");
-		for(int i=0;i<3;i++)
-		{
+		for(int i=0;i<3;i++){
 			commonDetails[options.length + i - 1] = sc.next();
 		}
 	}
