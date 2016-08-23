@@ -17,8 +17,6 @@ public abstract class User {
 	protected String UserType;
 	public boolean has_quit=false;  //needed to be handled somehow 
 	
-	Scanner in = new Scanner(System.in);
-	
 	User(String FirstName, String LastName,String PrimaryEmail,
 			String SecondaryEmail, String Password, String UserId,
 			String PostalAddress, String AboutMe, String picurl1,
@@ -32,9 +30,9 @@ public abstract class User {
 		this.UserId = UserId;
 		this.PostalAddress = PostalAddress;
 		this.AboutMe = AboutMe;
-		this.picurl[1] = picurl1;
-		this.picurl[2] = picurl2;
-		this.picurl[3] = picurl3;
+		this.picurl[0] = picurl1;
+		this.picurl[1] = picurl2;
+		this.picurl[2] = picurl3;
 	}
 	public String getUserType()
 	{
@@ -157,15 +155,31 @@ public abstract class User {
 	
 	public void setPicURL(String picurl[])
 	{
+		this.picurl[0] = picurl[0];
 		this.picurl[1] = picurl[1];
 		this.picurl[2] = picurl[2];
-		this.picurl[3] = picurl[3];
 	}
 	
 	public void quit()
 	{
 		if(this.has_quit == false)
 			this.has_quit=true;
+	}
+	
+	public void displayProfileInfo()
+	{
+		System.out.println("User Type: " + this.UserType);
+		System.out.println("Username: " + this.UserName );
+		System.out.println("Primary Email: " + this.PrimaryEmail);
+		System.out.println("Secondary Email: " + this.SecondaryEmail);
+		System.out.println("User ID: " + this.UserId);
+		System.out.println("First Name: " + this.FirstName);
+		System.out.println("Last Name: " + this.LastName);
+		System.out.println("Postal Address: " + this.PostalAddress);
+		System.out.println("About: " + this.AboutMe);
+		System.out.println("Pic 1: " + this.picurl[0]);
+		System.out.println("Pic 2: " + this.picurl[1]);
+		System.out.println("Pic 3: " + this.picurl[2]);
 	}
 	
 	

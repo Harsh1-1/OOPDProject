@@ -5,7 +5,6 @@ public class Admin extends User{
 	
 	String EmergencyContact;
 	
-	Scanner in = new Scanner(System.in);
 	public Admin(String FirstName, String LastName,String PrimaryEmail,
 			String SecondaryEmail, String Password, String UserId,
 			String PostalAddress, String AboutMe, String picurl1,
@@ -19,5 +18,12 @@ public class Admin extends User{
 	public void setEmergencyContact(String EmergencyContact)
 	{
 		this.EmergencyContact = EmergencyContact;
+	}
+	
+	@Override
+	public void displayProfileInfo()
+	{
+		super.displayProfileInfo();
+		System.out.println("Emergency Contact No: " + this.EmergencyContact);
 	}
 }

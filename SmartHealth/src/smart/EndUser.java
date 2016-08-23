@@ -14,4 +14,11 @@ public class EndUser extends User{
 		this.Karma = 0;
 		this.UserType="ENDUSER";
 	}
+	
+	@Override
+	public void displayProfileInfo()
+	{
+		super.displayProfileInfo();
+		System.out.println("User Karma: " + this.Karma);
+	}
 }

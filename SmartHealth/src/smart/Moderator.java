@@ -6,7 +6,6 @@ public class Moderator extends User{
 	
 	String EmergencyContact;
 	ArrayList<String> Qualifications; //needed to be handled
-	Scanner in = new Scanner(System.in);
 	public	Moderator(String FirstName, String LastName,String PrimaryEmail,
 			String SecondaryEmail, String Password, String UserId,
 			String PostalAddress, String AboutMe, String picurl1,
@@ -19,5 +18,12 @@ public class Moderator extends User{
 	public void setEmergencyContact(String EmergencyContact)
 	{
 		this.EmergencyContact = EmergencyContact;
+	}
+	
+	@Override
+	public void displayProfileInfo()
+	{
+		super.displayProfileInfo();
+		System.out.println("Emergency Contact No: " + this.EmergencyContact);
 	}
 }
