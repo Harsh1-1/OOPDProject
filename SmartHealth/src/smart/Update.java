@@ -44,21 +44,38 @@ class Update extends State{
 		if(choice != 7) System.out.println("Enter new " + options[choice] + " : ");
 		if(choice != 6 && choice != 7) s = sc.next();
 		switch(choice){
-		case 1 : SmartHealth.curUser.setfirstname(s);
+		case 1 : 
+			SmartHealth.curUser.setfirstname(s);
 			break;
-		case 2 : SmartHealth.curUser.setlastname(s);
+		case 2 : 
+			SmartHealth.curUser.setlastname(s);
 			break;
-		case 3 : SmartHealth.curUser.setsecondaryemail(s);
+		case 3 : 
+			SmartHealth.curUser.setsecondaryemail(s);
 			break;
-		case 4 : SmartHealth.curUser.setpassword(s);
+		case 4 : 
+			SmartHealth.curUser.setpassword(s);
 			break;
-		case 5 : SmartHealth.curUser.setpostaladdress(s);
+		case 5 : 
+			SmartHealth.curUser.setpostaladdress(s);
 			break;
-		case 6 : s = sc.nextLine();
+		case 6 : 
+			s = sc.nextLine();
 			SmartHealth.curUser.setaboutme(s);
 			break;
 		case 7 : 
-			
+			String urls[] = SmartHealth.curUser.getpicurl();
+			System.out.println("Enter the URL to change");
+			for(int i=0;i<3;i++) System.out.println(i+1 + ". " + urls[i]);
+			int ch = sc.nextInt();
+			if(ch > 3 || ch < 1){
+				System.out.println("Invalid choice. Enter a valid number");
+				return false;
+			}
+			System.out.println("Enter new URL ");
+			String modurl = sc.next();
+			urls[ch] = modurl;
+			SmartHealth.curUser.setPicURL(urls);
 			break;
 		case 8 : 
 			if(SmartHealth.curUser.getUserType().equals("ADMIN")){
