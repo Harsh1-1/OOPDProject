@@ -21,29 +21,32 @@ class SignUp extends State{
 		User user = null;
 		switch(choice){
 		case 1 :
-			user = new EndUser(commonDetails[0],commonDetails[1],commonDetails[2],commonDetails[3],
-					commonDetails[4],commonDetails[5],commonDetails[6],commonDetails[7],
-					commonDetails[8],commonDetails[9], commonDetails[10]); 
+			user = new EndUser(commonDetails[0],commonDetails[1],commonDetails[2],
+					commonDetails[3],commonDetails[4],commonDetails[5],
+					commonDetails[6],commonDetails[7],commonDetails[8],
+					commonDetails[9], commonDetails[10]); 
 		case 2 :
 			System.out.println("Emergency Contact number");
 			String emergencyContact = sc.next();
 			System.out.println("Choose your qualification : ");
-			for(int i=0;i<Global.acceptedQualifications.length;i++){
-				System.out.println((i + 1) + ". " + Global.acceptedQualifications[i]);
+			for(int i=1;i<Global.acceptedQualifications.length;i++){
+				System.out.println(i + ". " + Global.acceptedQualifications[i]);
 			}
 			int qualchoice = sc.nextInt();
-			qualchoice -= 1;
 			ArrayList<String> qualifications = new ArrayList<String>();
 			qualifications.add(Global.acceptedQualifications[qualchoice]);
-			user = new Moderator(commonDetails[0],commonDetails[1],commonDetails[2],commonDetails[3],
-					commonDetails[4],commonDetails[5],commonDetails[6],commonDetails[7],
-					commonDetails[8],commonDetails[9], commonDetails[10], emergencyContact);
+			user = new Moderator(commonDetails[0],commonDetails[1],commonDetails[2], 
+					commonDetails[3],commonDetails[4],commonDetails[5], 
+					commonDetails[6],commonDetails[7], commonDetails[8],
+					commonDetails[9], commonDetails[10], 
+					emergencyContact, qualifications);
 		case 3 :
 			System.out.println("Emergency Contact number");
 			emergencyContact = sc.next();
-			user = new Admin(commonDetails[0],commonDetails[1],commonDetails[2],commonDetails[3],
-					commonDetails[4],commonDetails[5],commonDetails[6],commonDetails[7],
-					commonDetails[8],commonDetails[9], commonDetails[10], emergencyContact);
+			user = new Admin(commonDetails[0],commonDetails[1],commonDetails[2],
+					commonDetails[3],commonDetails[4],commonDetails[5],
+					commonDetails[6],commonDetails[7],commonDetails[8],
+					commonDetails[9], commonDetails[10], emergencyContact);
 		default : System.out.println("Invalid Choice. Please Enter a valid Choice");
 		}
 		if(user != null){
