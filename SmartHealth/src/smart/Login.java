@@ -1,14 +1,6 @@
 package smart;
 import java.util.Scanner;
 
-/**
- * 
- */
-
-/**
- * @author Abhi
- *
- */
 class Login extends State{
 	State handle(){
 		System.out.println("1. Login");

@@ -1,14 +1,6 @@
 package smart;
 import java.util.Scanner;
 
-/**
- * 
- */
-
-/**
- * @author Abhi
- *
- */
 class LoggedIn extends State{
 
 	State handle(){
