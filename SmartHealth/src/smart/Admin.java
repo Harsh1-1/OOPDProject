@@ -2,7 +2,7 @@ package smart;
 import java.util.*;
 public class Admin extends User{
 	
-	static final String UserType="ADMIN";
+	
 	String EmergencyContact;
 	
 	Scanner in = new Scanner(System.in);
@@ -13,6 +13,7 @@ public class Admin extends User{
 	{
 		super(FirstName, LastName, PrimaryEmail, SecondaryEmail, Password, UserId, PostalAddress, AboutMe, picurl1, picurl2, picurl3);
 		this.EmergencyContact = EmergencyContact;
+		this.UserType="ADMIN";
 	}
 	
 	public void setEmergencyContact(String EmergencyContact)

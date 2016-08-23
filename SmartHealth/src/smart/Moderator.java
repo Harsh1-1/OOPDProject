@@ -4,7 +4,7 @@ package smart;
 import java.util.*;
 
 public class Moderator extends User{
-	static final String UserType="MOD";
+	
 	String EmergencyContact;
 	ArrayList<String> Qualifications; //needed to be handled
 	Scanner in = new Scanner(System.in);
@@ -15,6 +15,7 @@ public class Moderator extends User{
 	{
 		super(FirstName, LastName, PrimaryEmail, SecondaryEmail, Password, UserId, PostalAddress, AboutMe, picurl1, picurl2, picurl3);
 		this.EmergencyContact = EmergencyContact;
+		this.UserType="MOD";
 	}
 	public void setEmergencyContact(String EmergencyContact)
 	{

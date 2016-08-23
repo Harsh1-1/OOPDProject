@@ -15,7 +15,7 @@ public abstract class User {
 	private String PostalAddress;
 	private String AboutMe;
 	private String picurl[] = new String[3];
-	private String UserType;
+	protected String UserType;
 	public boolean has_quit=false;  //needed to be handled somehow 
 	
 	Scanner in = new Scanner(System.in);
