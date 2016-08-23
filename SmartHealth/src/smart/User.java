@@ -15,8 +15,8 @@ public abstract class User {
 	private String PostalAddress;
 	private String AboutMe;
 	private String picurl[] = new String[3];
+	private String UserType;
 	private boolean has_quit;  //needed to be handled somehow 
-	ArrayList<User> userlist; //update method will handle it
 	
 	Scanner in = new Scanner(System.in);
 	
@@ -37,6 +37,11 @@ public abstract class User {
 		this.picurl[2] = picurl2;
 		this.picurl[3] = picurl3;
 	}
+	public String getusertype()
+	{
+		return this.UserType;
+	}
+	
 	public String getusername()
 	{
 		return this.UserName;
@@ -89,62 +94,66 @@ public abstract class User {
 	
 	
 	
-	
-	public void setusername()
+	public void setusertype(String UserType)
 	{
-		System.out.println("Enter Username:");
-		this.UserName = this.in.nextLine();
+		this.UserType = UserType;
+	}
+	
+	public void setusername(String UserName)
+	{
+	
+		this.UserName = UserName;
 		
 	}
 	
-	public void setprimaryemail()
+	public void setprimaryemail(String PrimaryEmail)
 	{
-		System.out.println("Enter Primary Email:");
-		this.PrimaryEmail = this.in.nextLine();
+		
+		this.PrimaryEmail = PrimaryEmail;
 		
 	}
 	
-	public void setsecondaryemail()
+	public void setsecondaryemail(String SecondaryEmail)
 	{
-		System.out.println("Enter Secondary Email:");
-		this.SecondaryEmail = this.in.nextLine();
+		
+		this.SecondaryEmail = SecondaryEmail;
 	}
 
-	protected void setpassword()
+	protected void setpassword(String Password)
 	{
-		System.out.println("Enter New Password:");
-		this.Password = this.in.nextLine();
+		
+		this.Password = Password;
 	}
 	
-	public void setuserid()
+	public void setuserid(String UserId)
 	{
-		System.out.println("Enter UserID:");
-		this.UserId = this.in.nextLine();
+		
+		this.UserId = UserId;
 	}
 	
-	public void setfirstname()
+	public void setfirstname(String FirstName)
 	{
-		System.out.println("Enter First Name:");
-		this.FirstName = this.in.nextLine();
+		
+		this.FirstName = FirstName;
 	}
 	
-	public void setlastname()
+	public void setlastname(String LastName)
 	{
-		System.out.println("Enter Last Name:");
-		this.LastName = this.in.nextLine();
+		
+		this.LastName = LastName;
 		
 	}
 	
-	public void setpostaladdress()
+	public void setpostaladdress(String PostalAddress)
 	{
-		System.out.println("Enter Postal Address:");
-	this.PostalAddress = this.in.nextLine();	
+		
+	this.PostalAddress = PostalAddress;	
 	}
 	
-	public void setaboutme()
+	public void setaboutme(String AboutMe)
 	{
-		System.out.println("Enter About you:");
-		this.AboutMe = this.in.nextLine();
+		
+		this.AboutMe = AboutMe;
 	}
 	
 	

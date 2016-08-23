@@ -3,10 +3,12 @@ package smart;
  * 
  */
 
+import java.util.ArrayList;
+
 /**
- * @author Abhi
+ * @author 1-1 :P
  *
  */
 final class Global {
-	
+	ArrayList<User> userlist;
 }
