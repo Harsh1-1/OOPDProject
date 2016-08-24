@@ -9,7 +9,7 @@ class Login extends State{
 		int choice = sc.nextInt();
 		switch(choice){
 		case 1 :
-			System.out.println("Enter your ID : ");
+			System.out.println("Enter your Primary Email ID : ");
 			//Email id = new Email(sc.next());
 			String emailID = sc.next();
 			System.out.println("Enter your Password : ");

@@ -78,11 +78,12 @@ class SignUp extends State{
 	private void getCommonDetails(){
 		for(int i=0; i < options.length - 1; i++){
 			System.out.println(options[i] + ": ");
-			if(!options[i].equals("About me")) commonDetails[i] = sc.next();
+			if(!options[i].equals("About Me")){
+				commonDetails[i] = sc.next();
+			}
 			else{
 				sc.nextLine();
 				commonDetails[i] = sc.nextLine();
-				//sc.next();
 			}
 		}
 		System.out.println("Enter links of 3 Profile pics ");

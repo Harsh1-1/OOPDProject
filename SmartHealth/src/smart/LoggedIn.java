@@ -37,6 +37,7 @@ class LoggedIn extends State{
 			return new Login(sc);
 		case 5 :
 			SmartHealth.curUser.join();
+			break;
 		default : System.out.println("Invalid choice. Please enter a valid choice.");
 		}
 		return this;

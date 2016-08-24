@@ -57,7 +57,6 @@ class Update extends State{
 		case 6 :
 			sc.nextLine();
 			s = sc.nextLine();
-			//sc.next();
 			SmartHealth.curUser.setAboutMe(s);
 			break;
 		case 7 : 
