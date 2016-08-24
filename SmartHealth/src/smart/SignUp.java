@@ -6,7 +6,7 @@ class SignUp extends State{
 	private static final String options[] = {"First Name", "Last Name", 
 			"Primary E-mail ID",
 			"Secondary E-mail ID", "Password", "UserID",
-			"Postal Address", "About Me", "3 Profile picture links"};; 
+			"Postal Address", "About Me", "3 Profile picture links"}; 
 	private String commonDetails[];
 	
 	State handle(){
@@ -80,6 +80,7 @@ class SignUp extends State{
 			System.out.println(options[i] + ": ");
 			if(!options[i].equals("About me")) commonDetails[i] = sc.next();
 			else{
+				sc.nextLine();
 				commonDetails[i] = sc.nextLine();
 				//sc.next();
 			}

@@ -54,8 +54,10 @@ class Update extends State{
 		case 5 : 
 			SmartHealth.curUser.setPostalAddress(s);
 			break;
-		case 6 : 
+		case 6 :
+			sc.nextLine();
 			s = sc.nextLine();
+			//sc.next();
 			SmartHealth.curUser.setAboutMe(s);
 			break;
 		case 7 : 

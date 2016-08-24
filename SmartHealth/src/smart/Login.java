@@ -5,7 +5,7 @@ class Login extends State{
 	State handle(){
 		System.out.println("1. Login");
 		System.out.println("2. Sign Up");
-		System.out.println("3. Enter your choice ");
+		System.out.println("Enter your choice ");
 		int choice = sc.nextInt();
 		switch(choice){
 		case 1 :

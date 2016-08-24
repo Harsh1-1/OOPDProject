@@ -13,7 +13,7 @@ public abstract class User {
 	private String AboutMe;
 	private String picurl[] = new String[3];
 	protected String UserType;
-	public boolean has_quit=false;  //needed to be handled somehow 
+	private boolean has_quit=false;  //needed to be handled somehow 
 	
 	User(String FirstName, String LastName,String PrimaryEmail,
 			String SecondaryEmail, String Password, String UserId,
@@ -162,6 +162,15 @@ public abstract class User {
 	{
 		if(this.has_quit == false)
 			this.has_quit=true;
+	}
+	
+	public void join()
+	{
+		this.has_quit = false;
+	}
+	
+	public boolean hasQuit(){
+		return has_quit;
 	}
 	
 	public void displayProfileInfo()
