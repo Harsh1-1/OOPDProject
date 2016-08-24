@@ -32,7 +32,7 @@ public class Moderator extends User{
 		System.out.println("Emergency Contact No: " + this.EmergencyContact);
 		for(int i=0;i<this.Qualifications.size();i++)
 		{
-			System.out.println("Qualifications of MOD are:" + this.Qualifications.get(i));
+			System.out.println("Qualifications are : " + this.Qualifications.get(i));
 		}
 	}
 }

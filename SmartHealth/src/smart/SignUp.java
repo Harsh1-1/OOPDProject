@@ -30,12 +30,14 @@ class SignUp extends State{
 		case 2 :
 			System.out.println("Emergency Contact number");
 			String emergencyContact = sc.next();
-			System.out.println("Choose your qualifications separated by spaces : ");
+			System.out.println("Choose your qualifications separated by spaces"
+					+ " and press 'N' to end : ");
 			for(int i=1;i<Global.acceptedQualifications.length;i++){
 				System.out.println(i + ". " + Global.acceptedQualifications[i]);
 			}
 			TreeSet<Integer> qualChoices = new TreeSet<Integer>();
 			while(sc.hasNextInt()) qualChoices.add(sc.nextInt());
+			sc.next();
 			ArrayList<String> qualifications = new ArrayList<String>();
 			for(int i : qualChoices){
 				if(i > 0 && i < Global.acceptedQualifications.length){
