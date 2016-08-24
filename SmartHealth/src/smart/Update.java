@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeSet;
 
+/**
+ * State for Updating user details
+ */
 class Update extends State{
 	private static final String options[] = {"", "First Name", "Last Name", 
 			"Secondary E-mail ID", "Password", "Postal Address", 
@@ -38,7 +41,9 @@ class Update extends State{
 		String s="";
 		if(!options[choice].equals("Profile Picture Links")) 
 			System.out.println("Enter new " + options[choice] + " : ");
-		if(!options[choice].equals("About Me") && !options[choice].equals("Profile Picture Links")) 
+		if(!options[choice].equals("About Me") && 
+		   !options[choice].equals("Profile Picture Links") && 
+		   !options[choice].equals("Qualifications")) 
 			s = sc.next();
 		switch(choice){
 		case 1 : 
