@@ -1,10 +1,12 @@
 package smart;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 class Update extends State{
 	private static final String options[] = {"", "First Name", "Last Name", 
 			"Secondary E-mail ID", "Password", "Postal Address", 
-			"About Me", "Profile Picture Links", "Emergency Contact"};
+			"About Me", "Profile Picture Links", "Emergency Contact", "Qualifications"};
 	
 	State handle(){
 		int temp;
@@ -12,10 +14,10 @@ class Update extends State{
 			temp = options.length;
 		}
 		else if(SmartHealth.curUser.getUserType().equals("ADMIN")){
-			temp = options.length;
+			temp = options.length - 1;
 		}
 		else{
-			temp = options.length - 1;
+			temp = options.length - 2;
 		}
 		if(update(temp)){
 			return new LoggedIn(sc);
@@ -82,6 +84,26 @@ class Update extends State{
 				Moderator moderator = (Moderator)SmartHealth.curUser;
 				moderator.setEmergencyContact(s);
 			}
+			break;
+		case 9 :
+			System.out.println("Choose your qualifications again separated by spaces : ");
+			for(int i=1;i<Global.acceptedQualifications.length;i++){
+				System.out.println(i + ". " + Global.acceptedQualifications[i]);
+			}
+			TreeSet<Integer> qualChoices = new TreeSet<Integer>();
+			while(sc.hasNextInt()) qualChoices.add(sc.nextInt());
+			ArrayList<String> qualifications = new ArrayList<String>();
+			for(int i : qualChoices){
+				if(i > 0 && i < Global.acceptedQualifications.length){
+					qualifications.add(Global.acceptedQualifications[i]);
+				}
+				else{
+					System.out.println("Invalid Qualification Choices");
+					return false;
+				}
+			}
+			Moderator moderator = (Moderator)SmartHealth.curUser;
+			moderator.setQualifications(qualifications);
 			break;
 		default : System.out.println("Invalid Choice. Please enter a valid choice");
 			return false;

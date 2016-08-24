@@ -21,6 +21,10 @@ public class Moderator extends User{
 		this.EmergencyContact = EmergencyContact;
 	}
 	
+	public void setQualifications(ArrayList<String> qualifications){
+		this.Qualifications = qualifications;
+	}
+	
 	@Override
 	public void displayProfileInfo()
 	{
