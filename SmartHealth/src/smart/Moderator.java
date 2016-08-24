@@ -26,5 +26,9 @@ public class Moderator extends User{
 	{
 		super.displayProfileInfo();
 		System.out.println("Emergency Contact No: " + this.EmergencyContact);
+		for(int i=1;i<this.Qualifications.size();i++)
+		{
+			System.out.println("Qualifications of MOD are:" + this.Qualifications.get(i));
+		}
 	}
 }
