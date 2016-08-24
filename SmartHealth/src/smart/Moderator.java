@@ -2,10 +2,13 @@ package smart;
 
 import java.util.*;
 
+//Moderator class inherits abstract class User
 public class Moderator extends User{
 	
 	private String EmergencyContact;
-	private ArrayList<String> Qualifications; //needed to be handled
+	private ArrayList<String> Qualifications;
+	
+	//Constructor for initialization of Moderator Object
 	public	Moderator(String FirstName, String LastName,String PrimaryEmail,
 			String SecondaryEmail, String Password, String UserId,
 			String PostalAddress, String AboutMe, String picurl1,
@@ -16,15 +19,19 @@ public class Moderator extends User{
 		this.UserType="MOD";
 		this.Qualifications = Qualifications;
 	}
+	
+	//Setter for Emergency Contact
 	public void setEmergencyContact(String EmergencyContact)
 	{
 		this.EmergencyContact = EmergencyContact;
 	}
 	
+	//Setter for Qualifications
 	public void setQualifications(ArrayList<String> qualifications){
 		this.Qualifications = qualifications;
 	}
 	
+	//functions for displaying Moderator's info, overrides base class User dispayProfileInfo method
 	@Override
 	public void displayProfileInfo()
 	{

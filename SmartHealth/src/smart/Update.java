@@ -38,7 +38,7 @@ class Update extends State{
 		String s="";
 		if(!options[choice].equals("Profile Picture Links")) 
 			System.out.println("Enter new " + options[choice] + " : ");
-		if(!options[choice].equals("About Me") && !options[choice].equals("Profile Picture Links")) 
+		if(!options[choice].equals("About Me") && !options[choice].equals("Profile Picture Links") && !options[choice].equals("Qualifications")) 
 			s = sc.next();
 		switch(choice){
 		case 1 : 
@@ -87,7 +87,7 @@ class Update extends State{
 			break;
 		case 9 :
 			System.out.println("Choose your qualifications again separated by spaces"
-					+ " and press 'N' to end : ");
+					+ " and press 'N' to end (Example:1 2 N): ");
 			for(int i=1;i<Global.acceptedQualifications.length;i++){
 				System.out.println(i + ". " + Global.acceptedQualifications[i]);
 			}
