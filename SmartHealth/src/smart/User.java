@@ -2,7 +2,6 @@ package smart;
 
 public abstract class User {
 
-	private String UserName;
 	private String PrimaryEmail;
 	private String SecondaryEmail;
 	private String Password;
@@ -37,10 +36,6 @@ public abstract class User {
 		return this.UserType;
 	}
 	
-	public String getUserName()
-	{
-		return this.UserName;
-	}
 	
 	public String getPrimaryEmail()
 	{
@@ -94,12 +89,6 @@ public abstract class User {
 		this.UserType = UserType;
 	}
 	
-	public void setUserName(String UserName)
-	{
-	
-		this.UserName = UserName;
-		
-	}
 	
 	public void setPrimaryEmail(String PrimaryEmail)
 	{
@@ -176,7 +165,6 @@ public abstract class User {
 	public void displayProfileInfo()
 	{
 		System.out.println("User Type: " + this.UserType);
-		System.out.println("Username: " + this.UserName );
 		System.out.println("Primary Email: " + this.PrimaryEmail);
 		System.out.println("Secondary Email: " + this.SecondaryEmail);
 		System.out.println("User ID: " + this.UserId);
