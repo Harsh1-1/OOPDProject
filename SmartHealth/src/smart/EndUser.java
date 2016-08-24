@@ -1,10 +1,10 @@
 package smart;
 
-import java.util.Scanner;
-
+//End User inherits abstract base class User
 public class EndUser extends User{
 	private int Karma;
-	Scanner in = new Scanner(System.in);
+	
+	//Constructor for initialization of End User object
 	public EndUser(String FirstName, String LastName,String PrimaryEmail,
 			String SecondaryEmail, String Password, String UserId,
 			String PostalAddress, String AboutMe, String picurl1,
@@ -15,6 +15,7 @@ public class EndUser extends User{
 		this.UserType="ENDUSER";
 	}
 	
+	//functions for displaying End User's info, overrides base class User dispayProfileInfo method
 	@Override
 	public void displayProfileInfo()
 	{

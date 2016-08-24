@@ -1,7 +1,9 @@
 package smart;
 
+//Abstract class user inherited by Admin, Moderator and EndUser Classes
 public abstract class User {
 
+	//All the required data of user
 	private String PrimaryEmail;
 	private String SecondaryEmail;
 	private String Password;
@@ -12,8 +14,9 @@ public abstract class User {
 	private String AboutMe;
 	private String picurl[] = new String[3];
 	protected String UserType;
-	private boolean has_quit=false;  //needed to be handled somehow 
+	private boolean has_quit=false;
 	
+	//Constructor for initialization
 	User(String FirstName, String LastName,String PrimaryEmail,
 			String SecondaryEmail, String Password, String UserId,
 			String PostalAddress, String AboutMe, String picurl1,
@@ -31,6 +34,8 @@ public abstract class User {
 		this.picurl[1] = picurl2;
 		this.picurl[2] = picurl3;
 	}
+	
+	//All the getters for data
 	public String getUserType()
 	{
 		return this.UserType;
@@ -83,7 +88,7 @@ public abstract class User {
 	}
 	
 	
-	
+	//All the setters for data
 	public void setUserType(String UserType)
 	{
 		this.UserType = UserType;
@@ -147,21 +152,25 @@ public abstract class User {
 		this.picurl[2] = picurl[2];
 	}
 	
+	//function called when the user want to quit
 	public void quit()
 	{
 		if(this.has_quit == false)
 			this.has_quit=true;
 	}
 	
+	//function called if the user want to join again
 	public void join()
 	{
 		this.has_quit = false;
 	}
 	
+	//for returning has quit
 	public boolean hasQuit(){
 		return has_quit;
 	}
 	
+	//For displaying the info
 	public void displayProfileInfo()
 	{
 		System.out.println("User Type: " + this.UserType);
