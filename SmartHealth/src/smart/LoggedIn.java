@@ -7,6 +7,12 @@ import java.util.Scanner;
  */
 class LoggedIn extends State{
 
+	private final static int DISPLAY = 1;
+	private final static int UPDATE = 2;
+	private final static int QUIT = 3;
+	private final static int LOGOUT = 4;
+	private final static int JOIN_AGAIN = 5;
+	
 	State handle(){
 		int choice;
 		//Check whether the user has quit or not
@@ -30,19 +36,19 @@ class LoggedIn extends State{
 		
 		//Handle various cases
 		switch(choice){
-		case 1 : //display users profile info
+		case DISPLAY : //display users profile info
 			SmartHealth.curUser.displayProfileInfo();
 			break;
-		case 2 : //Transition to Update state
+		case UPDATE : //Transition to Update state
 			return new Update(sc);
-		case 3 : //Set that user has quit
+		case QUIT : //Set that user has quit
 			SmartHealth.curUser.quit();
 			SmartHealth.curUser = null;
 			return new Login(sc);
-		case 4 : //Logout the current user
+		case LOGOUT : //Logout the current user
 			SmartHealth.curUser = null;
 			return new Login(sc);
-		case 5 : //Re validate a user who had quit before
+		case JOIN_AGAIN : //Re validate a user who had quit before
 			SmartHealth.curUser.join();
 			break;
 		default : System.out.println("Invalid choice. Please enter a valid choice.");
