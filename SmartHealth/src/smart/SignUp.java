@@ -7,6 +7,21 @@ import java.util.TreeSet;
  * State for handling Sign Up UI and related for
  */
 class SignUp extends State{
+	
+	private final static int END_USER = 1;
+	private final static int MODERATOR = 2;
+	private final static int ADMIN = 3;
+	private final static int FIRST_NAME = 0;
+	private final static int LAST_NAME = 1;
+	private final static int PRIMARY_EMAIL = 2;
+	private final static int SECONDARY_EMAIL = 3;
+	private final static int PASSWORD = 4;
+	private final static int USERID = 5;
+	private final static int POSTAL_ADDRESS = 6;
+	private final static int ABOUT_ME = 7;
+	private final static int PROFILE_PIC1 = 8;
+	private final static int PROFILE_PIC2 = 9;
+	private final static int PROFILE_PIC3 = 10;
 	//Options for signup
 	private static final String options[] = {"First Name", "Last Name", 
 			"Primary E-mail ID",
@@ -29,11 +44,11 @@ class SignUp extends State{
 		
 		User user = null;
 		switch(choice){
-		case 1 : //Create a normal user
-			user = new EndUser(commonDetails[0],commonDetails[1],commonDetails[2],
-					commonDetails[3],commonDetails[4],commonDetails[5],
-					commonDetails[6],commonDetails[7],commonDetails[8],
-					commonDetails[9], commonDetails[10]);
+		case END_USER : //Create a normal user
+			user = new EndUser(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
+					commonDetails[SECONDARY_EMAIL],commonDetails[PASSWORD],commonDetails[USERID],
+					commonDetails[POSTAL_ADDRESS],commonDetails[ABOUT_ME],commonDetails[PROFILE_PIC1],
+					commonDetails[PROFILE_PIC2], commonDetails[PROFILE_PIC3]);
 			break;
 		case 2 : //Take Moderator specific details
 			System.out.println("Emergency Contact number");
@@ -62,20 +77,20 @@ class SignUp extends State{
 				}
 			}
 			//Create new moderator
-			user = new Moderator(commonDetails[0],commonDetails[1],commonDetails[2], 
-					commonDetails[3],commonDetails[4],commonDetails[5], 
-					commonDetails[6],commonDetails[7], commonDetails[8],
-					commonDetails[9], commonDetails[10], 
+			user = new Moderator(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
+					commonDetails[SECONDARY_EMAIL],commonDetails[PASSWORD],commonDetails[USERID],
+					commonDetails[POSTAL_ADDRESS],commonDetails[ABOUT_ME],commonDetails[PROFILE_PIC1],
+					commonDetails[PROFILE_PIC2], commonDetails[PROFILE_PIC3], 
 					emergencyContact, qualifications);
 			break;
 		case 3 : //Take Admin specific details
 			System.out.println("Emergency Contact number");
 			emergencyContact = sc.next();
 			//create new admin
-			user = new Admin(commonDetails[0],commonDetails[1],commonDetails[2],
-					commonDetails[3],commonDetails[4],commonDetails[5],
-					commonDetails[6],commonDetails[7],commonDetails[8],
-					commonDetails[9], commonDetails[10], emergencyContact);
+			user = new Admin(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
+					commonDetails[SECONDARY_EMAIL],commonDetails[PASSWORD],commonDetails[USERID],
+					commonDetails[POSTAL_ADDRESS],commonDetails[ABOUT_ME],commonDetails[PROFILE_PIC1],
+					commonDetails[PROFILE_PIC2], commonDetails[PROFILE_PIC3], emergencyContact);
 			break;
 		default : System.out.println("Invalid Choice. Please Enter a valid Choice");
 		}
@@ -127,9 +142,9 @@ class SignUp extends State{
 		}
 		//get profile picture links
 		System.out.println("Enter links of 3 Profile pics ");
-		for(int i=0;i<3;i++){
-			commonDetails[options.length + i - 1] = sc.next();
-		}
+		commonDetails[PROFILE_PIC1] = sc.next();
+		commonDetails[PROFILE_PIC2] = sc.next();
+		commonDetails[PROFILE_PIC3] = sc.next();
 		return true; //executed without error
 	}
 	SignUp(Scanner sc){
