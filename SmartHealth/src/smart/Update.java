@@ -54,7 +54,7 @@ class Update extends State{
 		int choice = sc.nextInt();
 		
 		//check validity of choice
-		if(choice > l || choice < 1){
+		if(choice >= l || choice < 1){
 			System.out.println("Invalid choice. Please enter a Valid choice.");
 			return false;
 		}
