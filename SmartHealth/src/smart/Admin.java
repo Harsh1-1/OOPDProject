@@ -3,15 +3,15 @@ package smart;
 //Admin class inherits abstract class User
 public class Admin extends User{	
 	
-	String EmergencyContact;
+	private String EmergencyContact;
 	
 	//Constructor for initialization of current user object
 	public Admin(String FirstName, String LastName,String PrimaryEmail,
 			String SecondaryEmail, String Password, String UserId,
-			String PostalAddress, String AboutMe, String picurl1,
-			String picurl2, String picurl3, String EmergencyContact)
+			Address Address, String AboutMe, String picurl1,
+			String picurl2, String picurl3,boolean hasQuit, String EmergencyContact)
 	{
-		super(FirstName, LastName, PrimaryEmail, SecondaryEmail, Password, UserId, PostalAddress, AboutMe, picurl1, picurl2, picurl3);
+		super(FirstName, LastName, PrimaryEmail, SecondaryEmail, Password, UserId, Address, AboutMe, picurl1, picurl2, picurl3, hasQuit);
 		this.EmergencyContact = EmergencyContact;
 		this.UserType="ADMIN";
 	}
@@ -21,7 +21,9 @@ public class Admin extends User{
 	{
 		this.EmergencyContact = EmergencyContact;
 	}
-	
+	public String getEmergencyContact(){
+		return EmergencyContact;
+	}
 	//for displaying Admin's info, overrides base class User display method
 	@Override
 	public void displayProfileInfo()

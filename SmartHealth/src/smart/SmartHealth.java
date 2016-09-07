@@ -1,4 +1,5 @@
 package smart;
+
 import java.util.Scanner;
 
 class SmartHealth {

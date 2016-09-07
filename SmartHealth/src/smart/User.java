@@ -10,17 +10,17 @@ public abstract class User {
 	private String UserId;
 	private String FirstName;
 	private String LastName;
-	private String PostalAddress;
+	private Address Address;
 	private String AboutMe;
 	private String picurl[] = new String[3];
 	protected String UserType;
-	private boolean has_quit=false;
+	private boolean hasQuit;
 	
 	//Constructor for initialization
 	User(String FirstName, String LastName,String PrimaryEmail,
 			String SecondaryEmail, String Password, String UserId,
-			String PostalAddress, String AboutMe, String picurl1,
-			String picurl2, String picurl3)
+			Address Address, String AboutMe, String picurl1,
+			String picurl2, String picurl3, boolean hasQuit)
 	{
 		this.FirstName = FirstName;
 		this.LastName = LastName;
@@ -28,11 +28,12 @@ public abstract class User {
 		this.SecondaryEmail = SecondaryEmail;
 		this.Password = Password;
 		this.UserId = UserId;
-		this.PostalAddress = PostalAddress;
+		this.Address = Address;
 		this.AboutMe = AboutMe;
 		this.picurl[0] = picurl1;
 		this.picurl[1] = picurl2;
 		this.picurl[2] = picurl3;
+		this.hasQuit = hasQuit;
 	}
 	
 	//All the getters for data
@@ -72,9 +73,9 @@ public abstract class User {
 		return this.LastName;
 	}
 	
-	public String getPostalAddress()
+	public Address getPostalAddress()
 	{
-		return this.PostalAddress;
+		return this.Address;
 	}
 	
 	public String getAboutMe()
@@ -128,20 +129,16 @@ public abstract class User {
 	
 	public void setLastName(String LastName)
 	{
-		
 		this.LastName = LastName;
-		
 	}
 	
-	public void setPostalAddress(String PostalAddress)
-	{
-		
-	this.PostalAddress = PostalAddress;	
+	public void setPostalAddress(Address Address)
+	{	
+		this.Address = Address;	
 	}
 	
 	public void setAboutMe(String AboutMe)
 	{
-		
 		this.AboutMe = AboutMe;
 	}
 	
@@ -155,19 +152,19 @@ public abstract class User {
 	//function called when the user want to quit
 	public void quit()
 	{
-		if(this.has_quit == false)
-			this.has_quit=true;
+		if(this.hasQuit == false)
+			this.hasQuit=true;
 	}
 	
 	//function called if the user want to join again
 	public void join()
 	{
-		this.has_quit = false;
+		this.hasQuit = false;
 	}
 	
 	//for returning has quit
 	public boolean hasQuit(){
-		return has_quit;
+		return hasQuit;
 	}
 	
 	//For displaying the info
@@ -179,7 +176,7 @@ public abstract class User {
 		System.out.println("User ID: " + this.UserId);
 		System.out.println("First Name: " + this.FirstName);
 		System.out.println("Last Name: " + this.LastName);
-		System.out.println("Postal Address: " + this.PostalAddress);
+		System.out.println("Postal Address: " + this.Address.toString());
 		System.out.println("About: " + this.AboutMe);
 		System.out.println("Pic 1: " + this.picurl[0]);
 		System.out.println("Pic 2: " + this.picurl[1]);

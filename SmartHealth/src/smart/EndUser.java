@@ -7,10 +7,10 @@ public class EndUser extends User{
 	//Constructor for initialization of End User object
 	public EndUser(String FirstName, String LastName,String PrimaryEmail,
 			String SecondaryEmail, String Password, String UserId,
-			String PostalAddress, String AboutMe, String picurl1,
-			String picurl2, String picurl3)
+			Address Address, String AboutMe, String picurl1,
+			String picurl2, String picurl3, boolean hasQuit)
 	{
-		super(FirstName, LastName, PrimaryEmail, SecondaryEmail, Password, UserId, PostalAddress, AboutMe, picurl1, picurl2, picurl3);
+		super(FirstName, LastName, PrimaryEmail, SecondaryEmail, Password, UserId, Address, AboutMe, picurl1, picurl2, picurl3, hasQuit);
 		this.Karma = 0;
 		this.UserType="ENDUSER";
 	}
@@ -21,5 +21,9 @@ public class EndUser extends User{
 	{
 		super.displayProfileInfo();
 		System.out.println("User Karma: " + this.Karma);
+	}
+	
+	public int getKarma(){
+		return Karma;
 	}
 }

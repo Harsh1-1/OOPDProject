@@ -6,7 +6,7 @@ import java.util.TreeSet;
 /**
  * State for Updating users details. Can transition to itself and Logged in
  */
-class Update extends State{
+class Update extends State implements UserForm{
 	private static final int FIRST_NAME = 1;
 	private static final int LAST_NAME = 2;
 	private static final int SECONDARY_EMAIL = 3;
