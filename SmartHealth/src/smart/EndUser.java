@@ -26,4 +26,7 @@ public class EndUser extends User{
 	public int getKarma(){
 		return Karma;
 	}
+	public void setKarma(int karma){
+		this.Karma = karma;
+	}
 }

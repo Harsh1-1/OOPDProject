@@ -1,4 +1,9 @@
 package smart;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -6,6 +11,24 @@ import java.util.Scanner;
  * Can make a transition to itself, LoggedIn and SignUp
  */
 class Login extends State{
+	private final static int USERID = 0;
+	private final static int PASSWORD = 1;
+	private final static int PRIMARY_EMAIL = 2;
+	private final static int SECONDARY_EMAIL = 3;
+	private final static int FIRST_NAME = 4;
+	private final static int LAST_NAME = 5;
+	private final static int ABOUT_ME = 6;
+	private final static int PROFILE_PIC1 = 7;
+	private final static int PROFILE_PIC2 = 8;
+	private final static int PROFILE_PIC3 = 9;
+	private final static int STREET_NUMBER = 10;
+	private final static int STREET_NAME = 11;
+	private final static int MAJOR_MUNICIPALITY = 12;
+	private final static int GOVERNING_DISTRICT = 13;
+	private final static int POSTAL_AREA = 14;
+
+	private String commonDetails[];
+	
 	State handle(){
 		//Print available choices
 		System.out.println("1. Login");
@@ -46,25 +69,95 @@ class Login extends State{
 	 * @return The user if present in database else null
 	 */
 	private User validUser(String id, String password){
-		for(int i=0;i<Global.users.size();i++){
-			
-			//if primary id is present then check for password
-			if(Global.users.get(i).getPrimaryEmail().equals(id)){
-				if(Global.users.get(i).getPassword().equals(password)){
-					return Global.users.get(i); //return the valid user
-				}
-				else{
-					//password did not match
-					System.out.println("Incorrect Password");
-					break;
-				}
+		String query = "Select * from user where Email1 = '" + id + 
+				"' and Password = '" + password + "';";
+		try(Connection con = DriverManager.getConnection(Global.connectionString);
+				Statement s = con.createStatement();)
+		{
+			ResultSet rsUserDetails = s.executeQuery(query);
+			if(!rsUserDetails.isBeforeFirst()){
+				rsUserDetails.close();
+				return null;
 			}
+			for(int i = 0;i<commonDetails.length;i++){
+				commonDetails[i] = rsUserDetails.getString(i);
+			}
+			int typeID = rsUserDetails.getInt("UserTypeID");
+			int quit = rsUserDetails.getInt("Status");
+			boolean hasQuit = (quit==0)?true:false;
+			rsUserDetails.close();
+			
+			ResultSet rsUserType = s.executeQuery("Select Description from UserType where UserTypeID = "
+			+ typeID + ";");
+			rsUserType.next();
+			String type = rsUserType.getString("Description");
+			rsUserType.close();
+			
+			if(type.equals("MOD")){
+				ResultSet rsModerator = s.executeQuery("Select * from Moderator where UserName = '" 
+						+ commonDetails[USERID]+ "'");
+				rsModerator.next();
+				String emergencyContact = rsModerator.getString("Phone");
+				rsModerator.close();
+				ArrayList<Qualification> qualifications = new ArrayList<Qualification>();
+				
+				ResultSet rsQualifications = s.executeQuery("Select Qualification.QualificationID, "
+						+ "Qualification.Description from Qualifications INNER JOIN "
+						+ "ModeratorQualifications ON "
+						+ "Qualifictions.QualificationID = ModeratorQualifications.QualificationID "
+						+ "WHERE ModeratorQualifications.Username = '" + commonDetails[USERID] + "';");
+				while(rsQualifications.next()){
+					qualifications.add(new Qualification(rsQualifications.getInt(1),rsQualifications.getString(2)));
+				}
+				
+				SmartHealth.curUser = new Moderator(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
+						commonDetails[SECONDARY_EMAIL],commonDetails[PASSWORD],commonDetails[USERID],
+						new Address(commonDetails[STREET_NUMBER], commonDetails[STREET_NAME],
+								commonDetails[MAJOR_MUNICIPALITY], commonDetails[GOVERNING_DISTRICT], 
+								commonDetails[POSTAL_AREA]), 
+						commonDetails[ABOUT_ME],commonDetails[PROFILE_PIC1],
+						commonDetails[PROFILE_PIC2], commonDetails[PROFILE_PIC3], hasQuit, 
+						emergencyContact, qualifications);
+			}else if(type.equals("ADMIN")){
+				ResultSet rsAdmin = s.executeQuery("Select * from Administrator where UserName = '" 
+						+ commonDetails[USERID]+ "'");
+				String emergencyContact = rsAdmin.getString("Phone");
+				rsAdmin.close();
+				SmartHealth.curUser = new Admin(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
+						commonDetails[SECONDARY_EMAIL],commonDetails[PASSWORD],commonDetails[USERID],
+						new Address(commonDetails[STREET_NUMBER], commonDetails[STREET_NAME],
+								commonDetails[MAJOR_MUNICIPALITY], commonDetails[GOVERNING_DISTRICT], 
+								commonDetails[POSTAL_AREA]), 
+						commonDetails[ABOUT_ME],commonDetails[PROFILE_PIC1],
+						commonDetails[PROFILE_PIC2], commonDetails[PROFILE_PIC3], hasQuit, 
+						emergencyContact);
+			}else{
+				ResultSet rsEndUser = s.executeQuery("Select * from EndUser where UserName = '" 
+						+ commonDetails[USERID]+ "'");
+				int karma = rsEndUser.getInt("Karma");
+				rsEndUser.close();
+				SmartHealth.curUser = new EndUser(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
+						commonDetails[SECONDARY_EMAIL],commonDetails[PASSWORD],commonDetails[USERID],
+						new Address(commonDetails[STREET_NUMBER], commonDetails[STREET_NAME],
+								commonDetails[MAJOR_MUNICIPALITY], commonDetails[GOVERNING_DISTRICT], 
+								commonDetails[POSTAL_AREA]), 
+						commonDetails[ABOUT_ME],commonDetails[PROFILE_PIC1],
+						commonDetails[PROFILE_PIC2], commonDetails[PROFILE_PIC3],hasQuit);
+				SmartHealth.curUser.setUserType(type);
+				((EndUser)SmartHealth.curUser).setKarma(karma);
+			}
+			rsUserDetails.close();
 		}
+		catch(Exception ex){
+			System.out.println("Some error occured");
+		}
+		
 		System.out.println("Primary email Id not registered");
 		return null; //Indicate error in finding the user
 	}
 	
 	Login(Scanner sc){
 		super(sc);
+		commonDetails = new String[15];
 	}
 }

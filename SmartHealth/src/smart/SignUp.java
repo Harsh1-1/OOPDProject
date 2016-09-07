@@ -67,8 +67,8 @@ class SignUp extends State implements UserForm{
 					+ " and press 'N' to end : ");
 			//Display the available qualifications
 			ArrayList<Qualification> acceptedQualifications = getQualifications();
-			for(int i=1;i<acceptedQualifications.size();i++){
-				System.out.println(i + ". " + acceptedQualifications.get(i));
+			for(int i=0;i<acceptedQualifications.size();i++){
+				System.out.println(i+1 + ". " + acceptedQualifications.get(i));
 			}
 			//Maintain unique choices
 			TreeSet<Integer> qualChoices = new TreeSet<Integer>();
@@ -79,8 +79,8 @@ class SignUp extends State implements UserForm{
 			ArrayList<Qualification> qualifications = new ArrayList<Qualification>();
 			for(int i : qualChoices){
 				//Check and add qualifications and return in case of error
-				if(i > 0 && i < acceptedQualifications.size()){
-					qualifications.add(acceptedQualifications.get(i));
+				if(i > 0 && i <= acceptedQualifications.size()){
+					qualifications.add(acceptedQualifications.get(i-1));
 				}
 				else{
 					System.out.println("Invalid Qualification Choices");
@@ -135,6 +135,10 @@ class SignUp extends State implements UserForm{
 			else{
 				usertype = user.getUserType();
 			}
+			int typeID;
+			ResultSet rs = s.executeQuery("Select UserTypeID where Description = '" + usertype + "';");
+			rs.next();
+			typeID = rs.getInt("UserTypeID");
 			int status = user.hasQuit()?0:1;
 			String query = "Insert into user values(" + 
 					"'" + user.getUserId() + "'," +
@@ -152,7 +156,7 @@ class SignUp extends State implements UserForm{
 					"'" + user.getPostalAddress().MajorMunicipality + "'," +
 					"'" + user.getPostalAddress().GoverningDistrict + "'," +
 					"'" + user.getPostalAddress().PostalArea + "'," +
-					"'" + usertype + "'," +
+					"" + typeID + "," +
 					+ status + 
 					");";
 			s.execute(query);
