@@ -63,6 +63,10 @@ class SignUp extends State implements UserForm{
 		case MODERATOR : //Take Moderator specific details
 			System.out.println("Emergency Contact number");
 			String emergencyContact = sc.next();
+			if(!isValidContactNumber(emergencyContact)){
+				System.out.println("Invalid contact number");
+				return this;
+			}
 			System.out.println("Choose your qualifications separated by spaces"
 					+ " and press 'N' to end : ");
 			//Display the available qualifications
@@ -100,6 +104,10 @@ class SignUp extends State implements UserForm{
 		case ADMIN : //Take administrator specific details
 			System.out.println("Emergency Contact number");
 			emergencyContact = sc.next();
+			if(!isValidContactNumber(emergencyContact)){
+				System.out.println("Invalid contact number");
+				return this;
+			}
 			//create new administrator
 			user = new Admin(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
 					commonDetails[SECONDARY_EMAIL],commonDetails[PASSWORD],commonDetails[USERID],
@@ -159,26 +167,26 @@ class SignUp extends State implements UserForm{
 					"" + typeID + "," +
 					+ status + 
 					");";
-			s.execute(query);
+			s.executeUpdate(query);
 			if(usertype.equals("NEW")){
 				String query2 = "Insert into EndUser values(" + 
 						"'" + user.getUserId() + "'," +
 						((EndUser)user).getKarma() + "," + 
 						"NOW()" + 
 						");";
-				s.execute(query2);
+				s.executeUpdate(query2);
 			}else if(usertype.equals("ADMIN")){
 				String query2 = "Insert into Administrator values(" + 
 						"'" + user.getUserId() + "'," +
 						"'" + ((Admin)user).getEmergencyContact() + "'" + 
 						");";
-				s.execute(query2);
+				s.executeUpdate(query2);
 			}else if(usertype.equals("MOD")){
 				String query2 = "Insert into Moderator values(" + 
 						"'" + user.getUserId() + "'," +
 						"'" + ((Moderator)user).getEmergencyContact() + "'" +
 						");";
-				s.execute(query2);
+				s.executeUpdate(query2);
 				
 				ArrayList<Qualification> qualifications = ((Moderator)user).getQualifications();
 				for(Qualification q : qualifications){
@@ -187,7 +195,7 @@ class SignUp extends State implements UserForm{
 							+ "'" + user.getUserId() + "'," 
 							+ "NOW()" +
 							");";
-					s.execute(query3);
+					s.executeUpdate(query3);
 				}
 			}
 		}
@@ -215,10 +223,19 @@ class SignUp extends State implements UserForm{
 						return false;
 					}
 				}
-				else if(options[i].equals("Primary E-mail Id") || 
-						options[i].equals("Secondary E-mail Id")){
-					if(!isValidEmail(commonDetails[i])){
+				else if(options[i].equals("Primary E-mail ID")){
+					if(!isValidEmail(commonDetails[PRIMARY_EMAIL])){
 						System.out.println("Email ID is invalid");
+						return false;
+					}
+				}
+				else if(options[i].equals("Secondary E-mail ID")){
+					if(!isValidEmail(commonDetails[SECONDARY_EMAIL])){
+						System.out.println("Email ID is invalid");
+						return false;
+					}
+					if(commonDetails[SECONDARY_EMAIL].equalsIgnoreCase(commonDetails[PRIMARY_EMAIL])){
+						System.out.println("Primary and Secondary Email cannot be same");
 						return false;
 					}
 				}
@@ -231,8 +248,20 @@ class SignUp extends State implements UserForm{
 		//get profile picture links
 		System.out.println("Enter links of 3 Profile pics ");
 		commonDetails[PROFILE_PIC1] = sc.next();
+		if(!isValidURL(commonDetails[PROFILE_PIC1])){
+			System.out.println("Invalid URL");
+			return false;
+		}
 		commonDetails[PROFILE_PIC2] = sc.next();
+		if(!isValidURL(commonDetails[PROFILE_PIC2])){
+			System.out.println("Invalid URL");
+			return false;
+		}
 		commonDetails[PROFILE_PIC3] = sc.next();
+		if(!isValidURL(commonDetails[PROFILE_PIC3])){
+			System.out.println("Invalid URL");
+			return false;
+		}
 		return true; //executed without error
 	}
 	SignUp(Scanner sc){

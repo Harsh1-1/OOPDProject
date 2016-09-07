@@ -1,4 +1,7 @@
 package smart;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeSet;
@@ -71,23 +74,50 @@ class Update extends State implements UserForm{
 		switch(choice){
 		case FIRST_NAME : 
 			SmartHealth.curUser.setFirstName(s);
+			updateHelper("User","FirstName",s,SmartHealth.curUser.getUserId());
 			break;
 		case LAST_NAME : 
 			SmartHealth.curUser.setLastName(s);
+			updateHelper("User","LastName",s,SmartHealth.curUser.getUserId());
 			break;
-		case SECONDARY_EMAIL : 
+		case SECONDARY_EMAIL :
+			if(!isValidEmail(s)){
+				System.out.println("Invalid email format");
+				return false;
+			}
+			if(s.equalsIgnoreCase(SmartHealth.curUser.getPrimaryEmail())){
+				System.out.println("Primary email and Secondary email cannot be same");
+			}
 			SmartHealth.curUser.setSecondaryEmail(s);
+			updateHelper("User","Email2",s,SmartHealth.curUser.getUserId());
 			break;
 		case PASSWORD : 
 			SmartHealth.curUser.setPassword(s);
+			updateHelper("User","Password",s,SmartHealth.curUser.getUserId());
 			break;
 		case POSTAL_ADDRESS : 
-			SmartHealth.curUser.setPostalAddress(s);
+			Address address;
+			String streetNumber, streetName, majorMunicipality, governingDistrict, postalArea;
+			System.out.println("Enter Street Number : ");
+			streetNumber = sc.next();
+			System.out.println("Enter Street Name : ");
+			streetName = sc.next();
+			System.out.println("Enter Major Municipality : ");
+			majorMunicipality = sc.next();
+			System.out.println("Enter Governing District : ");
+			governingDistrict = sc.next();
+			System.out.println("Enter Postal Area : ");
+			postalArea = sc.next();
+			address = new Address(streetNumber,streetName,majorMunicipality,
+					governingDistrict,postalArea);
+			SmartHealth.curUser.setPostalAddress(address);
+			updateAddressHelper(address,SmartHealth.curUser.getUserId());
 			break;
 		case ABOUT_ME : //update about me
 			sc.nextLine(); //remove previous new line
 			s = sc.nextLine();
 			SmartHealth.curUser.setAboutMe(s);
+			updateHelper("User","AboutMe",s,SmartHealth.curUser.getUserId());
 			break;
 		case PROFILE_PICS : //update profile picture URL's
 			String urls[] = SmartHealth.curUser.getPicURL();
@@ -100,37 +130,49 @@ class Update extends State implements UserForm{
 			}
 			System.out.println("Enter new URL ");
 			String modurl = sc.next();
+			if(!isValidURL(modurl)){
+				System.out.println("Invalid URL");
+				return false;
+			}
 			urls[ch - 1] = modurl;
 			SmartHealth.curUser.setPicURL(urls);
+			updateHelper("User","PhotoURL" + ch,modurl,SmartHealth.curUser.getUserId());
 			break;
 		case EMERGENCY_CONTACT : //update emergency contact number for administrators and moderators
+			if(!isValidContactNumber(s)){
+				System.out.println("Contact number not valid");
+				return false;
+			}
 			if(SmartHealth.curUser.getUserType().equals("ADMIN")){
 				Admin admin = (Admin)SmartHealth.curUser;
 				admin.setEmergencyContact(s);
+				updateHelper("Administrator","Phone",s,SmartHealth.curUser.getUserId());
 			}
 			else if(SmartHealth.curUser.getUserType().equals("MOD")){
 				Moderator moderator = (Moderator)SmartHealth.curUser;
 				moderator.setEmergencyContact(s);
+				updateHelper("Moderator","Phone",s,SmartHealth.curUser.getUserId());
 			}
 			break;
 		case QUALIFICATIONS : //Handle update of qualifications
-			System.out.println("Choose your qualifications again separated by spaces"
+			System.out.println("Choose your qualifications separated by spaces"
 					+ " and press 'N' to end : ");
-			//Display available qualifications
-			for(int i=1;i<Global.acceptedQualifications.length;i++){
-				System.out.println(i + ". " + Global.acceptedQualifications[i]);
+			//Display the available qualifications
+			ArrayList<Qualification> acceptedQualifications = getQualifications();
+			for(int i=0;i<acceptedQualifications.size();i++){
+				System.out.println(i+1 + ". " + acceptedQualifications.get(i));
 			}
-			//Maintain unique qualifications
+			//Maintain unique choices
 			TreeSet<Integer> qualChoices = new TreeSet<Integer>();
-			//get user's choices
+			//Take input in specified format
 			while(sc.hasNextInt()) qualChoices.add(sc.nextInt());
 			sc.next();
-			ArrayList<String> qualifications = new ArrayList<String>();
 			
+			ArrayList<Qualification> qualifications = new ArrayList<Qualification>();
 			for(int i : qualChoices){
-				//check validity of choices
-				if(i > 0 && i < Global.acceptedQualifications.length){
-					qualifications.add(Global.acceptedQualifications[i]);
+				//Check and add qualifications and return in case of error
+				if(i > 0 && i <= acceptedQualifications.size()){
+					qualifications.add(acceptedQualifications.get(i-1));
 				}
 				else{
 					System.out.println("Invalid Qualification Choices");
@@ -140,11 +182,33 @@ class Update extends State implements UserForm{
 			//update moderators details
 			Moderator moderator = (Moderator)SmartHealth.curUser;
 			moderator.setQualifications(qualifications);
+			updateModeratorQualificationHelper(qualifications, moderator.getUserId());
 			break;
 		default : System.out.println("Invalid Choice. Please enter a valid choice");
 			return false; //indicate error
 		}
 		return true; //indicate successful completion
+	}
+	
+	private void updateHelper(String table, String field, String newval, String userName){
+		String query = "UPDATE " + table + " SET " + field + " = " + newval + 
+				" WHERE UserName = '" + userName + "';";
+		try(Connection con = DriverManager.getConnection(Global.connectionString);
+			Statement s = con.createStatement() )
+		{
+			s.executeUpdate(query);
+		}
+		catch(Exception ex){
+			System.out.println("Update failed");
+		}
+	}
+	
+	private void updateAddressHelper(Address address, String userID){
+		
+	}
+	
+	private void updateModeratorQualificationHelper(ArrayList<Qualification> qualifications, String userID){
+		
 	}
 	
 	Update(Scanner sc){
