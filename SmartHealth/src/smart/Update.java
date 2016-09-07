@@ -7,6 +7,15 @@ import java.util.TreeSet;
  * State for Updating users details. Can transition to itself and Logged in
  */
 class Update extends State{
+	private static final int FIRST_NAME = 1;
+	private static final int LAST_NAME = 2;
+	private static final int SECONDARY_EMAIL = 3;
+	private static final int PASSWORD = 4;
+	private static final int POSTAL_ADDRESS = 5;
+	private static final int ABOUT_ME = 6;
+	private static final int PROFILE_PICS = 7;
+	private static final int EMERGENCY_CONTACT = 8;
+	private static final int QUALIFICATIONS = 9;
 	//options to be given
 	private static final String options[] = {"", "First Name", "Last Name", 
 			"Secondary E-mail ID", "Password", "Postal Address", 
@@ -45,7 +54,7 @@ class Update extends State{
 		int choice = sc.nextInt();
 		
 		//check validity of choice
-		if(choice > l || choice < 1){
+		if(choice >= l || choice < 1){
 			System.out.println("Invalid choice. Please enter a Valid choice.");
 			return false;
 		}
@@ -60,27 +69,27 @@ class Update extends State{
 		
 		//update according to user's choice
 		switch(choice){
-		case 1 : 
+		case FIRST_NAME : 
 			SmartHealth.curUser.setFirstName(s);
 			break;
-		case 2 : 
+		case LAST_NAME : 
 			SmartHealth.curUser.setLastName(s);
 			break;
-		case 3 : 
+		case SECONDARY_EMAIL : 
 			SmartHealth.curUser.setSecondaryEmail(s);
 			break;
-		case 4 : 
+		case PASSWORD : 
 			SmartHealth.curUser.setPassword(s);
 			break;
-		case 5 : 
+		case POSTAL_ADDRESS : 
 			SmartHealth.curUser.setPostalAddress(s);
 			break;
-		case 6 : //update about me
+		case ABOUT_ME : //update about me
 			sc.nextLine(); //remove previous new line
 			s = sc.nextLine();
 			SmartHealth.curUser.setAboutMe(s);
 			break;
-		case 7 : //update profile picture URL's
+		case PROFILE_PICS : //update profile picture URL's
 			String urls[] = SmartHealth.curUser.getPicURL();
 			System.out.println("Enter the URL to change");
 			for(int i=0;i<3;i++) System.out.println(i+1 + ". " + urls[i]);
@@ -94,7 +103,7 @@ class Update extends State{
 			urls[ch - 1] = modurl;
 			SmartHealth.curUser.setPicURL(urls);
 			break;
-		case 8 : //update emergency contact number for administrators and moderators
+		case EMERGENCY_CONTACT : //update emergency contact number for administrators and moderators
 			if(SmartHealth.curUser.getUserType().equals("ADMIN")){
 				Admin admin = (Admin)SmartHealth.curUser;
 				admin.setEmergencyContact(s);
@@ -104,7 +113,7 @@ class Update extends State{
 				moderator.setEmergencyContact(s);
 			}
 			break;
-		case 9 : //Handle update of qualifications
+		case QUALIFICATIONS : //Handle update of qualifications
 			System.out.println("Choose your qualifications again separated by spaces"
 					+ " and press 'N' to end : ");
 			//Display available qualifications
