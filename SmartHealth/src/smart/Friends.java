@@ -151,6 +151,9 @@ public class Friends extends State{
 							+ "'" + UserName + "'," + timestamp + ", , , , )";
 					int rowinserted = stmt.executeUpdate(SQL);
 					
+					stmt.close();
+					con.close();
+					
 					if(rowinserted == 0)
 					{
 						System.out.println("Failed to send request!!");
