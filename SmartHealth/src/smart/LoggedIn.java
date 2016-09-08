@@ -1,4 +1,7 @@
 package smart;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.Scanner;
 
 /**
@@ -43,6 +46,7 @@ class LoggedIn extends State{
 			return new Update(sc);
 		case QUIT : //Set that user has quit
 			SmartHealth.curUser.quit();
+			quitUser(SmartHealth.curUser.getUserId());
 			SmartHealth.curUser = null;
 			return new Login(sc);
 		case LOGOUT : //Logout the current user
@@ -50,10 +54,35 @@ class LoggedIn extends State{
 			return new Login(sc);
 		case JOIN_AGAIN : //Re validate a user who had quit before
 			SmartHealth.curUser.join();
+			joinUser(SmartHealth.curUser.getUserId());
 			break;
 		default : System.out.println("Invalid choice. Please enter a valid choice.");
 		}
 		return this;
+	}
+	
+	private void quitUser(String userID){
+		String query = "UPDATE User SET Status = 0 WHERE UserName = '" + userID + "';";
+		try(Connection con = DriverManager.getConnection(Global.connectionString);
+				Statement s = con.createStatement() )
+			{
+				s.executeUpdate(query);
+			}
+			catch(Exception ex){
+				System.out.println("Update failed");
+			}
+	}
+	
+	private void joinUser(String userID){
+		String query = "UPDATE User SET Status = 1 WHERE UserName = '" + userID + "';";
+		try(Connection con = DriverManager.getConnection(Global.connectionString);
+				Statement s = con.createStatement() )
+			{
+				s.executeUpdate(query);
+			}
+			catch(Exception ex){
+				System.out.println("Update failed");
+			}
 	}
 	
 	LoggedIn(Scanner sc){
