@@ -131,7 +131,11 @@ class SignUp extends State implements UserForm{
 
 	private boolean store(User user){
 		if(userIDExists(user.getUserId())){
-			System.out.println("User Id Taken");
+			System.out.println("User Id already taken");
+			return false;
+		}
+		else if(primaryEmailIDExists(user.getPrimaryEmail())){
+			System.out.println("Email ID already taken");
 			return false;
 		}
 		try(Connection con = DriverManager.getConnection(Global.connectionString);
@@ -271,19 +275,34 @@ class SignUp extends State implements UserForm{
 	
 	private boolean userIDExists(String userID){
 		boolean userExists = false;
-		try(Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/smarthealthdb?user=root&useSSL=false");
+		try(Connection con = DriverManager.getConnection(Global.connectionString);
 				Statement s = con.createStatement();
 				ResultSet rs = s.executeQuery("Select 1 from user where username = "
 						+ "'" + userID + "';")){
 			if(rs.isBeforeFirst()){
 				userExists = true;
 			}
-			rs.close();
 		}
 		catch(SQLException ex){
 			System.out.println("Some error occured while checking for username");
 		}
 		return userExists;
+	}
+	
+	private boolean primaryEmailIDExists(String emailID){
+		boolean emailIDExists = false;
+		try(Connection con = DriverManager.getConnection(Global.connectionString);
+				Statement s = con.createStatement();
+				ResultSet rs = s.executeQuery("Select 1 from user where Email1 = "
+						+ "'" + emailID + "';")){
+			if(rs.isBeforeFirst()){
+				emailIDExists = true;
+			}
+		}
+		catch(SQLException ex){
+			System.out.println("Some error occured while checking for EmailID");
+		}
+		return emailIDExists;
 	}
 	
 }
