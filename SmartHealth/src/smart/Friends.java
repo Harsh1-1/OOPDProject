@@ -376,8 +376,32 @@ public class Friends extends State{
 		{
 			Connection con = DriverManager.getConnection(Global.connectionString);
 			Statement stmt = con.createStatement();
-			String SQL = "";
+			System.out.println("you have sent requests to all these users");
+			String SQL = "select Requested_Username from friendship where Requester_Username = '" + SmartHealth.curUser.getUserId() + "'"
+					    + " and WhenRequested IS NOT NULL and WhenConfirmed IS NULL;";
 			ResultSet result = stmt.executeQuery(SQL);
+			
+			while(result.next())
+			{
+				String RequestedUserName = result.getString("Requested_Username");
+				System.out.println(RequestedUserName);
+				System.out.println("want to withdraw request for this user ? Enter 1 for yes 0 for no");
+				int choice = sc.nextInt();
+				if(choice == 1)
+				{
+					String WithdrawQuery = "Update table friendship set WhenRequested = NULL" + " where Requester_Username = '" + SmartHealth.curUser.getUserId() + "'"
+				              + " and Requested_Username = '" + RequestedUserName + "';"; 
+					
+					int withdrawcheck = stmt.executeUpdate(WithdrawQuery);
+					
+					if(withdrawcheck == 0)
+						System.out.println("failed to withdraw request");
+					else
+						System.out.println("Request withdrawn successfully :)");
+				}
+				
+				
+			}
 			result.close();
 			stmt.close();
 			con.close();
