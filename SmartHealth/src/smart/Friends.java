@@ -169,7 +169,11 @@ public class Friends extends State{
 					Statement stmt = con.createStatement();
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
+<<<<<<< HEAD
 					String SQL = "Update table friendship set WhenRequested = " + timestamp + " where Requester_Username = '" + SmartHealth.curUser.getUserId()
+=======
+					String SQL = "Update friendship set WhenRequested = " + "NOW()" + " where Requester_Username = '" + SmartHealth.curUser.getUserId()
+>>>>>>> 12f16091d750b15231e17616333d1954e7338c80
 					  			+ "' and Requested_Username = '" + UserName + "';";
 					
 					int rowinserted = stmt.executeUpdate(SQL);
@@ -199,7 +203,7 @@ public class Friends extends State{
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
 					String SQL = "INSERT INTO friendship values('" + SmartHealth.curUser.getUserId() + "'," 
-							+ "'" + UserName + "'," + timestamp + ",NULL ,NULL ,NULL ,NULL );";
+							+ "'" + UserName + "'," + "NOW()" + ",NULL ,NULL ,NULL ,NULL );";
 					
 					int rowinserted = stmt.executeUpdate(SQL);
 					
@@ -245,7 +249,11 @@ public class Friends extends State{
 				{
 					Connection con = DriverManager.getConnection(Global.connectionString);
 					Statement stmt = con.createStatement();
+<<<<<<< HEAD
 					String SQL = "update table friendship set WhenConfirmed = NULL, WhenUnfriended = " + timestamp
+=======
+					String SQL = "update friendship set WhenConfirmed = NULL, WhenUnfriended = " + "NOW()"
+>>>>>>> 12f16091d750b15231e17616333d1954e7338c80
 								 + "where Requester_Username = " + "'" + SmartHealth.curUser.getUserId() + "'" 
 								 + " and Requested_Username = " + "'" + UserName + "';";
 					int result = stmt.executeUpdate(SQL);
@@ -254,7 +262,11 @@ public class Friends extends State{
 						System.out.println("Unfriended Successfully!!");
 					
 					
+<<<<<<< HEAD
 							SQL = "update table friendship set WhenConfirmed = NULL, WhenUnfriended = " + timestamp
+=======
+							SQL = "update friendship set WhenConfirmed = NULL, WhenUnfriended = " + "NOW()"
+>>>>>>> 12f16091d750b15231e17616333d1954e7338c80
 							 + "where Requested_Username = " + "'" + SmartHealth.curUser.getUserId() + "'" 
 							 + " and Requester_Username = " + "'" + UserName + "';";
 							result = stmt.executeUpdate(SQL);
@@ -311,7 +323,11 @@ public class Friends extends State{
 					{
 					case 1:
 						
+<<<<<<< HEAD
 						String AcceptQuery = "Update table friendship set WhenConfirmed = " + timestamp + " where Requester_Username = '" + Requester_UserName + "'"
+=======
+						String AcceptQuery = "Update friendship set WhenConfirmed = " + "NOW()" + " where Requester_Username = '" + Requester_UserName + "'"
+>>>>>>> 12f16091d750b15231e17616333d1954e7338c80
 											+ " and Requested_Username = '" + SmartHealth.curUser.getUserId() + "';";
 						int Accept = stmt.executeUpdate(AcceptQuery);
 						if(Accept == 0)
@@ -320,7 +336,11 @@ public class Friends extends State{
 						break;
 					case 2:
 						
+<<<<<<< HEAD
 						String RejectQuery = "Update table friendship set WhenRejected = " + timestamp + " where Requester_Username = '" + Requester_UserName + "'"
+=======
+						String RejectQuery = "Update friendship set WhenRejected = " + "NOW()" + " where Requester_Username = '" + Requester_UserName + "'"
+>>>>>>> 12f16091d750b15231e17616333d1954e7338c80
 								+ " and Requested_Username = '" + SmartHealth.curUser.getUserId() + "';";
 						int Reject = stmt.executeUpdate(RejectQuery);
 						if(Reject == 0)
@@ -392,7 +412,7 @@ public class Friends extends State{
 				{
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
-					String WithdrawQuery = "Update friendship set WhenRequested = NULL, WhenWithdrawn = " + timestamp + " where Requester_Username = '" + SmartHealth.curUser.getUserId() + "'"
+					String WithdrawQuery = "Update friendship set WhenRequested = NULL, WhenWithdrawn = " + "NOW()" + " where Requester_Username = '" + SmartHealth.curUser.getUserId() + "'"
 				              + " and Requested_Username = '" + RequestedUserName + "';"; 
 					
 					System.out.println(WithdrawQuery);
