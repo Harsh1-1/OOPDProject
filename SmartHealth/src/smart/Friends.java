@@ -395,7 +395,7 @@ public class Friends extends State{
 					String WithdrawQuery = "Update friendship set WhenRequested = NULL, WhenWithdrawn = " + timestamp + " where Requester_Username = '" + SmartHealth.curUser.getUserId() + "'"
 				              + " and Requested_Username = '" + RequestedUserName + "';"; 
 					
-					// System.out.println(WithdrawQuery);
+					System.out.println(WithdrawQuery);
 					int withdrawcheck = stmt.executeUpdate(WithdrawQuery);
 					
 					if(withdrawcheck == 0)
