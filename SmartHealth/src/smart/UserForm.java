@@ -4,6 +4,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -24,6 +25,7 @@ interface UserForm {
 			return true;
 		}
 		catch(Exception ex){
+			System.out.println("Could not verify URL");
 		}
 		return false;
 	}
@@ -39,8 +41,9 @@ interface UserForm {
 			}
 			con.close();
 		}
-		catch(Exception ex){
-			System.out.println("Some error occured");
+		catch(SQLException ex){
+			System.out.println("Some error occured while retreiving available qualifications");
+			ex.getMessage();
 		}
 		return qualifications;
 	}

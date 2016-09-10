@@ -2,6 +2,7 @@ package smart;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -132,10 +133,28 @@ class Login extends State{
 						commonDetails[PROFILE_PIC2], commonDetails[PROFILE_PIC3], hasQuit, 
 						emergencyContact);
 			}else{
-				ResultSet rsEndUser = s.executeQuery("Select * from EndUser where UserName = '" 
+				ResultSet rsEndUser = s.executeQuery("Select DATEDIFF(CURDATE(), DateCreated), Karma from EndUser where UserName = '" 
 						+ commonDetails[USERID]+ "'");
 				int karma = rsEndUser.getInt("Karma");
+				int datedif = rsEndUser.getInt(1);
 				rsEndUser.close();
+				if(datedif > 365 && !type.equals("OLD")){
+					type = "OLD";
+					ResultSet rsUserID = s.executeQuery("Select UserTypeID from UserType "
+							+ "where Description = '" + type + "';");
+					int newid = rsUserID.getInt(1);
+					rsUserID.close();
+					s.executeUpdate("UPDATE User SET UserTypeID = " + newid 
+							+ " WHERE Username = '" + commonDetails[USERID] + "';");
+				}else if(datedif > 31 && !type.equals("MIDDLE")){
+					type = "MIDDLE";
+					ResultSet rsUserID = s.executeQuery("Select UserTypeID from UserType "
+							+ "where Description = '" + type + "';");
+					int newid = rsUserID.getInt(1);
+					rsUserID.close();
+					s.executeUpdate("UPDATE User SET UserTypeID = " + newid 
+							+ " WHERE Username = '" + commonDetails[USERID] + "';");
+				}
 				SmartHealth.curUser = new EndUser(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
 						commonDetails[SECONDARY_EMAIL],commonDetails[PASSWORD],commonDetails[USERID],
 						new Address(commonDetails[STREET_NUMBER], commonDetails[STREET_NAME],
@@ -148,8 +167,9 @@ class Login extends State{
 			}
 			rsUserDetails.close();
 		}
-		catch(Exception ex){
+		catch(SQLException ex){
 			System.out.println("Some error occured");
+			ex.getMessage();
 		}
 		
 		System.out.println("Primary email Id not registered");

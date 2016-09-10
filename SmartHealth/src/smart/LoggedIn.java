@@ -1,6 +1,7 @@
 package smart;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
@@ -68,8 +69,9 @@ class LoggedIn extends State{
 			{
 				s.executeUpdate(query);
 			}
-			catch(Exception ex){
+			catch(SQLException ex){
 				System.out.println("Update failed");
+				ex.getMessage();
 			}
 	}
 	
@@ -80,8 +82,9 @@ class LoggedIn extends State{
 			{
 				s.executeUpdate(query);
 			}
-			catch(Exception ex){
+			catch(SQLException ex){
 				System.out.println("Update failed");
+				ex.getMessage();
 			}
 	}
 	

@@ -203,8 +203,9 @@ class SignUp extends State implements UserForm{
 				}
 			}
 		}
-		catch(Exception ex){
+		catch(SQLException ex){
 			System.out.println("Some error occured while entering information of user.");
+			ex.getMessage();
 			return false;
 		}
 		return true;
@@ -285,6 +286,7 @@ class SignUp extends State implements UserForm{
 		}
 		catch(SQLException ex){
 			System.out.println("Some error occured while checking for username");
+			ex.getMessage();
 		}
 		return userExists;
 	}
@@ -301,6 +303,7 @@ class SignUp extends State implements UserForm{
 		}
 		catch(SQLException ex){
 			System.out.println("Some error occured while checking for EmailID");
+			ex.getMessage();
 		}
 		return emailIDExists;
 	}

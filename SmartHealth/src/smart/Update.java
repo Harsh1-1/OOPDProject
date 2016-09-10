@@ -1,6 +1,7 @@
 package smart;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -198,8 +199,9 @@ class Update extends State implements UserForm{
 		{
 			s.executeUpdate(query);
 		}
-		catch(Exception ex){
+		catch(SQLException ex){
 			System.out.println("Update failed");
+			ex.getMessage();
 		}
 	}
 	
@@ -220,8 +222,9 @@ class Update extends State implements UserForm{
 			{
 				for(String q : query) s.executeUpdate(q);
 			}
-			catch(Exception ex){
+			catch(SQLException ex){
 				System.out.println("Update failed");
+				ex.getMessage();
 			}
 	}
 	
@@ -240,8 +243,9 @@ class Update extends State implements UserForm{
 					s.executeUpdate(query);
 				}
 			}
-			catch(Exception ex){
+			catch(SQLException ex){
 				System.out.println("Update failed");
+				ex.getMessage();
 			}
 	}
 	
