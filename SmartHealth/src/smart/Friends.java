@@ -169,7 +169,7 @@ public class Friends extends State{
 					Statement stmt = con.createStatement();
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
-					String SQL = "Update table friendship set WhenRequested = " + timestamp + " where Requester_Username = '" + SmartHealth.curUser.getUserId()
+					String SQL = "Update table friendship set WhenRequested = " + "NOW()" + " where Requester_Username = '" + SmartHealth.curUser.getUserId()
 					  			+ "' and Requested_Username = '" + UserName + "';";
 					
 					int rowinserted = stmt.executeUpdate(SQL);
@@ -199,7 +199,8 @@ public class Friends extends State{
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
 					String SQL = "INSERT INTO friendship values('" + SmartHealth.curUser.getUserId() + "'," 
-							+ "','" + UserName + "'," + timestamp + ", , , , );";
+							+ "'" + UserName + "'," + "NOW()" + ",NULL ,NULL ,NULL ,NULL );";
+					
 					int rowinserted = stmt.executeUpdate(SQL);
 					
 					stmt.close();
@@ -232,7 +233,7 @@ public class Friends extends State{
 		System.out.println("Here are your all friends:");
 		viewFriends();
 		System.out.println("Enter username of friend you want to unfriend:");
-		String UserName = sc.nextLine();
+		String UserName = sc.next();
 		if(ifUserExists(UserName))
 		{
 			if(isalreadyafriend(UserName))
