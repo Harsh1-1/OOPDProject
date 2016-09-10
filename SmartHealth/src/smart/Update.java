@@ -202,6 +202,7 @@ class Update extends State implements UserForm{
 		catch(SQLException ex){
 			System.out.println("Update failed");
 			ex.getMessage();
+			ex.printStackTrace();
 		}
 	}
 	
@@ -223,8 +224,9 @@ class Update extends State implements UserForm{
 				for(String q : query) s.executeUpdate(q);
 			}
 			catch(SQLException ex){
-				System.out.println("Update failed");
+				System.out.println("Updating address failed");
 				ex.getMessage();
+				ex.printStackTrace();
 			}
 	}
 	
@@ -244,8 +246,9 @@ class Update extends State implements UserForm{
 				}
 			}
 			catch(SQLException ex){
-				System.out.println("Update failed");
+				System.out.println("Updating qualifications failed");
 				ex.getMessage();
+				ex.printStackTrace();
 			}
 	}
 	

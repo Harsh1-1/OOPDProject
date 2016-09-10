@@ -148,7 +148,7 @@ class SignUp extends State implements UserForm{
 				usertype = user.getUserType();
 			}
 			int typeID;
-			ResultSet rs = s.executeQuery("Select UserTypeID where Description = '" + usertype + "';");
+			ResultSet rs = s.executeQuery("Select UserTypeID from UserType where Description = '" + usertype + "';");
 			rs.next();
 			typeID = rs.getInt("UserTypeID");
 			int status = user.hasQuit()?0:1;
@@ -206,6 +206,7 @@ class SignUp extends State implements UserForm{
 		catch(SQLException ex){
 			System.out.println("Some error occured while entering information of user.");
 			ex.getMessage();
+			ex.printStackTrace();
 			return false;
 		}
 		return true;
@@ -278,7 +279,7 @@ class SignUp extends State implements UserForm{
 		boolean userExists = false;
 		try(Connection con = DriverManager.getConnection(Global.connectionString);
 				Statement s = con.createStatement();
-				ResultSet rs = s.executeQuery("Select 1 from user where username = "
+				ResultSet rs = s.executeQuery("Select 1 from User where Username = "
 						+ "'" + userID + "';")){
 			if(rs.isBeforeFirst()){
 				userExists = true;
@@ -287,6 +288,7 @@ class SignUp extends State implements UserForm{
 		catch(SQLException ex){
 			System.out.println("Some error occured while checking for username");
 			ex.getMessage();
+			ex.printStackTrace();
 		}
 		return userExists;
 	}
@@ -295,7 +297,7 @@ class SignUp extends State implements UserForm{
 		boolean emailIDExists = false;
 		try(Connection con = DriverManager.getConnection(Global.connectionString);
 				Statement s = con.createStatement();
-				ResultSet rs = s.executeQuery("Select 1 from user where Email1 = "
+				ResultSet rs = s.executeQuery("Select 1 from User where Email1 = "
 						+ "'" + emailID + "';")){
 			if(rs.isBeforeFirst()){
 				emailIDExists = true;
@@ -304,6 +306,7 @@ class SignUp extends State implements UserForm{
 		catch(SQLException ex){
 			System.out.println("Some error occured while checking for EmailID");
 			ex.getMessage();
+			ex.printStackTrace();
 		}
 		return emailIDExists;
 	}

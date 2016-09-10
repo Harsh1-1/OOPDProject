@@ -44,6 +44,7 @@ interface UserForm {
 		catch(SQLException ex){
 			System.out.println("Some error occured while retreiving available qualifications");
 			ex.getMessage();
+			ex.printStackTrace();
 		}
 		return qualifications;
 	}

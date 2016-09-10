@@ -168,8 +168,9 @@ class Login extends State{
 			rsUserDetails.close();
 		}
 		catch(SQLException ex){
-			System.out.println("Some error occured");
+			System.out.println("Some error occured while logging in");
 			ex.getMessage();
+			ex.printStackTrace();
 		}
 		
 		System.out.println("Primary email Id not registered");

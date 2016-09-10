@@ -72,6 +72,7 @@ class LoggedIn extends State{
 			catch(SQLException ex){
 				System.out.println("Update failed");
 				ex.getMessage();
+				ex.printStackTrace();
 			}
 	}
 	
@@ -85,6 +86,7 @@ class LoggedIn extends State{
 			catch(SQLException ex){
 				System.out.println("Update failed");
 				ex.getMessage();
+				ex.printStackTrace();
 			}
 	}
 	
