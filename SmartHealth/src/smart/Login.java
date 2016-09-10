@@ -107,7 +107,7 @@ class Login extends State{
 				ResultSet rsQualifications = s.executeQuery("Select Qualification.QualificationID, "
 						+ "Qualification.Description from Qualification INNER JOIN "
 						+ "ModeratorQualification ON "
-						+ "Qualifiction.QualificationID = ModeratorQualification.QualificationID "
+						+ "Qualification.QualificationID = ModeratorQualification.QualificationID "
 						+ "WHERE ModeratorQualification.Username = '" + commonDetails[USERID] + "';");
 				while(rsQualifications.next()){
 					qualifications.add(new Qualification(rsQualifications.getInt(1),rsQualifications.getString(2)));
