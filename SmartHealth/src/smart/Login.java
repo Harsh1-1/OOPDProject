@@ -168,8 +168,8 @@ class Login extends State{
 								commonDetails[POSTAL_AREA]), 
 						commonDetails[ABOUT_ME],commonDetails[PROFILE_PIC1],
 						commonDetails[PROFILE_PIC2], commonDetails[PROFILE_PIC3],hasQuit);
-				SmartHealth.curUser.setUserType(type);
-				((EndUser)SmartHealth.curUser).setKarma(karma);
+				user.setUserType(type);
+				((EndUser)user).setKarma(karma);
 			}
 			rsUserDetails.close();
 		}
