@@ -27,6 +27,7 @@ public class Friends extends State{
 		System.out.println("2. Send Friend Request");
 		System.out.println("3. View pending requests");
 		System.out.println("4. Unfriend a friend");
+		System.out.println("5. Go back to profile page");
 		
 		int choice = sc.nextInt();
 		
@@ -44,13 +45,15 @@ public class Friends extends State{
 		else
 			System.out.println("The above error occured while sending request!!");
 			break;
-		case 3:
+		case 3: 
+			viewPendingRequests();
 			break;
 		case 4:
 			unfriend();
 			break;
+		case 5:
+			return new LoggedIn(sc);
 		default: System.out.println("Invalid choice entered");
-		return this;
 		}
 		 //just to avoid error as of now
 		return this;
@@ -247,4 +250,67 @@ public class Friends extends State{
 			System.out.println("UserName does not exist!!");
 		}
 	}
+	
+	private void viewPendingRequests()
+	{
+		try{
+			Connection con = DriverManager.getConnection(host,Username,Password);
+			Statement stmt = con.createStatement();
+			String SQL = "Select Requester_Username from friendship where Requested_Username = '" + SmartHealth.curUser.getUserId() + "'" 
+					 + " and WhenConfirmed IS NULL and WhenRejected IS NULL";
+			
+			ResultSet result = stmt.executeQuery(SQL);
+			boolean arependingrequests =  result.isBeforeFirst();
+			if(!arependingrequests)
+			{
+				System.out.println("There are no pending requests :D");
+			}
+			else
+			{
+				while(result.next())
+				{
+					String Requester_UserName = result.getString("Requester_Username");
+					System.out.println("1. Accept " + Requester_UserName + " as friend");
+					System.out.println("2. Reject " + Requester_UserName + " as friend");
+					System.out.println("3. Cancel");
+					System.out.println("Enter your choice:");
+					int choice = sc.nextInt();
+					Date date = new Date();
+					Timestamp timestamp = new Timestamp(date.getTime());
+					switch(choice)
+					{
+					case 1:
+						
+						String AcceptQuery = "Update table friendship set WhenConfirmed = " + timestamp + " where Requester_Username = '" + Requester_UserName + "'"
+											+ " and Requested_Username = '" + SmartHealth.curUser.getUserId() + "'";
+						int Accept = stmt.executeUpdate(AcceptQuery);
+						if(Accept == 0)
+							System.out.println("Failed to process Accept Request");
+						
+						break;
+					case 2:
+						
+						String RejectQuery = "Update table friendship set WhenRejected = " + timestamp + " where Requester_Username = '" + Requester_UserName + "'"
+								+ " and Requested_Username = '" + SmartHealth.curUser.getUserId() + "'";
+						int Reject = stmt.executeUpdate(RejectQuery);
+						if(Reject == 0)
+							System.out.println("Failed to process reject request");
+						
+						break;
+					default:System.out.println("pending request window closed x");
+					}
+				}
+			}
+			
+			result.close();
+			stmt.close();
+			con.close();
+			
+		}
+		catch ( SQLException err) {
+			System.out.println(err.getMessage( ));
+		}
+		
+	}
+	
 }
