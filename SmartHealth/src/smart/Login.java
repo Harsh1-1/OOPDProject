@@ -80,8 +80,9 @@ class Login extends State{
 				rsUserDetails.close();
 				return null;
 			}
+			rsUserDetails.next();
 			for(int i = 0;i<commonDetails.length;i++){
-				commonDetails[i] = rsUserDetails.getString(i);
+				commonDetails[i] = rsUserDetails.getString(i+1);
 			}
 			int typeID = rsUserDetails.getInt("UserTypeID");
 			int quit = rsUserDetails.getInt("Status");
@@ -122,6 +123,7 @@ class Login extends State{
 			}else if(type.equals("ADMIN")){
 				ResultSet rsAdmin = s.executeQuery("Select * from Administrator where UserName = '" 
 						+ commonDetails[USERID]+ "'");
+				rsAdmin.next();
 				String emergencyContact = rsAdmin.getString("Phone");
 				rsAdmin.close();
 				SmartHealth.curUser = new Admin(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
@@ -135,6 +137,7 @@ class Login extends State{
 			}else{
 				ResultSet rsEndUser = s.executeQuery("Select DATEDIFF(CURDATE(), DateCreated), Karma from EndUser where UserName = '" 
 						+ commonDetails[USERID]+ "'");
+				rsEndUser.next();
 				int karma = rsEndUser.getInt("Karma");
 				int datedif = rsEndUser.getInt(1);
 				rsEndUser.close();
@@ -142,6 +145,7 @@ class Login extends State{
 					type = "OLD";
 					ResultSet rsUserID = s.executeQuery("Select UserTypeID from UserType "
 							+ "where Description = '" + type + "';");
+					rsUserID.next();
 					int newid = rsUserID.getInt(1);
 					rsUserID.close();
 					s.executeUpdate("UPDATE User SET UserTypeID = " + newid 
@@ -150,6 +154,7 @@ class Login extends State{
 					type = "MIDDLE";
 					ResultSet rsUserID = s.executeQuery("Select UserTypeID from UserType "
 							+ "where Description = '" + type + "';");
+					rsUserID.next();
 					int newid = rsUserID.getInt(1);
 					rsUserID.close();
 					s.executeUpdate("UPDATE User SET UserTypeID = " + newid 
@@ -173,7 +178,7 @@ class Login extends State{
 			ex.printStackTrace();
 		}
 		
-		System.out.println("Primary email Id not registered");
+		System.out.println("Primary email Id not registered or wrong password");
 		return null; //Indicate error in finding the user
 	}
 	
