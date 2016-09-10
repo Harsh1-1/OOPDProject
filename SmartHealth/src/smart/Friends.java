@@ -69,7 +69,7 @@ public class Friends extends State{
 			
 			Statement stmt = con.createStatement();
 			String SQL = "select Requester_Username from friendship where Requested_Username = " 
-						+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL";
+						+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL;";
 			ResultSet result = stmt.executeQuery(SQL);
 			
 			while(result.next())
@@ -80,7 +80,7 @@ public class Friends extends State{
 			
 			
 			SQL = "select Requested_Username from friendship where Requester_Username = " 
-					+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL";
+					+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL;";
 			
 			result = stmt.executeQuery(SQL);
 			
@@ -106,7 +106,7 @@ public class Friends extends State{
 		{
 			Connection con = DriverManager.getConnection(Global.connectionString);
 			Statement stmt = con.createStatement();
-			String SQL = "select Username from user where Username=" + "'" + Username + "'";
+			String SQL = "select Username from user where Username=" + "'" + Username + "';";
 			ResultSet result = stmt.executeQuery(SQL);
 			
 			boolean ifuserexists =  result.isBeforeFirst();
@@ -129,13 +129,13 @@ public class Friends extends State{
 			Connection con = DriverManager.getConnection(Global.connectionString);
 			Statement stmt = con.createStatement();
 			String SQL = "select Requester_Username from friendship where Requested_Username = " 
-					+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL" + " and Requester_Username = " + "'" + UserName + "'";
+					+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL" + " and Requester_Username = " + "'" + UserName + "';";
 			
 			ResultSet result = stmt.executeQuery(SQL);
 			boolean ifalreadyafriendtest1 =  result.isBeforeFirst();
 			
 			SQL = "select Requested_Username from friendship where Requester_Username = " 
-					+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL" + " and Requested_Username = " + "'" + UserName + "'";
+					+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL" + " and Requested_Username = " + "'" + UserName + "';";
 			
 			result = stmt.executeQuery(SQL);
 			boolean ifalreadyafriendtest2 =  result.isBeforeFirst();
@@ -170,7 +170,7 @@ public class Friends extends State{
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
 					String SQL = "Update table friendship set WhenRequested = " + timestamp + " where Requester_Username = '" + SmartHealth.curUser.getUserId()
-					  			+ "' and Requested_Username = '" + UserName + "'";
+					  			+ "' and Requested_Username = '" + UserName + "';";
 					
 					int rowinserted = stmt.executeUpdate(SQL);
 					
@@ -199,7 +199,7 @@ public class Friends extends State{
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
 					String SQL = "INSERT INTO friendship values('" + SmartHealth.curUser.getUserId() + "'," 
-							+ "','" + UserName + "'," + timestamp + ",NULL ,NULL ,NULL ,NULL )";
+							+ "','" + UserName + "'," + timestamp + ", , , , );";
 					int rowinserted = stmt.executeUpdate(SQL);
 					
 					stmt.close();
@@ -246,7 +246,7 @@ public class Friends extends State{
 					Statement stmt = con.createStatement();
 					String SQL = "update table friendship set WhenConfirmed = NULL, WhenUnfriended = " + timestamp
 								 + "where Requester_Username = " + "'" + SmartHealth.curUser.getUserId() + "'" 
-								 + " and Requested_Username = " + "'" + UserName + "'";
+								 + " and Requested_Username = " + "'" + UserName + "';";
 					int result = stmt.executeUpdate(SQL);
 					
 					if(result != 0)
@@ -255,7 +255,7 @@ public class Friends extends State{
 					
 							SQL = "update table friendship set WhenConfirmed = NULL, WhenUnfriended = " + timestamp
 							 + "where Requested_Username = " + "'" + SmartHealth.curUser.getUserId() + "'" 
-							 + " and Requester_Username = " + "'" + UserName + "'";
+							 + " and Requester_Username = " + "'" + UserName + "';";
 							result = stmt.executeUpdate(SQL);
 				
 							if(result == 0)
@@ -286,7 +286,7 @@ public class Friends extends State{
 			Connection con = DriverManager.getConnection(Global.connectionString);
 			Statement stmt = con.createStatement();
 			String SQL = "Select Requester_Username from friendship where Requested_Username = '" + SmartHealth.curUser.getUserId() + "'" 
-					 + " and WhenConfirmed IS NULL and WhenRejected IS NULL";
+					 + " and WhenConfirmed IS NULL and WhenRejected IS NULL;";
 			
 			ResultSet result = stmt.executeQuery(SQL);
 			boolean arependingrequests =  result.isBeforeFirst();
@@ -311,7 +311,7 @@ public class Friends extends State{
 					case 1:
 						
 						String AcceptQuery = "Update table friendship set WhenConfirmed = " + timestamp + " where Requester_Username = '" + Requester_UserName + "'"
-											+ " and Requested_Username = '" + SmartHealth.curUser.getUserId() + "'";
+											+ " and Requested_Username = '" + SmartHealth.curUser.getUserId() + "';";
 						int Accept = stmt.executeUpdate(AcceptQuery);
 						if(Accept == 0)
 							System.out.println("Failed to process Accept Request");
@@ -320,7 +320,7 @@ public class Friends extends State{
 					case 2:
 						
 						String RejectQuery = "Update table friendship set WhenRejected = " + timestamp + " where Requester_Username = '" + Requester_UserName + "'"
-								+ " and Requested_Username = '" + SmartHealth.curUser.getUserId() + "'";
+								+ " and Requested_Username = '" + SmartHealth.curUser.getUserId() + "';";
 						int Reject = stmt.executeUpdate(RejectQuery);
 						if(Reject == 0)
 							System.out.println("Failed to process reject request");
@@ -351,10 +351,10 @@ public class Friends extends State{
 			Statement stmt = con.createStatement();
 			//String SQL = "select Requester_Username,Requested_Username from friendship where (Requester_Username = '" + UserName + "'"
 			//		      + " and Requested_Username = '" + SmartHealth.curUser.getUserId() + "') OR ( Requester_Username = '" + SmartHealth.curUser.getUserId() + "'"
-			//			  + " and Requested_Username = '" + UserName + "')";
+			//			  + " and Requested_Username = '" + UserName + "');";
 			
 			String SQL = "Select Requester_Username,Requested_Username from friendship where Requester_Username = '" + SmartHealth.curUser.getUserId() + "'"
-					     + " and Requested_Username = '" + UserName + "'" + " and WhenConfirmed is NULL";
+					     + " and Requested_Username = '" + UserName + "'" + " and WhenConfirmed is NULL;";
 			ResultSet result = stmt.executeQuery(SQL);
 			
 			boolean ifpairexists =  result.isBeforeFirst();
