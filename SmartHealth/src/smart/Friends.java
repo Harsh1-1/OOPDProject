@@ -11,9 +11,6 @@ import java.util.Date;
 
 public class Friends extends State{
 	
-	private String host ="jdbc:mysql://localhost:3306/smarthealthdb";
-	private String Username = "root";
-	private String Password = "";
 
 	Friends(Scanner sc)
 	{
@@ -27,7 +24,8 @@ public class Friends extends State{
 		System.out.println("2. Send Friend Request");
 		System.out.println("3. View pending requests");
 		System.out.println("4. Unfriend a friend");
-		System.out.println("5. Go back to profile page");
+		System.out.println("5. Withdraw sent requests");
+		System.out.println("6. Go back to profile page");
 		
 		int choice = sc.nextInt();
 		
@@ -39,7 +37,7 @@ public class Friends extends State{
 		case 2:
 			System.out.println("Enter the username of the user,"
 					+ "you want to add as a friend: ");
-		String UserName = sc.nextLine();
+		String UserName = sc.next();
 		if(sendFriendRequest(UserName))
 			System.out.println("Friend request sent successfully to:" + UserName);
 		else
@@ -52,6 +50,9 @@ public class Friends extends State{
 			unfriend();
 			break;
 		case 5:
+			withdrawRequests();
+			break;
+		case 6:
 			return new LoggedIn(sc);
 		default: System.out.println("Invalid choice entered");
 		}
@@ -63,7 +64,7 @@ public class Friends extends State{
 	{
 		try {	
 			
-			Connection con = DriverManager.getConnection(host,Username,Password);
+			Connection con = DriverManager.getConnection(Global.connectionString);
 			
 			
 			Statement stmt = con.createStatement();
@@ -103,7 +104,7 @@ public class Friends extends State{
 	{
 		try
 		{
-			Connection con = DriverManager.getConnection(host,Username,Password);
+			Connection con = DriverManager.getConnection(Global.connectionString);
 			Statement stmt = con.createStatement();
 			String SQL = "select Username from user where Username=" + "'" + Username + "'";
 			ResultSet result = stmt.executeQuery(SQL);
@@ -125,7 +126,7 @@ public class Friends extends State{
 	{
 		try
 		{
-			Connection con = DriverManager.getConnection(host,Username,Password);
+			Connection con = DriverManager.getConnection(Global.connectionString);
 			Statement stmt = con.createStatement();
 			String SQL = "select Requester_Username from friendship where Requested_Username = " 
 					+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL" + " and Requester_Username = " + "'" + UserName + "'";
@@ -164,7 +165,7 @@ public class Friends extends State{
 			else if(checkUnconfirmedEntry(UserName))
 			{
 				try{
-					Connection con = DriverManager.getConnection(host,Username,Password);
+					Connection con = DriverManager.getConnection(Global.connectionString);
 					Statement stmt = con.createStatement();
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
@@ -193,7 +194,7 @@ public class Friends extends State{
 			{
 				try
 				{
-					Connection con = DriverManager.getConnection(host,Username,Password);
+					Connection con = DriverManager.getConnection(Global.connectionString);
 					Statement stmt = con.createStatement();
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
@@ -241,7 +242,7 @@ public class Friends extends State{
 				
 				try
 				{
-					Connection con = DriverManager.getConnection(host,Username,Password);
+					Connection con = DriverManager.getConnection(Global.connectionString);
 					Statement stmt = con.createStatement();
 					String SQL = "update table friendship set WhenConfirmed = NULL, WhenUnfriended = " + timestamp
 								 + "where Requester_Username = " + "'" + SmartHealth.curUser.getUserId() + "'" 
@@ -282,7 +283,7 @@ public class Friends extends State{
 	private void viewPendingRequests()
 	{
 		try{
-			Connection con = DriverManager.getConnection(host,Username,Password);
+			Connection con = DriverManager.getConnection(Global.connectionString);
 			Statement stmt = con.createStatement();
 			String SQL = "Select Requester_Username from friendship where Requested_Username = '" + SmartHealth.curUser.getUserId() + "'" 
 					 + " and WhenConfirmed IS NULL and WhenRejected IS NULL";
@@ -346,7 +347,7 @@ public class Friends extends State{
 		
 		try
 		{
-			Connection con = DriverManager.getConnection(host,Username,Password);
+			Connection con = DriverManager.getConnection(Global.connectionString);
 			Statement stmt = con.createStatement();
 			//String SQL = "select Requester_Username,Requested_Username from friendship where (Requester_Username = '" + UserName + "'"
 			//		      + " and Requested_Username = '" + SmartHealth.curUser.getUserId() + "') OR ( Requester_Username = '" + SmartHealth.curUser.getUserId() + "'"
@@ -367,6 +368,23 @@ public class Friends extends State{
 			System.out.println(err.getMessage( ));
 		}
 		return false;
+	}
+	
+	private void withdrawRequests()
+	{
+		try
+		{
+			Connection con = DriverManager.getConnection(Global.connectionString);
+			Statement stmt = con.createStatement();
+			String SQL = "";
+			ResultSet result = stmt.executeQuery(SQL);
+			result.close();
+			stmt.close();
+			con.close();
+		}
+		catch ( SQLException err) {
+			System.out.println(err.getMessage( ));
+		}
 	}
 	
 }
