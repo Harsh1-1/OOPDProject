@@ -183,9 +183,4 @@ public abstract class User {
 		System.out.println("Pic 3: " + this.picurl[2]);
 	}
 	
-	
-	
-	
-	
-	
 }
