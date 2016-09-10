@@ -47,6 +47,7 @@ public class Friends extends State{
 		case 3:
 			break;
 		case 4:
+			unfriend();
 			break;
 		default: System.out.println("Invalid choice entered");
 		return this;
@@ -64,7 +65,7 @@ public class Friends extends State{
 			
 			Statement stmt = con.createStatement();
 			String SQL = "select Requester_Username from friendship where Requested_Username = " 
-						+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed >= WhenUnfriended and WhenRejected IS NULL";
+						+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL";
 			ResultSet result = stmt.executeQuery(SQL);
 			
 			while(result.next())
@@ -72,6 +73,19 @@ public class Friends extends State{
 				String FriendUserName = result.getString("Requester_Username");
 				System.out.println(FriendUserName);
 			}
+			
+			
+			SQL = "select Requested_Username from friendship where Requester_Username = " 
+					+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL";
+			
+			result = stmt.executeQuery(SQL);
+			
+			while(result.next())
+			{
+				String FriendUserName = result.getString("Requester_Username");
+				System.out.println(FriendUserName);
+			}
+			
 			result.close();
 			stmt.close();
 			con.close();
@@ -111,16 +125,21 @@ public class Friends extends State{
 			Connection con = DriverManager.getConnection(host,Username,Password);
 			Statement stmt = con.createStatement();
 			String SQL = "select Requester_Username from friendship where Requested_Username = " 
-					+ "'" + SmartHealth.curUser.getUserId() + "'" 
-					+ " and WhenConfirmed >= WhenUnfriended and WhenRejected IS NULL"
-					+ " and Requester_Username = " + "'" + UserName + "'";
+					+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL" + " and Requester_Username = " + "'" + UserName + "'";
 			
 			ResultSet result = stmt.executeQuery(SQL);
-			boolean ifalreadyafriend =  result.isBeforeFirst();
+			boolean ifalreadyafriendtest1 =  result.isBeforeFirst();
+			
+			SQL = "select Requested_Username from friendship where Requester_Username = " 
+					+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL" + " and Requested_Username = " + "'" + UserName + "'";
+			
+			result = stmt.executeQuery(SQL);
+			boolean ifalreadyafriendtest2 =  result.isBeforeFirst();
+			
 			result.close();
 			stmt.close();
 			con.close();
-			return ifalreadyafriend;
+			return (ifalreadyafriendtest1 || ifalreadyafriendtest2);
 			
 		}
 		catch ( SQLException err) {
@@ -148,7 +167,7 @@ public class Friends extends State{
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
 					String SQL = "INSERT INTO friendship values('" + SmartHealth.curUser.getUserId() + "'," 
-							+ "'" + UserName + "'," + timestamp + ", , , , )";
+							+ "','" + UserName + "'," + timestamp + ", , , , )";
 					int rowinserted = stmt.executeUpdate(SQL);
 					
 					stmt.close();
@@ -174,5 +193,58 @@ public class Friends extends State{
 			return false;
 		}
 		return false;
+	}
+	
+	private void unfriend()
+	{
+		System.out.println("Here are your all friends:");
+		viewFriends();
+		System.out.println("Enter username of friend you want to unfriend:");
+		String UserName = sc.nextLine();
+		if(ifUserExists(UserName))
+		{
+			if(isalreadyafriend(UserName))
+			{
+				Date date = new Date();
+				Timestamp timestamp = new Timestamp(date.getTime());
+				
+				try
+				{
+					Connection con = DriverManager.getConnection(host,Username,Password);
+					Statement stmt = con.createStatement();
+					String SQL = "update table friendship set WhenConfirmed = NULL, WhenUnfriended = " + timestamp
+								 + "where Requester_Username = " + "'" + SmartHealth.curUser.getUserId() + "'" 
+								 + " and Requested_Username = " + "'" + UserName + "'";
+					int result = stmt.executeUpdate(SQL);
+					
+					if(result != 0)
+						System.out.println("Unfriended Successfully!!");
+					
+					
+							SQL = "update table friendship set WhenConfirmed = NULL, WhenUnfriended = " + timestamp
+							 + "where Requested_Username = " + "'" + SmartHealth.curUser.getUserId() + "'" 
+							 + " and Requester_Username = " + "'" + UserName + "'";
+							result = stmt.executeUpdate(SQL);
+				
+							if(result == 0)
+								System.out.println("Unfriended Successfully");
+					
+					stmt.close();
+					con.close();
+				}
+				
+				catch ( SQLException err) {
+					System.out.println(err.getMessage( ));
+				}
+				
+				
+			}
+			else
+				System.out.println("You cannot unfriend someone who is not your friend");
+		}
+		else
+		{
+			System.out.println("UserName does not exist!!");
+		}
 	}
 }
