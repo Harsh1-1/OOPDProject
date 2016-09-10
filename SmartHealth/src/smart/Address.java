@@ -17,11 +17,11 @@ class Address {
 	
 	public String toString(){
 		String address = 
-				"Street Number : " + StreetNumber +
-				"Street Name : " + StreetName +
-				"Major Municipality : " + MajorMunicipality +
-				"Governing District : " + GoverningDistrict +
-				"Postal Area : " + PostalArea;
+				"\nStreet Number : " + StreetNumber +
+				"\nStreet Name : " + StreetName +
+				"\nMajor Municipality : " + MajorMunicipality +
+				"\nGoverning District : " + GoverningDistrict +
+				"\nPostal Area : " + PostalArea;
 		return address;
 	}
 }
