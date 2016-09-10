@@ -176,7 +176,7 @@ class SignUp extends State implements UserForm{
 				String query2 = "Insert into EndUser values(" + 
 						"'" + user.getUserId() + "'," +
 						((EndUser)user).getKarma() + "," + 
-						"NOW()" + 
+						"CURDATE()" + 
 						");";
 				s.executeUpdate(query2);
 			}else if(usertype.equals("ADMIN")){
