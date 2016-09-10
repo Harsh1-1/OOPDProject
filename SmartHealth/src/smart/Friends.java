@@ -169,7 +169,7 @@ public class Friends extends State{
 					Statement stmt = con.createStatement();
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
-					String SQL = "Update table friendship set WhenRequested = " + "NOW()" + " where Requester_Username = '" + SmartHealth.curUser.getUserId()
+					String SQL = "Update table friendship set WhenRequested = " + timestamp + " where Requester_Username = '" + SmartHealth.curUser.getUserId()
 					  			+ "' and Requested_Username = '" + UserName + "';";
 					
 					int rowinserted = stmt.executeUpdate(SQL);
@@ -199,7 +199,7 @@ public class Friends extends State{
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
 					String SQL = "INSERT INTO friendship values('" + SmartHealth.curUser.getUserId() + "'," 
-							+ "'" + UserName + "'," + "NOW()" + ",NULL ,NULL ,NULL ,NULL );";
+							+ "'" + UserName + "'," + timestamp + ",NULL ,NULL ,NULL ,NULL );";
 					
 					int rowinserted = stmt.executeUpdate(SQL);
 					
@@ -390,9 +390,12 @@ public class Friends extends State{
 				int choice = sc.nextInt();
 				if(choice == 1)
 				{
-					String WithdrawQuery = "Update table friendship set WhenRequested = NULL" + " where Requester_Username = '" + SmartHealth.curUser.getUserId() + "'"
+					Date date = new Date();
+					Timestamp timestamp = new Timestamp(date.getTime());
+					String WithdrawQuery = "Update friendship set WhenRequested = NULL, WhenWithdrawn = " + timestamp + " where Requester_Username = '" + SmartHealth.curUser.getUserId() + "'"
 				              + " and Requested_Username = '" + RequestedUserName + "';"; 
 					
+					// System.out.println(WithdrawQuery);
 					int withdrawcheck = stmt.executeUpdate(WithdrawQuery);
 					
 					if(withdrawcheck == 0)
