@@ -68,8 +68,10 @@ class Update extends State implements UserForm{
 			System.out.println("Enter new " + options[choice] + " : ");
 		if(!options[choice].equals("About Me") && 
 		   !options[choice].equals("Profile Picture Links") && 
-		   !options[choice].equals("Qualifications")) 
+		   !options[choice].equals("Qualifications") &&
+		   !options[choice].equals("Postal Address")){ 
 			s = sc.next();
+		}
 		
 		//update according to user's choice
 		switch(choice){

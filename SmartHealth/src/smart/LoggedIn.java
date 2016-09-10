@@ -14,8 +14,9 @@ class LoggedIn extends State{
 	private final static int DISPLAY = 1;
 	private final static int UPDATE = 2;
 	private final static int QUIT = 3;
-	private final static int LOGOUT = 4;
-	private final static int JOIN_AGAIN = 5;
+	private final static int FRIENDS = 4;
+	private final static int LOGOUT = 5;
+	private final static int JOIN_AGAIN = 6;
 	
 	State handle(){
 		int choice;
@@ -25,7 +26,8 @@ class LoggedIn extends State{
 			System.out.println("1. Display profile info");
 			System.out.println("2. Update profile info");
 			System.out.println("3. Quit Profile");
-			System.out.println("4. Logout");
+			System.out.println("4. Friends");
+			System.out.println("5. Logout");
 			System.out.println("Enter your choice ");
 			choice = sc.nextInt();
 		}
@@ -35,7 +37,7 @@ class LoggedIn extends State{
 			System.out.println("2. Join Again");
 			System.out.println("Enter your choice ");
 			choice = sc.nextInt();
-			choice += 3;
+			choice += 4;
 		}
 		
 		//Handle various cases
@@ -57,6 +59,8 @@ class LoggedIn extends State{
 			SmartHealth.curUser.join();
 			joinUser(SmartHealth.curUser.getUserId());
 			break;
+		case FRIENDS:
+			return new Friends(sc);
 		default : System.out.println("Invalid choice. Please enter a valid choice.");
 		}
 		return this;
