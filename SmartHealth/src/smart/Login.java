@@ -72,6 +72,7 @@ class Login extends State{
 	private User validUser(String id, String password){
 		String query = "Select * from user where Email1 = '" + id + 
 				"' and Password = '" + password + "';";
+		User user = null;
 		try(Connection con = DriverManager.getConnection(Global.connectionString);
 				Statement s = con.createStatement();)
 		{
@@ -112,7 +113,7 @@ class Login extends State{
 					qualifications.add(new Qualification(rsQualifications.getInt(1),rsQualifications.getString(2)));
 				}
 				
-				SmartHealth.curUser = new Moderator(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
+				user = new Moderator(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
 						commonDetails[SECONDARY_EMAIL],commonDetails[PASSWORD],commonDetails[USERID],
 						new Address(commonDetails[STREET_NUMBER], commonDetails[STREET_NAME],
 								commonDetails[MAJOR_MUNICIPALITY], commonDetails[GOVERNING_DISTRICT], 
@@ -126,7 +127,7 @@ class Login extends State{
 				rsAdmin.next();
 				String emergencyContact = rsAdmin.getString("Phone");
 				rsAdmin.close();
-				SmartHealth.curUser = new Admin(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
+				user = new Admin(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
 						commonDetails[SECONDARY_EMAIL],commonDetails[PASSWORD],commonDetails[USERID],
 						new Address(commonDetails[STREET_NUMBER], commonDetails[STREET_NAME],
 								commonDetails[MAJOR_MUNICIPALITY], commonDetails[GOVERNING_DISTRICT], 
@@ -160,7 +161,7 @@ class Login extends State{
 					s.executeUpdate("UPDATE User SET UserTypeID = " + newid 
 							+ " WHERE Username = '" + commonDetails[USERID] + "';");
 				}
-				SmartHealth.curUser = new EndUser(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
+				user = new EndUser(commonDetails[FIRST_NAME],commonDetails[LAST_NAME],commonDetails[PRIMARY_EMAIL],
 						commonDetails[SECONDARY_EMAIL],commonDetails[PASSWORD],commonDetails[USERID],
 						new Address(commonDetails[STREET_NUMBER], commonDetails[STREET_NAME],
 								commonDetails[MAJOR_MUNICIPALITY], commonDetails[GOVERNING_DISTRICT], 
@@ -178,8 +179,7 @@ class Login extends State{
 			ex.printStackTrace();
 		}
 		
-		System.out.println("Primary email Id not registered or wrong password");
-		return null; //Indicate error in finding the user
+		return user;
 	}
 	
 	Login(Scanner sc){
