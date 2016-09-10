@@ -199,8 +199,8 @@ public class Friends extends State{
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
 					String SQL = "INSERT INTO friendship values('" + SmartHealth.curUser.getUserId() + "'," 
-							+ "'" + UserName + "'," + timestamp + ",NULL ,NULL ,NULL ,NULL );";
-					
+							+ "'" + UserName + "',NOW(),NULL ,NULL ,NULL ,NULL );";
+					System.out.println(SQL);
 					int rowinserted = stmt.executeUpdate(SQL);
 					
 					stmt.close();
@@ -217,6 +217,7 @@ public class Friends extends State{
 							
 				catch ( SQLException err) {
 					System.out.println(err.getMessage( ));
+					err.printStackTrace();
 				}
 			}
 		}
