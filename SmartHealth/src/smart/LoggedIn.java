@@ -26,10 +26,26 @@ class LoggedIn extends State{
 			System.out.println("1. Display profile info");
 			System.out.println("2. Update profile info");
 			System.out.println("3. Quit Profile");
-			System.out.println("4. Friends");
-			System.out.println("5. Logout");
+			if(!SmartHealth.curUser.getUserType().equals("MOD") && 
+					!SmartHealth.curUser.getUserType().equals("ADMIN")){
+				System.out.println("4. Friends");
+				System.out.println("5. Logout");
+			}else{
+				System.out.println("4. Logout");
+			}
 			System.out.println("Enter your choice ");
 			choice = sc.nextInt();
+			if((SmartHealth.curUser.getUserType().equals("MOD") || 
+					SmartHealth.curUser.getUserType().equals("ADMIN"))){
+				if(choice < 1 || choice > 4){
+					System.out.println("Invalid choice");
+					return this;
+				}
+				if(choice == 4) choice = 5;
+			}else if(choice < 1 || choice > 5){
+				System.out.println("Invalid choice");
+				return this;
+			}
 		}
 		else{
 			//Get users choice if he quit
@@ -37,9 +53,12 @@ class LoggedIn extends State{
 			System.out.println("2. Join Again");
 			System.out.println("Enter your choice ");
 			choice = sc.nextInt();
+			if(choice < 1 || choice > 2){
+				System.out.println("Invalid choice");
+				return this;
+			}
 			choice += 4;
 		}
-		
 		//Handle various cases
 		switch(choice){
 		case DISPLAY : //display users profile info
