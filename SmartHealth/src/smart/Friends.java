@@ -161,6 +161,34 @@ public class Friends extends State{
 				return false;
 			}
 			//Still need to check if a requester-requested pair already exist in friendship table
+			else if(checkUnconfirmedEntry(UserName))
+			{
+				try{
+					Connection con = DriverManager.getConnection(host,Username,Password);
+					Statement stmt = con.createStatement();
+					Date date = new Date();
+					Timestamp timestamp = new Timestamp(date.getTime());
+					String SQL = "Update table friendship set WhenRequested = " + timestamp + " where Requester_Username = '" + SmartHealth.curUser.getUserId()
+					  			+ "' and Requested_Username = '" + UserName + "'";
+					
+					int rowinserted = stmt.executeUpdate(SQL);
+					
+					stmt.close();
+					con.close();
+					
+					if(rowinserted == 0)
+					{
+						System.out.println("Failed to send request!!");
+						return false;
+					}						
+					else
+					return true;
+					
+				}
+				catch ( SQLException err) {
+					System.out.println(err.getMessage( ));
+				}
+			}
 			else
 			{
 				try
@@ -170,7 +198,7 @@ public class Friends extends State{
 					Date date = new Date();
 					Timestamp timestamp = new Timestamp(date.getTime());
 					String SQL = "INSERT INTO friendship values('" + SmartHealth.curUser.getUserId() + "'," 
-							+ "','" + UserName + "'," + timestamp + ", , , , )";
+							+ "','" + UserName + "'," + timestamp + ",NULL ,NULL ,NULL ,NULL )";
 					int rowinserted = stmt.executeUpdate(SQL);
 					
 					stmt.close();
@@ -311,6 +339,34 @@ public class Friends extends State{
 			System.out.println(err.getMessage( ));
 		}
 		
+	}
+	
+	private boolean checkUnconfirmedEntry(String UserName)
+	{
+		
+		try
+		{
+			Connection con = DriverManager.getConnection(host,Username,Password);
+			Statement stmt = con.createStatement();
+			//String SQL = "select Requester_Username,Requested_Username from friendship where (Requester_Username = '" + UserName + "'"
+			//		      + " and Requested_Username = '" + SmartHealth.curUser.getUserId() + "') OR ( Requester_Username = '" + SmartHealth.curUser.getUserId() + "'"
+			//			  + " and Requested_Username = '" + UserName + "')";
+			
+			String SQL = "Select Requester_Username,Requested_Username from friendship where Requester_Username = '" + SmartHealth.curUser.getUserId() + "'"
+					     + " and Requested_Username = '" + UserName + "'" + " and WhenConfirmed is NULL";
+			ResultSet result = stmt.executeQuery(SQL);
+			
+			boolean ifpairexists =  result.isBeforeFirst();
+			result.close();
+			stmt.close();
+			con.close();
+			return ifpairexists;
+		}
+		
+		catch ( SQLException err) {
+			System.out.println(err.getMessage( ));
+		}
+		return false;
 	}
 	
 }
