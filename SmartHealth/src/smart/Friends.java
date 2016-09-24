@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
-import java.sql.Timestamp;
-import java.util.Date;
 
 public class Friends extends State{
 	
@@ -17,6 +15,7 @@ public class Friends extends State{
 		super(sc);
 	}
 	
+	//handler function for friends
 	State handle()
 	{
 		System.out.println("What you want to do:");
@@ -38,6 +37,11 @@ public class Friends extends State{
 			System.out.println("Enter the username of the user,"
 					+ "you want to add as a friend: ");
 		String UserName = sc.next();
+		if(UserName.equals(SmartHealth.curUser.getUserId()))
+		{
+			System.out.println("you cannot send friend request to your self :P");
+			break;
+		}
 		if(sendFriendRequest(UserName))
 			System.out.println("Friend request sent successfully to:" + UserName);
 		else
@@ -60,6 +64,7 @@ public class Friends extends State{
 		return this;
 	}
 	
+	//to view friends
 	private void viewFriends()
 	{
 		try {	
@@ -71,6 +76,8 @@ public class Friends extends State{
 			String SQL = "select Requester_Username from friendship where Requested_Username = " 
 						+ "'" + SmartHealth.curUser.getUserId() + "'" + " and WhenConfirmed IS NOT NULL and WhenRejected IS NULL;";
 			ResultSet result = stmt.executeQuery(SQL);
+			
+			
 			
 			while(result.next())
 			{
@@ -86,7 +93,7 @@ public class Friends extends State{
 			
 			while(result.next())
 			{
-				String FriendUserName = result.getString("Requester_Username");
+				String FriendUserName = result.getString("Requested_Username");
 				System.out.println(FriendUserName);
 			}
 			
@@ -100,6 +107,7 @@ public class Friends extends State{
 
 	}
 	
+	//to check if a user exsits or not
 	private boolean ifUserExists(String Username)
 	{
 		try
@@ -122,6 +130,7 @@ public class Friends extends State{
 		return false;
 	}
 	
+	//to check it the user is already a friend
 	private boolean isalreadyafriend(String UserName)
 	{
 		try
@@ -161,14 +170,19 @@ public class Friends extends State{
 				System.out.println(UserName + " is already your friend!!");
 				return false;
 			}
-			//Still need to check if a requester-requested pair already exist in friendship table
+			
+			if(!isEndUser(UserName))
+			{
+				System.out.println("Cannot send friend request to hidden user");
+				return false;
+			}
+				
+			
 			else if(checkUnconfirmedEntry(UserName))
 			{
 				try{
 					Connection con = DriverManager.getConnection(Global.connectionString);
 					Statement stmt = con.createStatement();
-					Date date = new Date();
-					Timestamp timestamp = new Timestamp(date.getTime());
 					String SQL = "Update friendship set WhenRequested = " + "NOW()" + " where Requester_Username = '" + SmartHealth.curUser.getUserId()
 					  			+ "' and Requested_Username = '" + UserName + "';";
 					
@@ -196,8 +210,6 @@ public class Friends extends State{
 				{
 					Connection con = DriverManager.getConnection(Global.connectionString);
 					Statement stmt = con.createStatement();
-					Date date = new Date();
-					Timestamp timestamp = new Timestamp(date.getTime());
 					String SQL = "INSERT INTO friendship values('" + SmartHealth.curUser.getUserId() + "'," 
 							+ "'" + UserName + "'," + "NOW()" + ",NULL ,NULL ,NULL ,NULL );";
 					
@@ -228,6 +240,7 @@ public class Friends extends State{
 		return false;
 	}
 	
+	//to unfriend an existing friend
 	private void unfriend()
 	{
 		System.out.println("Here are your all friends:");
@@ -238,8 +251,6 @@ public class Friends extends State{
 		{
 			if(isalreadyafriend(UserName))
 			{
-				Date date = new Date();
-				Timestamp timestamp = new Timestamp(date.getTime());
 				
 				try
 				{
@@ -305,8 +316,6 @@ public class Friends extends State{
 					System.out.println("3. Cancel");
 					System.out.println("Enter your choice:");
 					int choice = sc.nextInt();
-					Date date = new Date();
-					Timestamp timestamp = new Timestamp(date.getTime());
 					switch(choice)
 					{
 					case 1:
@@ -343,6 +352,44 @@ public class Friends extends State{
 		
 	}
 	
+	private boolean isEndUser(String username)
+	{
+		try
+		{
+			Connection con = DriverManager.getConnection(Global.connectionString);
+			Statement stmt = con.createStatement();
+			String SQL = "select Username from administrator where Username ="
+					+ "'" + username + "'";
+			
+			ResultSet result = stmt.executeQuery(SQL);
+			
+			if(result.isBeforeFirst())
+			{
+				boolean isenduser = false;
+				return isenduser;
+			}
+			
+			SQL = "select Username from moderator where Username ="
+					+ "'" + username + "'";
+			
+			result = stmt.executeQuery(SQL);
+			
+			if(result.isBeforeFirst())
+			{
+				boolean isenduser = false;
+				return isenduser;
+			}
+			
+		}
+		
+		
+		catch ( SQLException err) {
+			System.out.println(err.getMessage( ));
+		}
+		
+		return true;
+	}
+	
 	private boolean checkUnconfirmedEntry(String UserName)
 	{
 		
@@ -371,6 +418,7 @@ public class Friends extends State{
 		return false;
 	}
 	
+	//to withdraw requests 
 	private void withdrawRequests()
 	{
 		try
@@ -390,8 +438,6 @@ public class Friends extends State{
 				int choice = sc.nextInt();
 				if(choice == 1)
 				{
-					Date date = new Date();
-					Timestamp timestamp = new Timestamp(date.getTime());
 					String WithdrawQuery = "Update friendship set WhenRequested = NULL, WhenWithdrawn = " + "NOW()" + " where Requester_Username = '" + SmartHealth.curUser.getUserId() + "'"
 				              + " and Requested_Username = '" + RequestedUserName + "';"; 
 					

@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 interface UserForm {
 	default boolean isValidEmail(String email){
-		String pattern = "^.+@.+$";
+		String pattern = "^.+@.+[.].+$";
 		return Pattern.matches(pattern, email);
 	}
 	default boolean isValidContactNumber(String contact){
