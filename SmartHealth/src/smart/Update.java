@@ -215,15 +215,15 @@ class Update extends State implements UserForm{
 	
 	private void updateAddressHelper(Address address, String userID){
 		String query[] = new String[5];
-		query[0] = "UPDATE User SET StreetNumber = '" + address.StreetNumber +
+		query[0] = "UPDATE User SET StreetNumber = '" + address.getStreetNumber() +
 				"' WHERE UserName = '" + userID + "';";
-		query[1] = "UPDATE User SET StreetName = '" + address.StreetName +
+		query[1] = "UPDATE User SET StreetName = '" + address.getStreetName() +
 				"' WHERE UserName = '" + userID + "';";
-		query[2] = "UPDATE User SET MajorMunicipality = '" + address.MajorMunicipality +
+		query[2] = "UPDATE User SET MajorMunicipality = '" + address.getMajorMunicipality() +
 				"' WHERE UserName = '" + userID + "';";
-		query[3] = "UPDATE User SET GoverningDistrict = '" + address.GoverningDistrict +
+		query[3] = "UPDATE User SET GoverningDistrict = '" + address.getGoverningDistrict() +
 				"' WHERE UserName = '" + userID + "';";
-		query[4] = "UPDATE User SET PostalArea = '" + address.PostalArea +
+		query[4] = "UPDATE User SET PostalArea = '" + address.getPostalArea() +
 				"' WHERE UserName = '" + userID + "';";
 		try(Connection con = DriverManager.getConnection(Global.connectionString);
 				Statement s = con.createStatement() )

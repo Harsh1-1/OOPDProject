@@ -4,32 +4,32 @@ package beans;
 public abstract class User {
 
 	//All the required data of user
-	private String PrimaryEmail;
-	private String SecondaryEmail;
-	private String Password;
-	private String UserId;
-	private String FirstName;
-	private String LastName;
-	private Address Address;
-	private String AboutMe;
+	private String primaryEmail;
+	private String secondaryEmail;
+	private String password;
+	private String userId;
+	private String firstName;
+	private String lastName;
+	private Address address;
+	private String aboutMe;
 	private String picurl[] = new String[3];
-	protected String UserType;
+	protected String userType;
 	private boolean hasQuit;
 	
 	//Constructor for initialization
-	User(String FirstName, String LastName,String PrimaryEmail,
-			String SecondaryEmail, String Password, String UserId,
-			Address Address, String AboutMe, String picurl1,
+	User(String firstName, String lastName,String primaryEmail,
+			String secondaryEmail, String password, String userId,
+			Address address, String aboutMe, String picurl1,
 			String picurl2, String picurl3, boolean hasQuit)
 	{
-		this.FirstName = FirstName;
-		this.LastName = LastName;
-		this.PrimaryEmail = PrimaryEmail;
-		this.SecondaryEmail = SecondaryEmail;
-		this.Password = Password;
-		this.UserId = UserId;
-		this.Address = Address;
-		this.AboutMe = AboutMe;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.primaryEmail = primaryEmail;
+		this.secondaryEmail = secondaryEmail;
+		this.password = password;
+		this.userId = userId;
+		this.address = address;
+		this.aboutMe = aboutMe;
 		this.picurl[0] = picurl1;
 		this.picurl[1] = picurl2;
 		this.picurl[2] = picurl3;
@@ -39,48 +39,48 @@ public abstract class User {
 	//All the getters for data
 	public String getUserType()
 	{
-		return this.UserType;
+		return this.userType;
 	}
 	
 	
 	public String getPrimaryEmail()
 	{
-		return this.PrimaryEmail;
+		return this.primaryEmail;
 	}
 	
 	public String getSecondaryEmail()
 	{
-		return this.SecondaryEmail;
+		return this.secondaryEmail;
 	}
 
 	public String getPassword()
 	{
-		return this.Password;
+		return this.password;
 	}
 	
 	public String getUserId()
 	{
-		return this.UserId;
+		return this.userId;
 	}
 	
 	public String getFirstName()
 	{
-		return this.FirstName;
+		return this.firstName;
 	}
 	
 	public String getLastName()
 	{
-		return this.LastName;
+		return this.lastName;
 	}
 	
 	public Address getPostalAddress()
 	{
-		return this.Address;
+		return this.address;
 	}
 	
 	public String getAboutMe()
 	{
-		return this.AboutMe;
+		return this.aboutMe;
 	}
 	
 	public String[] getPicURL()
@@ -90,56 +90,56 @@ public abstract class User {
 	
 	
 	//All the setters for data
-	public void setUserType(String UserType)
+	public void setUserType(String userType)
 	{
-		this.UserType = UserType;
+		this.userType = userType;
 	}
 	
 	
-	public void setPrimaryEmail(String PrimaryEmail)
+	public void setPrimaryEmail(String primaryEmail)
 	{
 		
-		this.PrimaryEmail = PrimaryEmail;
+		this.primaryEmail = primaryEmail;
 		
 	}
 	
-	public void setSecondaryEmail(String SecondaryEmail)
+	public void setSecondaryEmail(String secondaryEmail)
 	{
 		
-		this.SecondaryEmail = SecondaryEmail;
+		this.secondaryEmail = secondaryEmail;
 	}
 
-	public void setPassword(String Password)
+	public void setPassword(String password)
 	{
 		
-		this.Password = Password;
+		this.password = password;
 	}
 	
-	public void setUserId(String UserId)
+	public void setUserId(String userId)
 	{
 		
-		this.UserId = UserId;
+		this.userId = userId;
 	}
 	
-	public void setFirstName(String FirstName)
+	public void setFirstName(String firstName)
 	{
 		
-		this.FirstName = FirstName;
+		this.firstName = firstName;
 	}
 	
-	public void setLastName(String LastName)
+	public void setLastName(String lastName)
 	{
-		this.LastName = LastName;
+		this.lastName = lastName;
 	}
 	
-	public void setPostalAddress(Address Address)
+	public void setPostalAddress(Address address)
 	{	
-		this.Address = Address;	
+		this.address = address;	
 	}
 	
-	public void setAboutMe(String AboutMe)
+	public void setAboutMe(String aboutMe)
 	{
-		this.AboutMe = AboutMe;
+		this.aboutMe = aboutMe;
 	}
 	
 	public void setPicURL(String picurl[])
@@ -170,14 +170,14 @@ public abstract class User {
 	//For displaying the info
 	public void displayProfileInfo()
 	{
-		System.out.println("User Type: " + this.UserType);
-		System.out.println("Primary Email: " + this.PrimaryEmail);
-		System.out.println("Secondary Email: " + this.SecondaryEmail);
-		System.out.println("User ID: " + this.UserId);
-		System.out.println("First Name: " + this.FirstName);
-		System.out.println("Last Name: " + this.LastName);
-		System.out.println("Postal Address: " + this.Address.toString());
-		System.out.println("About: " + this.AboutMe);
+		System.out.println("User Type: " + this.userType);
+		System.out.println("Primary Email: " + this.primaryEmail);
+		System.out.println("Secondary Email: " + this.secondaryEmail);
+		System.out.println("User ID: " + this.userId);
+		System.out.println("First Name: " + this.firstName);
+		System.out.println("Last Name: " + this.lastName);
+		System.out.println("Postal Address: " + this.address.toString());
+		System.out.println("About: " + this.aboutMe);
 		System.out.println("Pic 1: " + this.picurl[0]);
 		System.out.println("Pic 2: " + this.picurl[1]);
 		System.out.println("Pic 3: " + this.picurl[2]);

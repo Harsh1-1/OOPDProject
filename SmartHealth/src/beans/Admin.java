@@ -3,32 +3,32 @@ package beans;
 //Admin class inherits abstract class User
 public class Admin extends User{	
 	
-	private String EmergencyContact;
+	private String emergencyContact;
 	
 	//Constructor for initialization of current user object
-	public Admin(String FirstName, String LastName,String PrimaryEmail,
-			String SecondaryEmail, String Password, String UserId,
-			Address Address, String AboutMe, String picurl1,
-			String picurl2, String picurl3,boolean hasQuit, String EmergencyContact)
+	public Admin(String firstName, String lastName,String primaryEmail,
+			String secondaryEmail, String password, String userId,
+			Address address, String aboutMe, String picurl1,
+			String picurl2, String picurl3,boolean hasQuit, String emergencyContact)
 	{
-		super(FirstName, LastName, PrimaryEmail, SecondaryEmail, Password, UserId, Address, AboutMe, picurl1, picurl2, picurl3, hasQuit);
-		this.EmergencyContact = EmergencyContact;
-		this.UserType="ADMIN";
+		super(firstName, lastName, primaryEmail, secondaryEmail, password, userId, address, aboutMe, picurl1, picurl2, picurl3, hasQuit);
+		this.emergencyContact = emergencyContact;
+		this.userType="ADMIN";
 	}
 	
 	//setter for emergency contact no.
-	public void setEmergencyContact(String EmergencyContact)
+	public void setEmergencyContact(String emergencyContact)
 	{
-		this.EmergencyContact = EmergencyContact;
+		this.emergencyContact = emergencyContact;
 	}
 	public String getEmergencyContact(){
-		return EmergencyContact;
+		return emergencyContact;
 	}
 	//for displaying Admin's info, overrides base class User display method
 	@Override
 	public void displayProfileInfo()
 	{
 		super.displayProfileInfo();
-		System.out.println("Emergency Contact No: " + this.EmergencyContact);
+		System.out.println("Emergency Contact No: " + this.emergencyContact);
 	}
 }

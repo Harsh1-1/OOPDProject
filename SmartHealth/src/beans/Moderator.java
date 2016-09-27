@@ -5,47 +5,47 @@ import java.util.*;
 //Moderator class inherits abstract class User
 public class Moderator extends User{
 	
-	private String EmergencyContact;
-	private ArrayList<Qualification> Qualifications;
+	private String emergencyContact;
+	private ArrayList<Qualification> qualifications;
 	
 	//Constructor for initialization of Moderator Object
-	public	Moderator(String FirstName, String LastName,String PrimaryEmail,
-			String SecondaryEmail, String Password, String UserId,
-			Address Address, String AboutMe, String picurl1,
-			String picurl2, String picurl3, boolean hasQuit,String EmergencyContact, ArrayList<Qualification> Qualifications)
+	public	Moderator(String firstName, String lastName,String primaryEmail,
+			String secondaryEmail, String password, String userId,
+			Address address, String aboutMe, String picurl1,
+			String picurl2, String picurl3, boolean hasQuit,String emergencyContact, ArrayList<Qualification> qualifications)
 	{
-		super(FirstName, LastName, PrimaryEmail, SecondaryEmail, Password, UserId, Address, AboutMe, picurl1, picurl2, picurl3, hasQuit);
-		this.EmergencyContact = EmergencyContact;
-		this.UserType="MOD";
-		this.Qualifications = Qualifications;
+		super(firstName, lastName, primaryEmail, secondaryEmail, password, userId, address, aboutMe, picurl1, picurl2, picurl3, hasQuit);
+		this.emergencyContact = emergencyContact;
+		this.userType="MOD";
+		this.qualifications = qualifications;
 	}
 	
 	//Setter for Emergency Contact
-	public void setEmergencyContact(String EmergencyContact)
+	public void setEmergencyContact(String emergencyContact)
 	{
-		this.EmergencyContact = EmergencyContact;
+		this.emergencyContact = emergencyContact;
 	}
 	
 	//Setter for Qualifications
 	public void setQualifications(ArrayList<Qualification> qualifications){
-		this.Qualifications = qualifications;
+		this.qualifications = qualifications;
 	}
 	
 	public String getEmergencyContact(){
-		return EmergencyContact;
+		return emergencyContact;
 	}
 	public ArrayList<Qualification> getQualifications(){
-		return Qualifications;
+		return qualifications;
 	}
 	//functions for displaying Moderator's info, overrides base class User dispayProfileInfo method
 	@Override
 	public void displayProfileInfo()
 	{
 		super.displayProfileInfo();
-		System.out.println("Emergency Contact No: " + this.EmergencyContact);
-		for(int i=0;i<this.Qualifications.size();i++)
+		System.out.println("Emergency Contact No: " + this.emergencyContact);
+		for(int i=0;i<this.qualifications.size();i++)
 		{
-			System.out.println("Qualifications are : " + this.Qualifications.get(i).toString());
+			System.out.println("Qualifications are : " + this.qualifications.get(i).toString());
 		}
 	}
 }

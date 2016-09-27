@@ -170,11 +170,11 @@ class SignUp extends State implements UserForm{
 					"'" + user.getPicURL()[0] + "'," +
 					"'" + user.getPicURL()[1] + "'," +
 					"'" + user.getPicURL()[2] + "'," +
-					"'" + user.getPostalAddress().StreetNumber + "'," +
-					"'" + user.getPostalAddress().StreetName + "'," +
-					"'" + user.getPostalAddress().MajorMunicipality + "'," +
-					"'" + user.getPostalAddress().GoverningDistrict + "'," +
-					"'" + user.getPostalAddress().PostalArea + "'," +
+					"'" + user.getPostalAddress().getStreetNumber() + "'," +
+					"'" + user.getPostalAddress().getStreetName() + "'," +
+					"'" + user.getPostalAddress().getMajorMunicipality() + "'," +
+					"'" + user.getPostalAddress().getGoverningDistrict() + "'," +
+					"'" + user.getPostalAddress().getPostalArea() + "'," +
 					"" + typeID + "," +
 					+ status + 
 					");";
