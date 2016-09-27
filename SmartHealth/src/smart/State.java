@@ -17,4 +17,9 @@ abstract class State {
 	State(Scanner sc){
 		this.sc = sc;
 	}
+	
+	State()
+	{
+		
+	}
 }
