@@ -8,16 +8,18 @@ import java.util.Scanner;
 class Login extends State{
 	private views.Login view = new views.Login();
 	private models.Login model = new models.Login();
+	private static final int LOGIN = 1;
+	private static final int SIGNUP = 2;
+	
 	
 	State handle(){
 		int choice = view.getchoice(); //get users choice
 		
 		//Choice specific actions
 		switch(choice){
-		case 1 :
+		case LOGIN :
 			String emailID = view.getPrimaryEmailID();
 			String password = view.getPassword();
-			
 			//Check if the user is valid user or not
 			SmartHealth.curUser = model.validUser(emailID, password);
 			if(SmartHealth.curUser != null){
@@ -27,7 +29,7 @@ class Login extends State{
 			else view.setError("Invalid UserID or Password");
 			break;
 		
-		case 2 : return new SignUp(sc); //transition to SignUp state
+		case SIGNUP : return new SignUp(sc); //transition to SignUp state
 		
 		//Print error message and continue with this state only
 		default : view.setError("Invlaid Choice. Please Enter a valid choice.");
