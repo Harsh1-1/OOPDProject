@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import beans.Qualification;
+
 interface UserForm {
 	default boolean isValidEmail(String email){
 		String pattern = "^.+@.+[.].+$";

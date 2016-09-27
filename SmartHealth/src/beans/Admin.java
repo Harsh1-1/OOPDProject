@@ -1,4 +1,4 @@
-package smart;
+package beans;
 
 //Admin class inherits abstract class User
 public class Admin extends User{	

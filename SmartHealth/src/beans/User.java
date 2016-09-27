@@ -1,4 +1,4 @@
-package smart;
+package beans;
 
 //Abstract class user inherited by Admin, Moderator and EndUser Classes
 public abstract class User {
@@ -53,7 +53,7 @@ public abstract class User {
 		return this.SecondaryEmail;
 	}
 
-	protected String getPassword()
+	public String getPassword()
 	{
 		return this.Password;
 	}
@@ -109,7 +109,7 @@ public abstract class User {
 		this.SecondaryEmail = SecondaryEmail;
 	}
 
-	protected void setPassword(String Password)
+	public void setPassword(String Password)
 	{
 		
 		this.Password = Password;

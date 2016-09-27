@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeSet;
 
+import beans.Address;
+import beans.Admin;
+import beans.Moderator;
+import beans.Qualification;
+
 /**
  * State for Updating users details. Can transition to itself and Logged in
  */
@@ -240,7 +245,7 @@ class Update extends State implements UserForm{
 				s.executeUpdate(deleteQuery);
 				for(Qualification q : qualifications){
 					String query = "Insert into ModeratorQualification values(" 
-							+ q.id + ","
+							+ q.getQualificationID() + ","
 							+ "'" + userID + "'," 
 							+ "NOW()" +
 							");";

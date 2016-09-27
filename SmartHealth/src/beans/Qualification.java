@@ -1,4 +1,4 @@
-package smart;
+package beans;
 
 public class Qualification {
 	int id;
@@ -9,5 +9,8 @@ public class Qualification {
 	}
 	public String toString(){
 		return name;
+	}
+	public int getQualificationID(){
+		return id;
 	}
 }

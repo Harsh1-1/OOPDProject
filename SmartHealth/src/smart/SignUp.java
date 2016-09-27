@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeSet;
 
+import beans.Address;
+import beans.Admin;
+import beans.EndUser;
+import beans.Moderator;
+import beans.Qualification;
+import beans.User;
+
 /**
  * State for handling Sign Up UI and related for
  */
@@ -195,7 +202,7 @@ class SignUp extends State implements UserForm{
 				ArrayList<Qualification> qualifications = ((Moderator)user).getQualifications();
 				for(Qualification q : qualifications){
 					String query3 = "Insert into ModeratorQualification values(" 
-							+ q.id + ","
+							+ q.getQualificationID() + ","
 							+ "'" + user.getUserId() + "'," 
 							+ "NOW()" +
 							");";

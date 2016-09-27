@@ -1,4 +1,4 @@
-package smart;
+package beans;
 
 //End User inherits abstract base class User
 public class EndUser extends User{

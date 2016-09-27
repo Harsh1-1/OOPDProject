@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import smart.Address;
-import smart.Admin;
-import smart.EndUser;
+import beans.Address;
+import beans.Admin;
+import beans.EndUser;
+import beans.Moderator;
+import beans.Qualification;
+import beans.User;
 import smart.Global;
-import smart.Moderator;
-import smart.Qualification;
-import smart.User;
 
 public class Login {
 	
@@ -33,7 +33,8 @@ public class Login {
 	private final static int GOVERNING_DISTRICT = 13;
 	private final static int POSTAL_AREA = 14;
 
-	private String commonDetails[] = new String[15];
+	private String
+	commonDetails[] = new String[15];
 	
 	/**
 	 * returns the user if valid user else null

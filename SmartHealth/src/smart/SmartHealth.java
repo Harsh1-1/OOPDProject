@@ -2,6 +2,8 @@ package smart;
 
 import java.util.Scanner;
 
+import beans.User;
+
 class SmartHealth {
 	static User curUser; //the current user
 	

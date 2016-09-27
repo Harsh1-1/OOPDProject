@@ -1,4 +1,4 @@
-package smart;
+package beans;
 
 import java.util.*;
 
