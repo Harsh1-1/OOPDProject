@@ -1,12 +1,12 @@
 package smart;
 
-class Address {
+public class Address {
 	String StreetNumber;
 	String StreetName;
 	String MajorMunicipality;
 	String GoverningDistrict;
 	String PostalArea;
-	Address(String StreetNumber, String StreetName, String MajorMunicipality,
+	public Address(String StreetNumber, String StreetName, String MajorMunicipality,
 			String GoverningDistrict, String PostalArea){
 		this.StreetNumber = StreetNumber;
 		this.StreetName = StreetName;
