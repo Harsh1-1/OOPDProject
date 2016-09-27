@@ -18,8 +18,4 @@ abstract class State {
 		this.sc = sc;
 	}
 	
-	State()
-	{
-		
-	}
 }

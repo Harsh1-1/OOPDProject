@@ -13,7 +13,7 @@ import smart.Global;
 
 public class Friends {
 
-	private smart.Friends controller = new smart.Friends();
+	private static views.Friends controller = new views.Friends();
 	//to view friends
 	public void viewFriends(User curUser)
 	{
