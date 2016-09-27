@@ -1,8 +1,4 @@
 package smart;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Scanner;
 
 /**
@@ -17,6 +13,8 @@ class LoggedIn extends State{
 	private final static int FRIENDS = 4;
 	private final static int LOGOUT = 5;
 	private final static int JOIN_AGAIN = 6;
+	
+	private models.LoggedIn model = new models.LoggedIn();
 	
 	State handle(){
 		int choice;
@@ -68,7 +66,7 @@ class LoggedIn extends State{
 			return new Update(sc);
 		case QUIT : //Set that user has quit
 			SmartHealth.curUser.quit();
-			quitUser(SmartHealth.curUser.getUserId());
+			model.quitUser(SmartHealth.curUser.getUserId());
 			SmartHealth.curUser = null;
 			return new Login(sc);
 		case LOGOUT : //Logout the current user
@@ -76,41 +74,13 @@ class LoggedIn extends State{
 			return new Login(sc);
 		case JOIN_AGAIN : //Re validate a user who had quit before
 			SmartHealth.curUser.join();
-			joinUser(SmartHealth.curUser.getUserId());
+			model.joinUser(SmartHealth.curUser.getUserId());
 			break;
 		case FRIENDS:
 			return new Friends(sc);
 		default : System.out.println("Invalid choice. Please enter a valid choice.");
 		}
 		return this;
-	}
-	
-	private void quitUser(String userID){
-		String query = "UPDATE User SET Status = 0 WHERE UserName = '" + userID + "';";
-		try(Connection con = DriverManager.getConnection(Global.connectionString);
-				Statement s = con.createStatement() )
-			{
-				s.executeUpdate(query);
-			}
-			catch(SQLException ex){
-				System.out.println("Update failed");
-				ex.getMessage();
-				ex.printStackTrace();
-			}
-	}
-	
-	private void joinUser(String userID){
-		String query = "UPDATE User SET Status = 1 WHERE UserName = '" + userID + "';";
-		try(Connection con = DriverManager.getConnection(Global.connectionString);
-				Statement s = con.createStatement() )
-			{
-				s.executeUpdate(query);
-			}
-			catch(SQLException ex){
-				System.out.println("Update failed");
-				ex.getMessage();
-				ex.printStackTrace();
-			}
 	}
 	
 	LoggedIn(Scanner sc){

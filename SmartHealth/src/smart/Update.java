@@ -1,8 +1,4 @@
 package smart;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeSet;
@@ -25,10 +21,14 @@ class Update extends State implements UserForm{
 	private static final int PROFILE_PICS = 7;
 	private static final int EMERGENCY_CONTACT = 8;
 	private static final int QUALIFICATIONS = 9;
+	
+	private models.Update model = new models.Update();
 	//options to be given
 	private static final String options[] = {"", "First Name", "Last Name", 
 			"Secondary E-mail ID", "Password", "Postal Address", 
 			"About Me", "Profile Picture Links", "Emergency Contact", "Qualifications"};
+	
+	
 	
 	State handle(){
 		int temp;
@@ -82,11 +82,11 @@ class Update extends State implements UserForm{
 		switch(choice){
 		case FIRST_NAME : 
 			SmartHealth.curUser.setFirstName(s);
-			updateHelper("User","FirstName",s,SmartHealth.curUser.getUserId());
+			model.updateHelper("User","FirstName",s,SmartHealth.curUser.getUserId());
 			break;
 		case LAST_NAME : 
 			SmartHealth.curUser.setLastName(s);
-			updateHelper("User","LastName",s,SmartHealth.curUser.getUserId());
+			model.updateHelper("User","LastName",s,SmartHealth.curUser.getUserId());
 			break;
 		case SECONDARY_EMAIL :
 			if(!isValidEmail(s)){
@@ -97,11 +97,11 @@ class Update extends State implements UserForm{
 				System.out.println("Primary email and Secondary email cannot be same");
 			}
 			SmartHealth.curUser.setSecondaryEmail(s);
-			updateHelper("User","Email2",s,SmartHealth.curUser.getUserId());
+			model.updateHelper("User","Email2",s,SmartHealth.curUser.getUserId());
 			break;
 		case PASSWORD : 
 			SmartHealth.curUser.setPassword(s);
-			updateHelper("User","Password",s,SmartHealth.curUser.getUserId());
+			model.updateHelper("User","Password",s,SmartHealth.curUser.getUserId());
 			break;
 		case POSTAL_ADDRESS : 
 			Address address;
@@ -119,13 +119,13 @@ class Update extends State implements UserForm{
 			address = new Address(streetNumber,streetName,majorMunicipality,
 					governingDistrict,postalArea);
 			SmartHealth.curUser.setPostalAddress(address);
-			updateAddressHelper(address,SmartHealth.curUser.getUserId());
+			model.updateAddressHelper(address,SmartHealth.curUser.getUserId());
 			break;
 		case ABOUT_ME : //update about me
 			sc.nextLine(); //remove previous new line
 			s = sc.nextLine();
 			SmartHealth.curUser.setAboutMe(s);
-			updateHelper("User","AboutMe",s,SmartHealth.curUser.getUserId());
+			model.updateHelper("User","AboutMe",s,SmartHealth.curUser.getUserId());
 			break;
 		case PROFILE_PICS : //update profile picture URL's
 			String urls[] = SmartHealth.curUser.getPicURL();
@@ -144,7 +144,7 @@ class Update extends State implements UserForm{
 			}
 			urls[ch - 1] = modurl;
 			SmartHealth.curUser.setPicURL(urls);
-			updateHelper("User","PhotoURL" + ch,modurl,SmartHealth.curUser.getUserId());
+			model.updateHelper("User","PhotoURL" + ch,modurl,SmartHealth.curUser.getUserId());
 			break;
 		case EMERGENCY_CONTACT : //update emergency contact number for administrators and moderators
 			if(!isValidContactNumber(s)){
@@ -154,19 +154,19 @@ class Update extends State implements UserForm{
 			if(SmartHealth.curUser.getUserType().equals("ADMIN")){
 				Admin admin = (Admin)SmartHealth.curUser;
 				admin.setEmergencyContact(s);
-				updateHelper("Administrator","Phone",s,SmartHealth.curUser.getUserId());
+				model.updateHelper("Administrator","Phone",s,SmartHealth.curUser.getUserId());
 			}
 			else if(SmartHealth.curUser.getUserType().equals("MOD")){
 				Moderator moderator = (Moderator)SmartHealth.curUser;
 				moderator.setEmergencyContact(s);
-				updateHelper("Moderator","Phone",s,SmartHealth.curUser.getUserId());
+				model.updateHelper("Moderator","Phone",s,SmartHealth.curUser.getUserId());
 			}
 			break;
 		case QUALIFICATIONS : //Handle update of qualifications
 			System.out.println("Choose your qualifications separated by spaces"
 					+ " and press 'N' to end : ");
 			//Display the available qualifications
-			ArrayList<Qualification> acceptedQualifications = getQualifications();
+			ArrayList<Qualification> acceptedQualifications = model.getQualifications();
 			for(int i=0;i<acceptedQualifications.size();i++){
 				System.out.println(i+1 + ". " + acceptedQualifications.get(i));
 			}
@@ -190,73 +190,12 @@ class Update extends State implements UserForm{
 			//update moderators details
 			Moderator moderator = (Moderator)SmartHealth.curUser;
 			moderator.setQualifications(qualifications);
-			updateModeratorQualificationHelper(qualifications, moderator.getUserId());
+			model.updateModeratorQualificationHelper(qualifications, moderator.getUserId());
 			break;
 		default : System.out.println("Invalid Choice. Please enter a valid choice");
 			return false; //indicate error
 		}
 		return true; //indicate successful completion
-	}
-	
-	private void updateHelper(String table, String field, String newval, String userName){
-		String query = "UPDATE " + table + " SET " + field + " = '" + newval + 
-				"' WHERE UserName = '" + userName + "';";
-		try(Connection con = DriverManager.getConnection(Global.connectionString);
-			Statement s = con.createStatement() )
-		{
-			s.executeUpdate(query);
-		}
-		catch(SQLException ex){
-			System.out.println("Update failed");
-			ex.getMessage();
-			ex.printStackTrace();
-		}
-	}
-	
-	private void updateAddressHelper(Address address, String userID){
-		String query[] = new String[5];
-		query[0] = "UPDATE User SET StreetNumber = '" + address.getStreetNumber() +
-				"' WHERE UserName = '" + userID + "';";
-		query[1] = "UPDATE User SET StreetName = '" + address.getStreetName() +
-				"' WHERE UserName = '" + userID + "';";
-		query[2] = "UPDATE User SET MajorMunicipality = '" + address.getMajorMunicipality() +
-				"' WHERE UserName = '" + userID + "';";
-		query[3] = "UPDATE User SET GoverningDistrict = '" + address.getGoverningDistrict() +
-				"' WHERE UserName = '" + userID + "';";
-		query[4] = "UPDATE User SET PostalArea = '" + address.getPostalArea() +
-				"' WHERE UserName = '" + userID + "';";
-		try(Connection con = DriverManager.getConnection(Global.connectionString);
-				Statement s = con.createStatement() )
-			{
-				for(String q : query) s.executeUpdate(q);
-			}
-			catch(SQLException ex){
-				System.out.println("Updating address failed");
-				ex.getMessage();
-				ex.printStackTrace();
-			}
-	}
-	
-	private void updateModeratorQualificationHelper(ArrayList<Qualification> qualifications, String userID){
-		String deleteQuery = "DELETE FROM ModeratorQualification WHERE UserName = '" + userID + "';";
-		try(Connection con = DriverManager.getConnection(Global.connectionString);
-				Statement s = con.createStatement() )
-			{
-				s.executeUpdate(deleteQuery);
-				for(Qualification q : qualifications){
-					String query = "Insert into ModeratorQualification values(" 
-							+ q.getQualificationID() + ","
-							+ "'" + userID + "'," 
-							+ "NOW()" +
-							");";
-					s.executeUpdate(query);
-				}
-			}
-			catch(SQLException ex){
-				System.out.println("Updating qualifications failed");
-				ex.getMessage();
-				ex.printStackTrace();
-			}
 	}
 	
 	Update(Scanner sc){
