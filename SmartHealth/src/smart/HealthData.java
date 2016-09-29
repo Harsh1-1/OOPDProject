@@ -9,7 +9,8 @@ public class HealthData extends State{
 	private models.Friends friendsModel = new models.Friends();
 	private int distanceRun;
 	private int caloriesBurned;
-	private int bloodPressure;
+	private int systolicBP;
+	private int diastolicBP;
 	
 	
 	HealthData(Scanner sc)
@@ -33,11 +34,13 @@ public class HealthData extends State{
 		case 1:
 			System.out.println("Enter how far you ran(in KM):");
 			this.distanceRun = sc.nextInt();
-			System.out.println("Enter Calories burned:");
+			System.out.println("Enter Calories burned (in cal):");
 			this.caloriesBurned = sc.nextInt();
-			System.out.println("Enter Blood Pressure:");
-			this.bloodPressure = sc.nextInt();
-			model.newData(distanceRun, caloriesBurned, bloodPressure, SmartHealth.curUser);
+			System.out.println("Enter Blood Pressure (in mmHg):");
+			this.systolicBP = sc.nextInt();
+			System.out.println("Enter Systolic Blood Pressure(in mmHg):");
+			this.diastolicBP = sc.nextInt();
+			model.newData(this.distanceRun, this.caloriesBurned, this.systolicBP, this.diastolicBP, SmartHealth.curUser);
 			break;
 		case 2:
 			if(model.ifDataExists(SmartHealth.curUser))
@@ -46,7 +49,8 @@ public class HealthData extends State{
 				
 				System.out.println("Distance you have run: " + userData.get(0) );
 				System.out.println("Calories Burned: " + userData.get(1));
-				System.out.println("Blood Pressure: " + userData.get(2));
+				System.out.println("Systolic Blood Pressure: " + userData.get(2));
+				System.out.println("Diastolic Blood Pressure: " + userData.get(3));
 			} 
 			else
 			{
@@ -58,11 +62,13 @@ public class HealthData extends State{
 				{
 					System.out.println("Enter how far you ran(in KM):");
 					this.distanceRun = sc.nextInt();
-					System.out.println("Enter Calories burned:");
+					System.out.println("Enter Calories burned(in cal):");
 					this.caloriesBurned = sc.nextInt();
-					System.out.println("Enter Blood Pressure:");
-					this.bloodPressure = sc.nextInt();
-					model.newData(distanceRun, caloriesBurned, bloodPressure, SmartHealth.curUser);
+					System.out.println("Enter Systolic Blood Pressure(in mmHg):");
+					this.systolicBP = sc.nextInt();
+					System.out.println("Enter Systolic Blood Pressure(in mmHg):");
+					this.diastolicBP = sc.nextInt();
+					model.newData(this.distanceRun, this.caloriesBurned, this.systolicBP, this.diastolicBP, SmartHealth.curUser);
 				}
 				else if(option == 0)
 					System.out.println("No HealthData added");
@@ -81,7 +87,8 @@ public class HealthData extends State{
 					
 					System.out.println("Distance ran by" + userName + ": " + userData.get(0) );
 					System.out.println("Calories Burned by him: " + userData.get(1));
-					System.out.println("Blood Pressure by him: " + userData.get(2));
+					System.out.println("Systolic Blood Pressure of him: " + userData.get(2));
+					System.out.println("Diastolic Blood Pressure of him: " + userData.get(3));
 				}
 				else
 				{

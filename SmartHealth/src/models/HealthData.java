@@ -1,12 +1,17 @@
 package models;
 
 import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import beans.User;
 
 public class HealthData {
 
-	public void newData(int distanceRun, int caloriesBurned, int bloodPressure,User curUser)
+	public void newData(int distanceRun, int caloriesBurned, int systolicBP, int diastolicBP,User curUser)
 	{
 		
 	}
