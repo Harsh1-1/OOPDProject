@@ -10,9 +10,10 @@ class LoggedIn extends State{
 	private final static int DISPLAY = 1;
 	private final static int UPDATE = 2;
 	private final static int QUIT = 3;
-	private final static int FRIENDS = 4;
-	private final static int LOGOUT = 5;
-	private final static int JOIN_AGAIN = 6;
+	private final static int DISCUSSION_FORUMS = 4;
+	private final static int FRIENDS = 5;
+	private final static int LOGOUT = 6;
+	private final static int JOIN_AGAIN = 7;
 	
 	private models.LoggedIn model = new models.LoggedIn();
 	
@@ -21,26 +22,27 @@ class LoggedIn extends State{
 		//Check whether the user has quit or not
 		if(!SmartHealth.curUser.hasQuit()){
 			//Get users's choice
-			System.out.println("1. Display profile info");
-			System.out.println("2. Update profile info");
-			System.out.println("3. Quit Profile");
+			System.out.println(DISPLAY + ". Display profile info");
+			System.out.println(UPDATE + ". Update profile info");
+			System.out.println(QUIT + ". Quit Profile");
+			System.out.println(DISCUSSION_FORUMS + ". Discussion Forms");
 			if(!SmartHealth.curUser.getUserType().equals("MOD") && 
 					!SmartHealth.curUser.getUserType().equals("ADMIN")){
-				System.out.println("4. Friends");
-				System.out.println("5. Logout");
+				System.out.println(FRIENDS + ". Friends");
+				System.out.println(LOGOUT + ". Logout");
 			}else{
-				System.out.println("4. Logout");
+				System.out.println(LOGOUT - 1 + ". Logout");
 			}
 			System.out.println("Enter your choice ");
 			choice = sc.nextInt();
 			if((SmartHealth.curUser.getUserType().equals("MOD") || 
 					SmartHealth.curUser.getUserType().equals("ADMIN"))){
-				if(choice < 1 || choice > 4){
+				if(choice < 1 || choice > LOGOUT - 1){
 					System.out.println("Invalid choice");
 					return this;
 				}
-				if(choice == 4) choice = 5;
-			}else if(choice < 1 || choice > 5){
+				if(choice == LOGOUT - 1) choice = LOGOUT;
+			}else if(choice < DISPLAY || choice > LOGOUT){
 				System.out.println("Invalid choice");
 				return this;
 			}
@@ -55,7 +57,7 @@ class LoggedIn extends State{
 				System.out.println("Invalid choice");
 				return this;
 			}
-			choice += 4;
+			choice += 5;
 		}
 		//Handle various cases
 		switch(choice){
@@ -78,6 +80,8 @@ class LoggedIn extends State{
 			break;
 		case FRIENDS:
 			return new Friends(sc);
+		case DISCUSSION_FORUMS:
+			return new ForumList(sc);
 		default : System.out.println("Invalid choice. Please enter a valid choice.");
 		}
 		return this;
