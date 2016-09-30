@@ -51,14 +51,64 @@ public class HealthData {
 	//to whether user data exists or not
 	public boolean ifDataExists(User curUser)
 	{
+		try
+		{
+			Connection con = DriverManager.getConnection(Global.connectionString);
+			Statement stmt = con.createStatement();
+			String SQL = "select  1 from datum where Username = '"
+					+ curUser.getUserId() + "';";
+			ResultSet result = stmt.executeQuery(SQL);
+			boolean ifdataexists = result.isBeforeFirst();
+			
+			result.close();
+			stmt.close();
+			con.close();
+			return ifdataexists;
+		}
 		
+		catch ( SQLException err) {
+			System.out.println(err.getMessage());
+		}
 		return false;
 	}
 	
 	public ArrayList<String> getData(String userName)
 	{
-		ArrayList<String> userdata = new ArrayList<String>();
 		
+		ArrayList<String> userdata = new ArrayList<String>();
+		ArrayList<Property> healthProperties = getProperties();
+		
+		try
+		{
+			Connection con = DriverManager.getConnection(Global.connectionString);
+			Statement stmt = con.createStatement();
+		for(int i = 0;i < healthProperties.size(); i++)
+		{
+			
+			//This query has a lot of problems and issue and i need to correct it somehow to make it work for all the properties
+			String SQL = "select Value from datum,(select max(WhenSaved) from datum)maxwhensaved where Username = '"
+					+ userName + "' and PropertyID = " + healthProperties.get(i).getPropertyId()
+					+ " and WhenSaved=maxwhensaved;";
+			
+			
+			ResultSet result = stmt.executeQuery(SQL);
+			
+			while(result.next())
+			{
+			
+				String value = result.getString("Value");
+				userdata.add(value);
+				
+			}
+			
+			result.close();
+		}
+		stmt.close();
+		con.close();
+		}
+		catch ( SQLException err) {
+			System.out.println(err.getMessage());
+		}
 		return userdata;
 	}
 	
