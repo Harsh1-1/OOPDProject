@@ -3,14 +3,12 @@ package smart;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import beans.Property;
+
 public class HealthData extends State{
 
 	private models.HealthData model = new models.HealthData();
 	private models.Friends friendsModel = new models.Friends();
-	private int distanceRun;
-	private int caloriesBurned;
-	private int systolicBP;
-	private int diastolicBP;
 	
 	
 	HealthData(Scanner sc)
@@ -32,15 +30,16 @@ public class HealthData extends State{
 		switch(choice)
 		{
 		case 1:
-			System.out.println("Enter how far you ran(in KM):");
-			this.distanceRun = sc.nextInt();
-			System.out.println("Enter Calories burned (in cal):");
-			this.caloriesBurned = sc.nextInt();
-			System.out.println("Enter Blood Pressure (in mmHg):");
-			this.systolicBP = sc.nextInt();
-			System.out.println("Enter Systolic Blood Pressure(in mmHg):");
-			this.diastolicBP = sc.nextInt();
-			model.newData(this.distanceRun, this.caloriesBurned, this.systolicBP, this.diastolicBP, SmartHealth.curUser);
+			ArrayList<Property> healthProperties = model.getProperties();
+			ArrayList<Integer> healthPropertiesValues = new ArrayList<Integer>();
+			System.out.println("Instruction: Please enter all the data below as integer");
+			for(int i = 0; i < healthProperties.size(); i++)
+			{
+				System.out.println("Enter " + healthProperties.get(i).getPropertyName() + ":" );
+				int propertyValue = sc.nextInt();
+				healthPropertiesValues.add(propertyValue);
+			}
+			model.newData(healthPropertiesValues, SmartHealth.curUser);
 			break;
 		case 2:
 			if(model.ifDataExists(SmartHealth.curUser))
@@ -60,15 +59,16 @@ public class HealthData extends State{
 				int option = sc.nextInt();
 				if(option == 1)
 				{
-					System.out.println("Enter how far you ran(in KM):");
-					this.distanceRun = sc.nextInt();
-					System.out.println("Enter Calories burned(in cal):");
-					this.caloriesBurned = sc.nextInt();
-					System.out.println("Enter Systolic Blood Pressure(in mmHg):");
-					this.systolicBP = sc.nextInt();
-					System.out.println("Enter Systolic Blood Pressure(in mmHg):");
-					this.diastolicBP = sc.nextInt();
-					model.newData(this.distanceRun, this.caloriesBurned, this.systolicBP, this.diastolicBP, SmartHealth.curUser);
+					ArrayList<Property> healthProperties1 = model.getProperties();
+					ArrayList<Integer> healthPropertiesValues1 = new ArrayList<Integer>();
+					System.out.println("Instruction: Please enter all the data below as integer");
+					for(int i = 0; i < healthProperties1.size(); i++)
+					{
+						System.out.println("Enter " + healthProperties1.get(i).getPropertyName() + ":" );
+						int propertyValue = sc.nextInt();
+						healthPropertiesValues1.add(propertyValue);
+					}
+					model.newData(healthPropertiesValues1, SmartHealth.curUser);
 				}
 				else if(option == 0)
 					System.out.println("No HealthData added");
