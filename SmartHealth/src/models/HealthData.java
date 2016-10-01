@@ -76,19 +76,13 @@ public class HealthData {
 	{
 		
 		ArrayList<String> userdata = new ArrayList<String>();
-		ArrayList<Property> healthProperties = getProperties();
 		
 		try
 		{
 			Connection con = DriverManager.getConnection(Global.connectionString);
 			Statement stmt = con.createStatement();
-		for(int i = 0;i < healthProperties.size(); i++)
-		{
 			
-			//This query has a lot of problems and issue and i need to correct it somehow to make it work for all the properties
-			String SQL = "select Value from datum,(select max(WhenSaved) from datum)maxwhensaved where Username = '"
-					+ userName + "' and PropertyID = " + healthProperties.get(i).getPropertyId()
-					+ " and WhenSaved=maxwhensaved;";
+			String SQL = "select t1.Value from smarthealthdb.datum as t1, (select Username,value,max(WhenSaved) as savedtime,PropertyID from smarthealthdb.datum group by Username,PropertyID having Username = '"+ userName + "') as maxsaved where t1.Username = maxsaved.Username and t1.PropertyID = maxsaved.PropertyID and t1.WhenSaved = maxsaved.savedtime order by t1.PropertyID;";
 			
 			
 			ResultSet result = stmt.executeQuery(SQL);
@@ -101,8 +95,7 @@ public class HealthData {
 				
 			}
 			
-			result.close();
-		}
+		result.close();
 		stmt.close();
 		con.close();
 		}
