@@ -17,9 +17,9 @@ public class Forum {
 	public Forum(int forumID, String topic, String url, String summary, 
 			String whenCreated, String createdBy, ArrayList<Post> posts,String whenClosed, String deletedBy){
 		this.forumID = forumID;
-		this.topic = topic;
+		setTopic(topic);
 		this.url = url;
-		this.summary = summary;
+		setSummary(summary);
 		this.whenCreated = whenCreated;
 		this.createdBy = createdBy;
 		this.whenClosed = whenClosed;
@@ -65,7 +65,8 @@ public class Forum {
 	}
 
 	public void setTopic(String topic) {
-		this.topic = topic;
+		if(topic != null) this.topic = topic;
+		else this.topic = "";
 	}
 
 	public void setUrl(String url) {
@@ -73,7 +74,8 @@ public class Forum {
 	}
 
 	public void setSummary(String summary) {
-		this.summary = summary;
+		if(summary != null) this.summary = summary;
+		else this.summary = "";
 	}
 
 	public void setWhenCreated(String whenCreated) {
@@ -98,5 +100,16 @@ public class Forum {
 
 	public void addPosts(Post post) {
 		this.posts.add(post);
+	}
+	
+	public void display(){
+		System.out.println("URL: " + url);
+		System.out.println("Forum ID: " + forumID);
+		System.out.println("Topic: " + topic);
+		System.out.println("Summary: " + summary);
+		System.out.println("WhenCreated: " + whenCreated);
+		for(Post p : posts){
+			p.display();
+		}
 	}
 }

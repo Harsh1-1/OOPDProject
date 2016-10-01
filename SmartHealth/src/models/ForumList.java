@@ -32,6 +32,26 @@ public class ForumList {
 		}
 	}
 	
+	public ArrayList<ForumIdentifier> listOpenForums(){
+		String query = "SELECT forumID, topic FROM forums WHERE WhenClosed IS NOT NULL ORDER BY forumID;";
+		try(Connection con = DriverManager.getConnection(Global.connectionString);
+				Statement s = con.createStatement();
+				ResultSet rs = s.executeQuery(query)){
+			ArrayList<ForumIdentifier> forums = new ArrayList<ForumIdentifier>();
+			while(rs.next()){
+				forums.add(new ForumIdentifier(rs.getInt("forumID"), 
+						rs.getString("topic")));
+			}
+			return forums;
+		}
+		catch(SQLException ex){
+			System.out.println("Could not retreive available forums.");
+			ex.getMessage();
+			ex.printStackTrace();
+			return null;
+		}
+	}
+	
 	public void createForum(String topic, String summary, Moderator moderator){
 		int ID = numIDs() + 1;
 		String url = "www.smarthealth.com/forums/" + ID;

@@ -13,10 +13,10 @@ public class UserPost {
 			String linkLocation, String videoLocation) {
 		this.username = username;
 		this.timeCreated = timeCreated;
-		this.textEntry = textEntry;
-		this.photoLocation = photoLocation;
-		this.linkLocation = linkLocation;
-		this.videoLocation = videoLocation;
+		setTextEntry(textEntry);
+		setPhotoLocation(photoLocation);
+		setLinkLocation(linkLocation);
+		setVideoLocation(videoLocation);
 	}
 	
 	public String getUsername() {
@@ -44,18 +44,23 @@ public class UserPost {
 	}
 
 	public void setTextEntry(String textEntry) {
-		this.textEntry = textEntry;
+		if(textEntry != null) this.textEntry = textEntry;
+		else this.textEntry = "";
 	}
 
 	public void setPhotoLocation(String photoLocation) {
-		this.photoLocation = photoLocation;
+		if(photoLocation != null)
+			this.photoLocation = photoLocation;
+		else this.photoLocation = "";
 	}
 
 	public void setLinkLocation(String linkLocation) {
-		this.linkLocation = linkLocation;
+		if(linkLocation != null) this.linkLocation = linkLocation;
+		else this.linkLocation = "";
 	}
 
 	public void setVideoLocation(String videoLocation) {
-		this.videoLocation = videoLocation;
+		if(videoLocation != null )this.videoLocation = videoLocation;
+		else videoLocation = "";
 	}
 }

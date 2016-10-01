@@ -52,10 +52,10 @@ public class ForumList extends State{
 		int choice;
 		if(SmartHealth.curUser.getUserType().equals("MOD")){ 
 			choice = getModeratorChoice();
-			if(choice < 1) return this;
+			if(choice == -1) return this;
 		}else{
 			choice = getChoice();
-			if(choice < 1) return this;
+			if(choice == -1) return this;
 		}
 		switch(choice){
 		case VIEW_FORUM:
@@ -76,7 +76,10 @@ public class ForumList extends State{
 			model.createForum(topic, summary, (Moderator)SmartHealth.curUser);
 			break;
 		case LIST_FORUMS:
-			ArrayList<ForumIdentifier> forums = model.listForums();
+			ArrayList<ForumIdentifier> forums;
+			if(SmartHealth.curUser.getUserType().equals("MOD"))
+				forums = model.listForums();
+			else forums = model.listOpenForums();
 			for(ForumIdentifier f : forums){
 				System.out.println(f.getForumID() + ". " + f.getForumDesc());
 			}
