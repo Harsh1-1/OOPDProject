@@ -109,6 +109,7 @@ public class Login {
 						commonDetails[PROFILE_PIC2], commonDetails[PROFILE_PIC3], hasQuit, 
 						emergencyContact);
 			}else{
+				increaseKarma(commonDetails[USERID]);
 				ResultSet rsEndUser = s.executeQuery("Select DATEDIFF(CURDATE(), DateCreated), Karma from EndUser where UserName = '" 
 						+ commonDetails[USERID]+ "'");
 				rsEndUser.next();
@@ -152,5 +153,18 @@ public class Login {
 			ex.printStackTrace();
 		}
 		return user;
+	}
+	
+	private void increaseKarma(String userID){
+		String query = "UPDATE EndUser SET Karma = Karma + 1 WHERE Username = '" + userID + "';";
+		try(Connection con = DriverManager.getConnection(Global.connectionString);
+				Statement s = con.createStatement()){
+			s.executeUpdate(query);
+		}
+		catch(SQLException ex){
+			System.out.println("Could not update Karma");
+			ex.getMessage();
+			ex.printStackTrace();
+		}
 	}
 }
