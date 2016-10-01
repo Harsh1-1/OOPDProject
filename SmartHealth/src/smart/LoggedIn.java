@@ -11,9 +11,10 @@ class LoggedIn extends State{
 	private final static int UPDATE = 2;
 	private final static int QUIT = 3;
 	private final static int DISCUSSION_FORUMS = 4;
-	private final static int FRIENDS = 5;
-	private final static int LOGOUT = 6;
-	private final static int JOIN_AGAIN = 7;
+	private final static int HEALTH_DATA = 5;
+	private final static int FRIENDS = 6;
+	private final static int LOGOUT = 7;
+	private final static int JOIN_AGAIN = 8;
 	
 	private models.LoggedIn model = new models.LoggedIn();
 	
@@ -26,6 +27,7 @@ class LoggedIn extends State{
 			System.out.println(UPDATE + ". Update profile info");
 			System.out.println(QUIT + ". Quit Profile");
 			System.out.println(DISCUSSION_FORUMS + ". Discussion Forms");
+			System.out.println(HEALTH_DATA + ". Health Data");
 			if(!SmartHealth.curUser.getUserType().equals("MOD") && 
 					!SmartHealth.curUser.getUserType().equals("ADMIN")){
 				System.out.println(FRIENDS + ". Friends");
@@ -57,7 +59,7 @@ class LoggedIn extends State{
 				System.out.println("Invalid choice");
 				return this;
 			}
-			choice += 5;
+			choice += 6;
 		}
 		//Handle various cases
 		switch(choice){
@@ -82,6 +84,8 @@ class LoggedIn extends State{
 			return new Friends(sc);
 		case DISCUSSION_FORUMS:
 			return new ForumList(sc);
+		case HEALTH_DATA:
+			return new HealthData(sc);
 		default : System.out.println("Invalid choice. Please enter a valid choice.");
 		}
 		return this;
