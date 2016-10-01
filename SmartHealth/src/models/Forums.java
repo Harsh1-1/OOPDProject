@@ -161,17 +161,58 @@ public class Forums {
 	
 	public void ratePost(String postUserName, String postTimeCreated, String rater, 
 			int stars){
-		String query = "INSERT INTO Rating VALUES("
-				+ "'" + postUserName + "', "
-				+ "'" + postTimeCreated + "', "
-				+ "'" + rater + "', "
-				+ stars + ");";
+		if(notRatedBefore(postUserName, postTimeCreated, rater)){
+			String query = "INSERT INTO Rating VALUES("
+					+ "'" + postUserName + "', "
+					+ "'" + postTimeCreated + "', "
+					+ "'" + rater + "', "
+					+ stars + ");";
+			try(Connection con = DriverManager.getConnection(Global.connectionString);
+					Statement s = con.createStatement()){
+				s.executeUpdate(query);
+			}
+			catch(SQLException ex){
+				System.out.println("Could not rate post");
+				ex.getMessage();
+				ex.printStackTrace();
+			}
+		}
+		else updateRating(postUserName, postTimeCreated, rater, stars);
+	}
+	
+	private boolean notRatedBefore(String postUserName, String postTimeCreated, String rater){
+		String query = "SELECT COUNT(*) FROM ratings WHERE "
+				+ "Post_Username = '" + postUserName + "' AND "
+				+ "Post_TimeCreated = '" + postTimeCreated + "' AND "
+				+ "Rater_Username = '" + rater + "';";
+		try(Connection con = DriverManager.getConnection(Global.connectionString);
+				Statement s = con.createStatement();
+				ResultSet rs = s.executeQuery(query)){
+			rs.next();
+			int count = rs.getInt(1);
+			if(count > 0) return true;
+			else return false;
+		}
+		catch(SQLException ex){
+			System.out.println("Problem Occured while checking previous ratings");
+			ex.getMessage();
+			ex.printStackTrace();
+			return false;
+		}
+	}
+	
+	private void updateRating(String postUserName, String postTimeCreated, String rater, 
+			int stars){
+		String query = "UPDATE rating SET Stars = " + stars + " WHERE "
+				+ "Post_Username = '" + postUserName + "' AND "
+				+ "Post_TimeCreated = '" + postTimeCreated + "' AND "
+				+ "Rater_Username = '" + rater + "';";
 		try(Connection con = DriverManager.getConnection(Global.connectionString);
 				Statement s = con.createStatement()){
 			s.executeUpdate(query);
 		}
 		catch(SQLException ex){
-			System.out.println("Could not rate post");
+			System.out.println("Could not update Rating");
 			ex.getMessage();
 			ex.printStackTrace();
 		}
