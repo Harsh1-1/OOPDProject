@@ -15,20 +15,20 @@ import smart.Global;
 
 public class Forums {
 	public boolean isClosed(int forumID){
-		String query = "SELECT WhenCreated FROM forum WHERE forumID = " + forumID + ";";
+		String query = "SELECT WhenClosed FROM forum WHERE forumID = " + forumID + ";";
 		try(Connection con = DriverManager.getConnection(Global.connectionString);
 				Statement s = con.createStatement();
 				ResultSet rs = s.executeQuery(query)){
 			rs.next();
-			rs.getString("WhenCreated");
-			if(rs.wasNull()) return true;
-			return false;
+			rs.getString("WhenClosed");
+			if(rs.wasNull()) return false;
+			return true;
 		}
 		catch(SQLException ex){
 			System.out.println("Could not check the status of forum.");
 			ex.getMessage();
 			ex.printStackTrace();
-			return false;
+			return true;
 		}
 	}
 	
@@ -54,6 +54,7 @@ public class Forums {
 		try(Connection con = DriverManager.getConnection(Global.connectionString);
 				Statement s = con.createStatement();
 				ResultSet rs = s.executeQuery(query)){
+			rs.next();
 			Forum forum = new Forum(rs.getInt("ForumID"),rs.getString("Topic"), 
 					rs.getString("URL"), rs.getString("Summary"), rs.getString("WhenCreated"), 
 					rs.getString("CreatedByModerator_Username"), getPosts(forumID), 
@@ -110,7 +111,7 @@ public class Forums {
 			return comments;
 		}
 		catch(SQLException ex){
-			System.out.println("Problem Occured while retreiving rating of posts");
+			System.out.println("Problem Occured while retreiving comments of posts");
 			ex.getMessage();
 			ex.printStackTrace();
 			return null;
@@ -133,6 +134,27 @@ public class Forums {
 			ex.getMessage();
 			ex.printStackTrace();
 			return -1.0;
+		}
+	}
+	
+	public void post(int forumID, String poster, String text, String photoLocation, String linkLocation, 
+			String videoLocation){
+		String query = "INSERT INTO Post VALUES("
+				+ "'" + poster + "', "
+				+ "NOW()" + ", "
+				+ forumID + ", "
+				+ "'" + text + "', "
+				+ "'" + photoLocation + "', "
+				+ "'" + linkLocation + "', "
+				+ "'" + videoLocation + "');";
+		try(Connection con = DriverManager.getConnection(Global.connectionString);
+				Statement s = con.createStatement()){
+			s.executeUpdate(query);
+		}
+		catch(SQLException ex){
+			System.out.println("Could not create post");
+			ex.getMessage();
+			ex.printStackTrace();
 		}
 	}
 	
@@ -161,7 +183,7 @@ public class Forums {
 	
 	public void ratePost(String postUserName, String postTimeCreated, String rater, 
 			int stars){
-		if(notRatedBefore(postUserName, postTimeCreated, rater)){
+		if(!ratedBefore(postUserName, postTimeCreated, rater)){
 			String query = "INSERT INTO Rating VALUES("
 					+ "'" + postUserName + "', "
 					+ "'" + postTimeCreated + "', "
@@ -180,8 +202,8 @@ public class Forums {
 		else updateRating(postUserName, postTimeCreated, rater, stars);
 	}
 	
-	private boolean notRatedBefore(String postUserName, String postTimeCreated, String rater){
-		String query = "SELECT COUNT(*) FROM ratings WHERE "
+	private boolean ratedBefore(String postUserName, String postTimeCreated, String rater){
+		String query = "SELECT COUNT(*) FROM rating WHERE "
 				+ "Post_Username = '" + postUserName + "' AND "
 				+ "Post_TimeCreated = '" + postTimeCreated + "' AND "
 				+ "Rater_Username = '" + rater + "';";

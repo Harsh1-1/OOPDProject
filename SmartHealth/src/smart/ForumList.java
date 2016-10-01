@@ -9,9 +9,9 @@ import beans.Moderator;
 public class ForumList extends State{
 
 	private final models.ForumList model = new models.ForumList();
+	private static final int CREATE_FORUM = 1;
 	private static final int LIST_FORUMS = 2;
 	private static final int VIEW_FORUM = 3;
-	private static final int CREATE_FORUM = 1;
 	private static final int HOME_PAGE = 4;
 	
 	ForumList(Scanner sc) {
@@ -71,7 +71,6 @@ public class ForumList extends State{
 			sc.nextLine();
 			String topic = sc.nextLine();
 			System.out.println("Enter a short description of the topic ");
-			sc.nextLine();
 			String summary = sc.nextLine();
 			model.createForum(topic, summary, (Moderator)SmartHealth.curUser);
 			break;

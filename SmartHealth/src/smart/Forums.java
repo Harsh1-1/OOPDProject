@@ -12,9 +12,10 @@ import beans.PostIdentifier;
 public class Forums extends State{
 
 	private static final int CLOSE_FORUM = 1;
-	private static final int COMMENT_ON_POST = 2;
-	private static final int RATE_POST = 3;
-	private static final int HOME_PAGE = 4;
+	private static final int POST = 2;
+	private static final int COMMENT_ON_POST = 3;
+	private static final int RATE_POST = 4;
+	private static final int HOME_PAGE = 5;
 	private models.Forums model = new models.Forums();
 	
 	private final int forumID;
@@ -25,6 +26,7 @@ public class Forums extends State{
 
 	private int getModeratorChoice(){
 		System.out.println(CLOSE_FORUM + ". Close Forum");
+		System.out.println(POST + ". Post");
 		System.out.println(COMMENT_ON_POST + ". Comment");
 		System.out.println(RATE_POST + ". Rate");
 		System.out.println(HOME_PAGE + ". Go to home page");
@@ -38,12 +40,13 @@ public class Forums extends State{
 	}
 	
 	private int getChoice(){
+		System.out.println(POST - 1 + ". Post");
 		System.out.println(COMMENT_ON_POST - 1 + ". Comment");
 		System.out.println(RATE_POST - 1 + ". Rate");
 		System.out.println(HOME_PAGE - 1 + ". Go to home page");
 		System.out.println("Enter your choice ");
 		int choice = sc.nextInt();
-		if(choice < COMMENT_ON_POST - 1 || choice > HOME_PAGE - 1){
+		if(choice < POST - 1 || choice > HOME_PAGE - 1){
 			System.out.println("Invalid choice");
 			return -1;
 		}
@@ -70,6 +73,31 @@ public class Forums extends State{
 			boolean closedSuccessfully = model.closeForum(forumID, (Moderator)SmartHealth.curUser);
 			if(closedSuccessfully) System.out.println("Forum has been closed");
 			break;
+		case POST:
+			System.out.println("Enter the Text");
+			sc.nextLine();
+			String text = sc.nextLine();
+			System.out.println("Enter the Photo Location");
+			String photoLocation = sc.nextLine();
+			if(!photoLocation.isEmpty() && !isValidURL(photoLocation)){
+				System.out.println("Invalid URL");
+				return this;
+			}
+			System.out.println("Enter the Link Location");
+			String linkLocation = sc.nextLine();
+			if(!linkLocation.isEmpty() && !isValidURL(linkLocation)){
+				System.out.println("Invalid URL");
+				return this;
+			}
+			System.out.println("Enter the Video Location");
+			String videoLocation = sc.nextLine();
+			if(!videoLocation.isEmpty() && !isValidURL(videoLocation)){
+				System.out.println("Invalid URL");
+				return this;
+			}
+			model.post(curForum.getForumID(), SmartHealth.curUser.getUserId(), 
+					text, photoLocation, linkLocation, videoLocation);
+			break;
 		case COMMENT_ON_POST:
 			System.out.println("Enter the ID of post you want to comment on");
 			int id = sc.nextInt();
@@ -80,22 +108,22 @@ public class Forums extends State{
 			}
 			System.out.println("Enter the Text");
 			sc.nextLine();
-			String text = sc.nextLine();
+			text = sc.nextLine();
 			System.out.println("Enter the Photo Location");
-			String photoLocation = sc.next();
-			if(!isValidURL(photoLocation)){
+			photoLocation = sc.nextLine();
+			if(!photoLocation.isEmpty() && !isValidURL(photoLocation)){
 				System.out.println("Invalid URL");
 				return this;
 			}
 			System.out.println("Enter the Link Location");
-			String linkLocation = sc.next();
-			if(!isValidURL(photoLocation)){
+			linkLocation = sc.nextLine();
+			if(!linkLocation.isEmpty() && !isValidURL(linkLocation)){
 				System.out.println("Invalid URL");
 				return this;
 			}
 			System.out.println("Enter the Video Location");
-			String videoLocation = sc.next();
-			if(!isValidURL(photoLocation)){
+			videoLocation = sc.nextLine();
+			if(!linkLocation.isEmpty() && !isValidURL(videoLocation)){
 				System.out.println("Invalid URL");
 				return this;
 			}

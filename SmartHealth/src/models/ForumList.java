@@ -13,7 +13,7 @@ import smart.Global;
 
 public class ForumList {
 	public ArrayList<ForumIdentifier> listForums(){
-		String query = "SELECT forumID, topic FROM forums ORDER BY forumID;";
+		String query = "SELECT forumID, topic FROM forum ORDER BY forumID;";
 		try(Connection con = DriverManager.getConnection(Global.connectionString);
 				Statement s = con.createStatement();
 				ResultSet rs = s.executeQuery(query)){
@@ -33,7 +33,7 @@ public class ForumList {
 	}
 	
 	public ArrayList<ForumIdentifier> listOpenForums(){
-		String query = "SELECT forumID, topic FROM forums WHERE WhenClosed IS NOT NULL ORDER BY forumID;";
+		String query = "SELECT forumID, topic FROM forum WHERE WhenClosed IS NULL ORDER BY forumID;";
 		try(Connection con = DriverManager.getConnection(Global.connectionString);
 				Statement s = con.createStatement();
 				ResultSet rs = s.executeQuery(query)){
@@ -78,7 +78,7 @@ public class ForumList {
 	}
 	
 	public int numIDs(){
-		String query = "SELECT COUNT(*) FROM forums;";
+		String query = "SELECT COUNT(*) FROM forum;";
 		try(Connection con = DriverManager.getConnection(Global.connectionString);
 				Statement s = con.createStatement();
 				ResultSet rs = s.executeQuery(query)){
