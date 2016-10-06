@@ -24,7 +24,7 @@ public class HealthData {
 			for(int i =0; i < healthPropertiesValues.size(); i++ )
 			{
 				 j=i+1;
-				 SQL = "insert into datum values('"
+				 SQL = "insert into datum values(0,'"
 						+ curUser.getUserId() + "',"
 								+ j + ",'" + healthPropertiesValues.get(i) + "',"
 								+ "NOW() );";
@@ -118,7 +118,7 @@ public class HealthData {
 			
 			while(result.next())
 			{
-				int propertyID = result.getInt("ProperyID");
+				int propertyID = result.getInt("PropertyID");
 				String name = result.getString("Name");
 				String description = result.getString("Description");
 				

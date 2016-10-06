@@ -83,7 +83,7 @@ public class HealthData extends State{
 			{
 				if(friendsModel.isalreadyafriend(userName, SmartHealth.curUser))
 				{
-					ArrayList<String> userData = model.getData(SmartHealth.curUser.getUserId());
+					ArrayList<String> userData = model.getData(userName);
 					
 					System.out.println("Distance ran by" + userName + ": " + userData.get(0) );
 					System.out.println("Calories Burned by him: " + userData.get(1));
