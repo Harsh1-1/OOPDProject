@@ -140,6 +140,10 @@ public class Forums extends State{
 			}
 			System.out.println("Enter the stars you want to give");
 			int stars = sc.nextInt();
+			if(stars < 0 || stars > 5){
+				System.out.println("Rating should be from 0 - 5");
+				return this;
+			}
 			model.ratePost(pi.getUserName(), pi.getTimeCreated(), 
 					SmartHealth.curUser.getUserId(), stars);
 			break;

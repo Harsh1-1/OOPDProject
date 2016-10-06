@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.11" icons="true" always-add-relationships="false" generalizations="true" 
+  realizations="false" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <package id="1" language="java" name="beans" project="SmartHealth" file="/SmartHealth/src/beans" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="50" width="101" x="1641" y="37"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="2" language="java" name="models" project="SmartHealth" file="/SmartHealth/src/models" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="50" width="101" x="3166" y="778"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="3" language="java" name="smart" project="SmartHealth" file="/SmartHealth/src/smart" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="50" width="101" x="480" y="37"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="4" language="java" name="views" project="SmartHealth" file="/SmartHealth/src/views" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="50" width="101" x="1060" y="37"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="5" language="java" name="beans.Comment" project="SmartHealth" file="/SmartHealth/src/beans/Comment.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="261" x="810" y="1902"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="beans.Property" project="SmartHealth" file="/SmartHealth/src/beans/Property.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="175" x="2326" y="778"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="beans.Qualification" project="SmartHealth" 
+    file="/SmartHealth/src/beans/Qualification.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="135" x="460" y="3219"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="beans.UserPost" project="SmartHealth" file="/SmartHealth/src/beans/UserPost.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="261" x="1643" y="778"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="beans.Address" project="SmartHealth" file="/SmartHealth/src/beans/Address.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="228" x="1126" y="2810"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="beans.PostIdentifier" project="SmartHealth" 
+    file="/SmartHealth/src/beans/PostIdentifier.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="155" x="583" y="778"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="beans.User" project="SmartHealth" file="/SmartHealth/src/beans/User.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="693" width="450" x="1943" y="2077"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="beans.EndUser" project="SmartHealth" file="/SmartHealth/src/beans/EndUser.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="468" x="1943" y="2810"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="beans.ForumIdentifier" project="SmartHealth" 
+    file="/SmartHealth/src/beans/ForumIdentifier.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="147" x="700" y="441"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="beans.Forum" project="SmartHealth" file="/SmartHealth/src/beans/Forum.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="567" width="373" x="1209" y="778"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="beans.Admin" project="SmartHealth" file="/SmartHealth/src/beans/Admin.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="488" x="1415" y="2810"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="beans.Moderator" project="SmartHealth" 
+    file="/SmartHealth/src/beans/Moderator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="626" x="460" y="2810"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="beans.Post" project="SmartHealth" file="/SmartHealth/src/beans/Post.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="391" x="923" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="models.Update" project="SmartHealth" file="/SmartHealth/src/models/Update.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="376" x="104" y="778"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="models.ForumList" project="SmartHealth" 
+    file="/SmartHealth/src/models/ForumList.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="240" x="887" y="441"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="models.Forums" project="SmartHealth" file="/SmartHealth/src/models/Forums.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="349" x="778" y="778"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="models.SignUp" project="SmartHealth" file="/SmartHealth/src/models/SignUp.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="201" x="1132" y="1902"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="models.LoggedIn" project="SmartHealth" 
+    file="/SmartHealth/src/models/LoggedIn.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="125" x="2007" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="models.HealthData" project="SmartHealth" 
+    file="/SmartHealth/src/models/HealthData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="217" x="2909" y="778"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="24" language="java" name="models.UserForm" project="SmartHealth" 
+    file="/SmartHealth/src/models/UserForm.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="233" x="583" y="2077"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="25" language="java" name="models.Login" project="SmartHealth" file="/SmartHealth/src/models/Login.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="405" width="164" x="2622" y="2077"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="models.Friends" project="SmartHealth" file="/SmartHealth/src/models/Friends.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="244" x="2583" y="778"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="smart.HealthData" project="SmartHealth" 
+    file="/SmartHealth/src/smart/HealthData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="127" x="2538" y="441"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="smart.Update" project="SmartHealth" file="/SmartHealth/src/smart/Update.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="159" x="501" y="441"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="smart.Friends" project="SmartHealth" file="/SmartHealth/src/smart/Friends.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="197" x="2284" y="441"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="smart.Global" project="SmartHealth" file="/SmartHealth/src/smart/Global.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="141" x="2909" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="smart.ForumList" project="SmartHealth" 
+    file="/SmartHealth/src/smart/ForumList.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="145" x="1822" y="194"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="smart.SmartHealth" project="SmartHealth" 
+    file="/SmartHealth/src/smart/SmartHealth.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="113" x="2193" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="smart.SignUp" project="SmartHealth" file="/SmartHealth/src/smart/SignUp.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="477" width="163" x="1375" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="smart.State" project="SmartHealth" file="/SmartHealth/src/smart/State.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="100" x="2223" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="35" language="java" name="smart.UserForm" project="SmartHealth" 
+    file="/SmartHealth/src/smart/UserForm.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="208" x="562" y="1902"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="36" language="java" name="smart.Forums" project="SmartHealth" file="/SmartHealth/src/smart/Forums.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="203" x="1764" y="441"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="smart.LoggedIn" project="SmartHealth" file="/SmartHealth/src/smart/LoggedIn.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="153" x="2049" y="778"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="smart.Login" project="SmartHealth" file="/SmartHealth/src/smart/Login.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="101" x="2433" y="1902"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="views.Login" project="SmartHealth" file="/SmartHealth/src/views/Login.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="149" x="2433" y="2077"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="views.Friends" project="SmartHealth" file="/SmartHealth/src/views/Friends.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="142" x="2583" y="1385"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <dependency id="41">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <association id="42">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="43" name="view"/>      
+      <multiplicity id="44" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="45">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="46" name="qualifications"/>      
+      <multiplicity id="47" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="48">    
+    <bendpoint x="1976" y="778"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="32"/>  
+  </dependency>  
+  <dependency id="49">    
+    <bendpoint x="2018" y="778"/>    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="32"/>  
+  </dependency>  
+  <generalization id="50">    
+    <bendpoint x="1955" y="778"/>    
+    <bendpoint x="2018" y="441"/>    
+    <bendpoint x="2018" y="194"/>    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="34"/>  
+  </generalization>  
+  <generalization id="51">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <dependency id="52">    
+    <bendpoint x="2253" y="778"/>    
+    <bendpoint x="2253" y="441"/>    
+    <bendpoint x="2253" y="194"/>    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <dependency id="53">    
+    <bendpoint x="1178" y="778"/>    
+    <bendpoint x="1568" y="1385"/>    
+    <bendpoint x="1568" y="1902"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="54">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="38"/>  
+  </dependency>  
+  <generalization id="55">    
+    <bendpoint x="2274" y="194"/>    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="34"/>  
+  </generalization>  
+  <generalization id="56">    
+    <bendpoint x="1997" y="194"/>    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="34"/>  
+  </generalization>  
+  <dependency id="57">    
+    <bendpoint x="2274" y="778"/>    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="32"/>  
+  </dependency>  
+  <association id="58">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="59" name="friendsModel"/>      
+      <multiplicity id="60" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="61">    
+    <bendpoint x="2552" y="778"/>    
+    <bendpoint x="2552" y="1385"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="38"/>  
+  </dependency>  
+  <dependency id="62">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="32"/>  
+  </dependency>  
+  <dependency id="63">    
+    <bendpoint x="1405" y="1902"/>    
+    <bendpoint x="1405" y="2077"/>    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <generalization id="64">    
+    <bendpoint x="1371" y="194"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="34"/>  
+  </generalization>  
+  <association id="65">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="66" name="comments"/>      
+      <multiplicity id="67" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="68">    
+    <bendpoint x="2531" y="778"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="32"/>  
+  </dependency>  
+  <dependency id="69">    
+    <bendpoint x="1157" y="441"/>    
+    <bendpoint x="531" y="778"/>    
+    <bendpoint x="510" y="1385"/>    
+    <bendpoint x="468" y="1902"/>    
+    <bendpoint x="468" y="2077"/>    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="70">    
+    <bendpoint x="1157" y="778"/>    
+    <bendpoint x="834" y="1385"/>    
+    <bendpoint x="510" y="1902"/>    
+    <bendpoint x="510" y="2077"/>    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <generalization id="71">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <generalization id="72">    
+    <bendpoint x="1344" y="1385"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <association id="73">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="74" name="model"/>      
+      <multiplicity id="75" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="76">    
+    <bendpoint x="2295" y="778"/>    
+    <bendpoint x="2336" y="1385"/>    
+    <bendpoint x="2336" y="1902"/>    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="77">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <realization id="78">    
+    <bendpoint x="489" y="1385"/>    
+    <bendpoint x="489" y="1902"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <dependency id="79">    
+    <bendpoint x="2857" y="778"/>    
+    <bendpoint x="2857" y="1385"/>    
+    <bendpoint x="2857" y="1902"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="80">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="81" name="controller"/>      
+      <multiplicity id="82" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="40" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="83">    
+    <bendpoint x="2162" y="1385"/>    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="38"/>  
+  </dependency>  
+  <dependency id="84">    
+    <bendpoint x="2211" y="441"/>    
+    <bendpoint x="2232" y="778"/>    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="32"/>  
+  </dependency>  
+  <dependency id="85">    
+    <bendpoint x="1976" y="1385"/>    
+    <bendpoint x="1976" y="1902"/>    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="86">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="37"/>  
+  </dependency>  
+  <realization id="87">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="35"/>  
+  </realization>  
+  <dependency id="88">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="38"/>  
+  </dependency>  
+  <generalization id="89">    
+    <bendpoint x="2390" y="194"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="34"/>  
+  </generalization>  
+  <generalization id="90">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="34"/>  
+  </generalization>  
+  <association id="91">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="92" name="model"/>      
+      <multiplicity id="93" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="94">    
+    <bendpoint x="52" y="778"/>    
+    <bendpoint x="52" y="1385"/>    
+    <bendpoint x="52" y="1902"/>    
+    <bendpoint x="52" y="2077"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="95">    
+    <bendpoint x="1612" y="778"/>    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <generalization id="96">    
+    <bendpoint x="2836" y="1385"/>    
+    <bendpoint x="2878" y="778"/>    
+    <bendpoint x="2878" y="441"/>    
+    <bendpoint x="2878" y="194"/>    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="34"/>  
+  </generalization>  
+  <dependency id="97">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="98">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <association id="99">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="100" name="address"/>      
+      <multiplicity id="101" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="102">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <dependency id="103">    
+    <bendpoint x="1363" y="1902"/>    
+    <bendpoint x="1363" y="2077"/>    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="104">    
+    <bendpoint x="1526" y="1902"/>    
+    <bendpoint x="1526" y="2077"/>    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="105">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <realization id="106">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <association id="107">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="108" name="model"/>      
+      <multiplicity id="109" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="110">    
+    <bendpoint x="552" y="778"/>    
+    <bendpoint x="552" y="1385"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="35"/>  
+  </realization>  
+  <dependency id="111">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="37"/>  
+  </dependency>  
+  <association id="112">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="113" name="model"/>      
+      <multiplicity id="114" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="115">    
+    <bendpoint x="1547" y="1902"/>    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="116">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="117" name="model"/>      
+      <multiplicity id="118" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="119">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="36"/>  
+  </dependency>  
+  <association id="120">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="121" name="model"/>      
+      <multiplicity id="122" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="123">    
+    <bendpoint x="1934" y="778"/>    
+    <bendpoint x="1934" y="1385"/>    
+    <bendpoint x="1934" y="1902"/>    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <generalization id="124">    
+    <bendpoint x="2232" y="441"/>    
+    <bendpoint x="2232" y="194"/>    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="34"/>  
+  </generalization>  
+  <association id="125">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="126" name="posts"/>      
+      <multiplicity id="127" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="128">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <dependency id="129">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="130">    
+    <bendpoint x="31" y="778"/>    
+    <bendpoint x="31" y="1385"/>    
+    <bendpoint x="31" y="1902"/>    
+    <bendpoint x="31" y="2077"/>    
+    <bendpoint x="31" y="2810"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <generalization id="131">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="132">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="133" name="model"/>      
+      <multiplicity id="134" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="135">    
+    <bendpoint x="1997" y="441"/>    
+    <bendpoint x="1997" y="778"/>    
+    <bendpoint x="1955" y="1385"/>    
+    <bendpoint x="1955" y="1902"/>    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="136">    
+    <bendpoint x="1101" y="1902"/>    
+    <bendpoint x="531" y="2077"/>    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="137">    
+    <bendpoint x="510" y="778"/>    
+    <bendpoint x="531" y="1385"/>    
+    <bendpoint x="531" y="1902"/>    
+    <bendpoint x="552" y="2077"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <association id="138">    
+    <bendpoint x="2077" y="1902"/>    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="139" name="curUser"/>      
+      <multiplicity id="140" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="141">    
+    <bendpoint x="2039" y="441"/>    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="37"/>  
+  </dependency>  
+  <association id="142">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="143" name="model"/>      
+      <multiplicity id="144" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="145">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <dependency id="146">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="37"/>  
+  </dependency>  
+  <dependency id="147">    
+    <bendpoint x="1384" y="1902"/>    
+    <bendpoint x="1384" y="2077"/>    
+    <bendpoint x="1384" y="2810"/>    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="148">    
+    <bendpoint x="73" y="778"/>    
+    <bendpoint x="211" y="1385"/>    
+    <bendpoint x="350" y="1902"/>    
+    <bendpoint x="489" y="2077"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="149">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="37"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
