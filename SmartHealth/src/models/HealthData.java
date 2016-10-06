@@ -87,6 +87,14 @@ public class HealthData {
 			
 			ResultSet result = stmt.executeQuery(SQL);
 			
+			boolean ifdataexist = result.isBeforeFirst();
+			
+			if(!ifdataexist)
+			{
+				userdata=null;
+				return userdata;
+			}
+			
 			while(result.next())
 			{
 			

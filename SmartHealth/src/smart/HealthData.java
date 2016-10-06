@@ -85,10 +85,17 @@ public class HealthData extends State{
 				{
 					ArrayList<String> userData = model.getData(userName);
 					
-					System.out.println("Distance ran by" + userName + ": " + userData.get(0) );
-					System.out.println("Calories Burned by him: " + userData.get(1));
-					System.out.println("Systolic Blood Pressure of him: " + userData.get(2));
-					System.out.println("Diastolic Blood Pressure of him: " + userData.get(3));
+					if(userData!=null)
+					{
+						System.out.println("Distance ran by" + userName + ": " + userData.get(0) );
+						System.out.println("Calories Burned by him: " + userData.get(1));
+						System.out.println("Systolic Blood Pressure of him: " + userData.get(2));
+						System.out.println("Diastolic Blood Pressure of him: " + userData.get(3));
+					}
+					else
+						System.out.println("No data of friend exist!!");
+					
+					
 				}
 				else
 				{
