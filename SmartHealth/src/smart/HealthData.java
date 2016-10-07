@@ -87,7 +87,7 @@ public class HealthData extends State{
 					
 					if(userData!=null)
 					{
-						System.out.println("Distance ran by" + userName + ": " + userData.get(0) );
+						System.out.println("Distance ran by " + userName + ": " + userData.get(0) );
 						System.out.println("Calories Burned by him: " + userData.get(1));
 						System.out.println("Systolic Blood Pressure of him: " + userData.get(2));
 						System.out.println("Diastolic Blood Pressure of him: " + userData.get(3));

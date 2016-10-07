@@ -13,7 +13,7 @@ import smart.Global;
 
 public class Friends {
 
-	private static views.Friends controller = new views.Friends();
+	private static views.Friends view = new views.Friends();
 	//to view friends
 	public void viewFriends(User curUser)
 	{
@@ -282,11 +282,14 @@ public class Friends {
 						    + " and WhenRequested IS NOT NULL and WhenConfirmed IS NULL;";
 				ResultSet result = stmt.executeQuery(SQL);
 				
+				int choice;
+				
 				while(result.next())
 				{
 					String RequestedUserName = result.getString("Requested_Username");
 					System.out.println(RequestedUserName);
-					if(controller.getwithdrawchoice() == 1)
+					choice = view.getwithdrawchoice();
+					if(choice == 1)
 					{
 						String WithdrawQuery = "Update friendship set WhenRequested = NULL, WhenWithdrawn = " + "NOW()" + " where Requester_Username = '" + curUser.getUserId() + "'"
 					              + " and Requested_Username = '" + RequestedUserName + "';"; 
@@ -299,7 +302,7 @@ public class Friends {
 						else
 							System.out.println("Request withdrawn successfully :)");
 					}
-					else if(controller.getwithdrawchoice() == 0)
+					else if(choice == 0)
 						System.out.println("request not withdrawn");
 					else
 						System.out.println("wrong input entered");
@@ -335,7 +338,7 @@ public class Friends {
 					{
 						String Requester_UserName = result.getString("Requester_Username");
 						
-						switch(controller.acceptreject(Requester_UserName))
+						switch(view.acceptreject(Requester_UserName))
 						{
 						case 1:
 							
